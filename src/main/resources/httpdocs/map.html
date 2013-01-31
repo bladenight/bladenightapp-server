@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYKMcZpChdiltJ7R4tn_OJwlJAeRtXdEU&sensor=false">
+    </script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry">
+    </script>
+    
+    <script type="text/javascript">
+      function initializeMap() {
+        var mapOptions = {
+          center: new google.maps.LatLng(48.132487, 11.5438976),
+          zoom: 14,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        routeOverlay = null; 
+        processionOverlay = null; 
+        participantOverlays = []; 
+        routeNodes = []
+        
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(48.140520, 11.525794),
+            title: 'Point A',
+            map: map,
+            draggable: true
+        });
+        
+      }
+    </script>
+    
+    <script type="text/javascript" src="autobahn.min.js">
+    </script>
+
+    <script>
+      var wampSession;
+      function initializeWamp() {
+        var wsuri = "ws://localhost:8081";
+      
+        console.log("Connecting to " + wsuri);
+
+        ab.connect(wsuri,
+            function (session) {
+               // WAMP session was established
+               wampSession = session;
+               console.log("Connected to " + wsuri);
+               // subscribe to topic, providing an event handler
+               wampSession.subscribe("http://example.com/simple", onEvent);
+               // Just an example so that something happens:
+               getActiveEvent();
+               getRealTimeData();
+            },
+            function (code, reason) {
+               // WAMP session is gone
+               wampSession = null;
+               console.log("Connection lost (" + reason + ")");
+            }
+         );
+         
+        setInterval(function() {getRealTimeData()}, 1000); 
+        setInterval(function() {getAndDisplayParticipants()}, 1000); 
+      };
+       
+      function onEvent(topic, event) {
+         console.log(topic);
+         console.log(event);
+      }
+       
+      function publishEvent() {
+         wampSession.publish("http://example.com/simple", {a: "foo", b: "bar", c: 23});
+      }
+      
+      function getActiveEvent() {
+			var id = "http://www.greencity.de/bladenight/app/rpc/getActiveEvent";
+
+			console.log("Calling " + id);
+         	wampSession.call(id).then(
+	            function (event) {
+		            // RPC success callback
+	               console.log("got result: ");
+		           console.log(event);
+	               console.log("route: "+event.rou);
+		           getAndDisplayRoute(event.rou);
+	            },
+	            function (error, desc) {
+		            // RPC error callback
+	               console.log("error: ");
+	               console.log(error);
+	               console.log(desc);
+	            }
+	         );
+      }
+
+      function getRealTimeData() {
+			var id = "http://www.greencity.de/bladenight/app/rpc/getRealTimeUpdateData";
+
+			console.log("Calling " + id);
+       		wampSession.call(id).then(
+	            function (data) {
+		            // RPC success callback
+	               console.log("got result for getRealTimeData: ");
+		           console.log(data);
+		           updateProcessionOverlay(data);
+	            },
+	            function (error, desc) {
+		            // RPC error callback
+	               console.log("error: ");
+	               console.log(error);
+	               console.log(desc);
+	            }
+	         );
+      }
+
+      function updateProcessionOverlay(realTimeData) {
+          if ( processionOverlay != null )
+        	  processionOverlay.setMap(null);
+          var processionNodes = [];
+          var currentPosition = 0;
+          var tailPosition = realTimeData.tai.pos;
+          var headPosition = realTimeData.hea.pos;
+          console.log(tailPosition);
+          console.log(headPosition);
+          var isInIntersection = false; 
+          for (var i = 0; i < routeNodes.length - 1; i++) {
+        	var segmentLength = google.maps.geometry.spherical.computeDistanceBetween(routeNodes[i], routeNodes[i+1]);
+        	if ( isInIntersection )
+                processionNodes.push(routeNodes[i]);
+        	if ( currentPosition <= tailPosition && tailPosition <= currentPosition + segmentLength) {
+        		// Procession starts on this segment
+        		var ratio = ( tailPosition - currentPosition) / segmentLength;
+        		var lat = routeNodes[i].lat() + ratio * ( routeNodes[i+1].lat() - routeNodes[i].lat() ); 
+        		var lng = routeNodes[i].lng() + ratio * ( routeNodes[i+1].lng() - routeNodes[i].lng() ); 
+                processionNodes.push(new google.maps.LatLng(lat, lng));
+                isInIntersection = true;
+        	}
+        	if ( currentPosition <= headPosition && headPosition <= currentPosition + segmentLength) {
+        		// Procession ends on this segment
+        		var ratio = ( headPosition - currentPosition) / segmentLength;
+        		var lat = routeNodes[i].lat() + ratio * ( routeNodes[i+1].lat() - routeNodes[i].lat() ); 
+        		var lng = routeNodes[i].lng() + ratio * ( routeNodes[i+1].lng() - routeNodes[i].lng() ); 
+                processionNodes.push(new google.maps.LatLng(lat, lng));
+                isInIntersection = false;
+        	}
+        	if ( isInIntersection )
+                processionNodes.push(routeNodes[i+1]);
+        		
+        	currentPosition += segmentLength;
+          }
+          processionOverlay = new google.maps.Polyline({
+              path: processionNodes,
+              strokeColor: "#0000FF",
+              strokeOpacity: 1.0,
+              strokeWeight: 4
+             });
+          console.log("setting procession overlay");
+          processionOverlay.setMap(map);
+      }
+
+      function getAndDisplayRoute(routeName) {
+			var id = "http://www.greencity.de/bladenight/app/rpc/getRoute";
+
+			console.log("Calling " + id + "(" + routeName + ")");
+         	wampSession.call(id, routeName).then(
+	            function (res) {
+		            // RPC success callback
+	               console.log("got result: ");
+		           console.log(res);
+                   routeNodes = [];
+                   for (var i = 0; i < res.nod.length; i++) {
+                     node = res.nod[i]; 
+                     routeNodes.push(new google.maps.LatLng(node.la, node.lo));
+                   }
+                   if ( routeOverlay != null )
+                     routeOverlay.setMap(null);
+                   routeOverlay = new google.maps.Polyline({
+                     path: routeNodes,
+                     strokeColor: "#7000FF",
+                     strokeOpacity: 0.3,
+                     strokeWeight: 8
+                    });
+	              console.log("setting overlay");
+                  routeOverlay.setMap(map);
+                  getRealTimeData();
+	            },
+	            function (err) {
+		            // RPC error callback
+	               console.log(err);
+	            }
+	         );
+      }
+      
+      function getAndDisplayParticipants() {
+			var id = "http://www.greencity.de/bladenight/app/rpc/getAllParticipants";
+
+			console.log("Calling " + id );
+       		wampSession.call(id).then(
+	            function (res) {
+		          // RPC success callback
+	              console.log("got result: ");
+		          console.log(res);
+		          console.log("participantOverlays.length=" + participantOverlays.length);
+		          while ( participantOverlays.length > 0 ) {
+		              console.log("l=" + participantOverlays.length);
+		        	  participantOverlays.pop().setMap(null);
+		          }
+		          console.log("res.length=" + res.length);
+                  for (var i = 0; i < res.length; i++) {
+    		        console.log("i="+i);
+                    var node = res[i]; 
+ 		            console.log(node);
+                    var marker = new google.maps.Marker({
+                 	  position: new google.maps.LatLng(node.la, node.lo),
+                 	  icon: {
+                 	    path: google.maps.SymbolPath.CIRCLE,
+                 	    fillOpacity: 0.5,
+                 	    fillColor: '0000ff',
+                 	    strokeOpacity: 1.0,
+                 	    strokeColor: '000000',
+                 	    strokeWeight: 1.0, 
+                 	    scale: 5 //pixels
+                 	  }
+                 	});
+                    marker.setMap(map);
+                    participantOverlays.push(marker);
+                  }
+	            },
+	            function (err) {
+		            // RPC error callback
+	               console.log(err);
+	            }
+	         );
+    }
+
+    </script>
+    <script>
+    	function initialize() {
+    		initializeMap();
+    		initializeWamp();
+    	}
+    </script>
+  </head>
+  <body onload="initialize()">
+  	<div id="next_event">Hello !</div>
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+  </body>
+</html>
