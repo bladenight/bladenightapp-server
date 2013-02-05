@@ -21,7 +21,6 @@ import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
 import de.greencity.bladenightapp.routes.RouteStoreSingleton;
-import fr.ocroquette.wampoc.adapters.jetty.JettyServerHandler;
 
 public class App 
 {
@@ -48,11 +47,10 @@ public class App
 	public static void startServer() throws Exception {
 		fr.ocroquette.wampoc.server.WampServer wampocServer = new BladenightWampServer();
 
-		JettyServerHandler wampocHandler = new JettyServerHandler(wampocServer) {
+		BladenightJettyServerHandler wampocHandler = new BladenightJettyServerHandler(wampocServer) {
 
 			@Override
-			public WebSocket doWebSocketConnect(HttpServletRequest request,
-					String protocol) {
+			public WebSocket doWebSocketConnect(HttpServletRequest request, String protocol) {
 				log.info("Got new connection from " + request.getRemoteAddr());
 				return super.doWebSocketConnect(request, protocol);
 			}
