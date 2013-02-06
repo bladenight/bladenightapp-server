@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.eclipse.jetty.websocket.WebSocket.OnTextMessage;
 
 import fr.ocroquette.wampoc.adapters.jetty.ChannelToConnectionAdapter;
+import fr.ocroquette.wampoc.exceptions.BadArgumentException;
 import fr.ocroquette.wampoc.server.SessionId;
 import fr.ocroquette.wampoc.server.WampServer;
 
@@ -20,12 +21,13 @@ public class BladenightJettyServerWebSocketProxy implements OnTextMessage {
 
 	@Override
 	public void onOpen(Connection connection) {
-		sessionId = wampServer.addClient(new ChannelToConnectionAdapter(connection));
+		sessionId = wampServer.connectClient(new ChannelToConnectionAdapter(connection));
 		getLog().info("WAMP session opened: " + sessionId);
 	}
 
 	@Override
 	public void onClose(int closeCode, String message) {
+		wampServer.discardClient(sessionId);
 		getLog().info("WAMP session closed: " + sessionId);
 	}
 
@@ -34,6 +36,8 @@ public class BladenightJettyServerWebSocketProxy implements OnTextMessage {
 		try {
 			wampServer.handleIncomingMessage(sessionId, data);
 		} catch (IOException e) {
+			getLog().warn("Got exception in onMessage", e);
+		} catch (BadArgumentException e) {
 			getLog().warn("Got exception in onMessage", e);
 		}
 	}
