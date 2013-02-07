@@ -14,6 +14,8 @@
     </script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry">
     </script>
+    <script type="text/javascript" src="jquery-1.9.1.min.js">
+    </script>
     
     <script type="text/javascript">
       function initializeMap() {
@@ -28,13 +30,20 @@
         participantOverlays = []; 
         routeNodes = []
         
-        var marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
             position: new google.maps.LatLng(48.140520, 11.525794),
             title: 'Point A',
             map: map,
             draggable: true
         });
         
+        google.maps.event.addListener(marker, "dragend", function(event) {
+			var point = marker.getPosition();
+			// console.log(point);
+			updateMyPosition(point);
+           	getRealTimeData(); 
+           	getAndDisplayParticipants(); 
+		});
       }
     </script>
     
@@ -58,6 +67,8 @@
                // Just an example so that something happens:
                getActiveEvent();
                getRealTimeData();
+               
+               setTimers();
             },
             function (code, reason) {
                // WAMP session is gone
@@ -66,13 +77,11 @@
             }
          );
          
-        setInterval(function() {getRealTimeData()}, 1000); 
-        setInterval(function() {getAndDisplayParticipants()}, 1000); 
       };
        
       function onEvent(topic, event) {
-         console.log(topic);
-         console.log(event);
+         // console.log(topic);
+         // console.log(event);
       }
        
       function publishEvent() {
@@ -86,9 +95,9 @@
          	wampSession.call(id).then(
 	            function (event) {
 		            // RPC success callback
-	               console.log("got result: ");
-		           console.log(event);
-	               console.log("route: "+event.rou);
+	               // console.log("got result: ");
+		           // console.log(event);
+	               // console.log("route: "+event.rou);
 		           getAndDisplayRoute(event.rou);
 	            },
 	            function (error, desc) {
@@ -100,15 +109,39 @@
 	         );
       }
 
+      
+      function updateMyPosition(latlng) {
+			var id = "http://www.greencity.de/bladenight/app/rpc/participantUpdate";
+			
+			var data = {coo:{la:latlng.lat(), lo:latlng.lng()}, deviceId:"TODO-generate"};
+			// console.log("Calling " + id);
+			// console.log(data);
+     		wampSession.call(id,data).then(
+	            function (data) {
+		            // RPC success callback
+	               // console.log("got result for updateMyPosition: ");
+		           // console.log(data);
+		           updateProcessionOverlay(data);
+	            },
+	            function (error, desc) {
+		            // RPC error callback
+	               console.log("error: ");
+	               console.log(error);
+	               console.log(desc);
+	            }
+	         );
+     		getRealTimeData();
+      }
+
       function getRealTimeData() {
 			var id = "http://www.greencity.de/bladenight/app/rpc/getRealTimeUpdateData";
 
-			console.log("Calling " + id);
+			// console.log("Calling " + id);
        		wampSession.call(id).then(
 	            function (data) {
 		            // RPC success callback
-	               console.log("got result for getRealTimeData: ");
-		           console.log(data);
+	               // console.log("got result for getRealTimeData: ");
+		           // console.log(data);
 		           updateProcessionOverlay(data);
 	            },
 	            function (error, desc) {
@@ -127,8 +160,8 @@
           var currentPosition = 0;
           var tailPosition = realTimeData.tai.pos;
           var headPosition = realTimeData.hea.pos;
-          console.log(tailPosition);
-          console.log(headPosition);
+          // console.log(tailPosition);
+          // console.log(headPosition);
           var isInIntersection = false; 
           for (var i = 0; i < routeNodes.length - 1; i++) {
         	var segmentLength = google.maps.geometry.spherical.computeDistanceBetween(routeNodes[i], routeNodes[i+1]);
@@ -161,7 +194,7 @@
               strokeOpacity: 1.0,
               strokeWeight: 4
              });
-          console.log("setting procession overlay");
+          // console.log("setting procession overlay");
           processionOverlay.setMap(map);
       }
 
@@ -172,8 +205,8 @@
          	wampSession.call(id, routeName).then(
 	            function (res) {
 		            // RPC success callback
-	               console.log("got result: ");
-		           console.log(res);
+	               // console.log("got result: ");
+		           // console.log(res);
                    routeNodes = [];
                    for (var i = 0; i < res.nod.length; i++) {
                      node = res.nod[i]; 
@@ -187,7 +220,7 @@
                      strokeOpacity: 0.3,
                      strokeWeight: 8
                     });
-	              console.log("setting overlay");
+	              // console.log("setting overlay");
                   routeOverlay.setMap(map);
                   getRealTimeData();
 	            },
@@ -201,22 +234,18 @@
       function getAndDisplayParticipants() {
 			var id = "http://www.greencity.de/bladenight/app/rpc/getAllParticipants";
 
-			console.log("Calling " + id );
+			// console.log("Calling " + id );
        		wampSession.call(id).then(
 	            function (res) {
 		          // RPC success callback
-	              console.log("got result: ");
-		          console.log(res);
-		          console.log("participantOverlays.length=" + participantOverlays.length);
+	              // console.log("got result: ");
+		          // console.log(res);
+		          // console.log("participantOverlays.length=" + participantOverlays.length);
 		          while ( participantOverlays.length > 0 ) {
-		              console.log("l=" + participantOverlays.length);
 		        	  participantOverlays.pop().setMap(null);
 		          }
-		          console.log("res.length=" + res.length);
                   for (var i = 0; i < res.length; i++) {
-    		        console.log("i="+i);
                     var node = res[i]; 
- 		            console.log(node);
                     var marker = new google.maps.Marker({
                  	  position: new google.maps.LatLng(node.la, node.lo),
                  	  icon: {
@@ -246,10 +275,32 @@
     		initializeMap();
     		initializeWamp();
     	}
+    	function setTimers() {
+    		if ( ! typeof timerGetRealTimeData === "undefined" )
+    			clearInterval(timerGetRealTimeData);
+    		if ( ! typeof timerGetAndDisplayParticipants  === "undefined" )
+    			clearInterval(timerGetAndDisplayParticipants);
+    		var period = 1000 * $('#timerPeriod').val() 
+    		// console.log("timerperiod:"+period);
+           	timerGetRealTimeData = setInterval(function() {getRealTimeData()}, period); 
+           	timerGetAndDisplayParticipants = setInterval(function() {getAndDisplayParticipants()}, period); 
+    	}
     </script>
+
   </head>
   <body onload="initialize()">
-  	<div id="next_event">Hello !</div>
+  	<div id="next_event"></div>
+  	<div>
+  	Timer period:
+  	<select id="timerPeriod" onchange="setTimers()">
+  		<option value="0">Disable</option>
+		<option value="1">1s</option>
+ 		<option value="3">3s</option>
+ 		<option value="5" selected>5s</option>
+ 		<option value="10">10s</option>
+	</select>
+	</div> 
+
     <div id="map_canvas" style="width:100%; height:100%"></div>
   </body>
 </html>
