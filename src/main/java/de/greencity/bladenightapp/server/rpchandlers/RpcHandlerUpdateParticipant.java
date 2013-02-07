@@ -1,5 +1,6 @@
 package de.greencity.bladenightapp.server.rpchandlers;
 
+import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
@@ -21,6 +22,11 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 		
 		if ( ! validateInput(rpcCall, input) )
 			return;
+		
+		if ( procession == null ) {
+			rpcCall.setError(BladenightError.INTERNAL_ERROR.getText(), "Internal error: Procession is null");
+			return;
+		}
 		
 		ParticipantInput participantInput = new ParticipantInput(input.getDeviceId(), input.getLatitude(), input.getLongitude());
 		procession.updateParticipant(participantInput);
