@@ -3,8 +3,6 @@ package de.greencity.bladenightapp.server.rpchandlers;
 import java.util.List;
 
 import de.greencity.bladenightapp.network.messages.LatLong;
-import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
-import de.greencity.bladenightapp.procession.MovingPoint;
 import de.greencity.bladenightapp.procession.Participant;
 import de.greencity.bladenightapp.procession.Procession;
 import fr.ocroquette.wampoc.server.RpcCall;

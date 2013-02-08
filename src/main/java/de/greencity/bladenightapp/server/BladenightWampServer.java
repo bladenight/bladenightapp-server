@@ -3,7 +3,6 @@ package de.greencity.bladenightapp.server;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import de.greencity.bladenightapp.events.EventsList;
 import de.greencity.bladenightapp.events.EventsListSingleton;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
