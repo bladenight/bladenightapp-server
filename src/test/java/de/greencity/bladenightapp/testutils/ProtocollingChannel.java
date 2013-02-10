@@ -1,4 +1,4 @@
-package de.greencity.bladenightapp.server;
+package de.greencity.bladenightapp.testutils;
 
 import java.util.ArrayList;
 import java.util.List;

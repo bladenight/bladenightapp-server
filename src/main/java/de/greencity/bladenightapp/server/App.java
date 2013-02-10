@@ -18,6 +18,8 @@ import de.greencity.bladenightapp.events.EventsListSingleton;
 import de.greencity.bladenightapp.keyvaluestore.KeyValueStoreSingleton;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
+import de.greencity.bladenightapp.procession.tasks.ComputeScheduler;
+import de.greencity.bladenightapp.procession.tasks.ParticipantCollector;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
 import de.greencity.bladenightapp.routes.RouteStoreSingleton;
@@ -140,6 +142,9 @@ public class App
 		Route route = RouteStoreSingleton.getInstance().getRoute(nextEvent.getRouteName());
 		procession.setRoute(route);
 		ProcessionSingleton.setProcession(procession);
+		
+		new Thread(new ComputeScheduler(procession, 1000)).start();
+		new Thread(new ParticipantCollector(procession, 50.0, 1000)).start();
 	}
 
 	private static Log log;
