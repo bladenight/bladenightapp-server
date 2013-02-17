@@ -30,18 +30,16 @@
         participantOverlays = []; 
         routeNodes = []
         
+        myPosition = new google.maps.LatLng(48.140520, 11.525794);
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(48.140520, 11.525794),
+            position: myPosition,
             title: 'Point A',
             map: map,
             draggable: true
         });
         
         google.maps.event.addListener(marker, "dragend", function(event) {
-			var point = marker.getPosition();
-			// console.log(point);
-			updateMyPosition(point);
-           	getRealTimeData(); 
+			sendMyPosition();
            	getAndDisplayParticipants(); 
 		});
       }
@@ -63,10 +61,10 @@
                wampSession = session;
                console.log("Connected to " + wsuri);
                // subscribe to topic, providing an event handler
-               wampSession.subscribe("http://example.com/simple", onEvent);
+               // wampSession.subscribe("http://example.com/simple", onEvent);
                // Just an example so that something happens:
                getActiveEvent();
-               getRealTimeData();
+               // getRealTimeData();
                
                setTimers();
             },
@@ -110,8 +108,10 @@
       }
 
       
-      function updateMyPosition(latlng) {
-			var id = "http://www.greencity.de/bladenight/app/rpc/participantUpdate";
+      function sendMyPosition(latlng) {
+    	  var latlng = marker.getPosition();
+
+    	  var id = "http://www.greencity.de/bladenight/app/rpc/participantUpdate";
 			
 			var data = {coo:{la:latlng.lat(), lo:latlng.lng()}, deviceId:"TODO-generate"};
 			// console.log("Calling " + id);
@@ -119,9 +119,10 @@
      		wampSession.call(id,data).then(
 	            function (data) {
 		            // RPC success callback
-	               // console.log("got result for updateMyPosition: ");
+	               // console.log("got result for sendMyPosition: ");
 		           // console.log(data);
 		           updateProcessionOverlay(data);
+		           updateProgress(data);
 	            },
 	            function (error, desc) {
 		            // RPC error callback
@@ -130,7 +131,7 @@
 	               console.log(desc);
 	            }
 	         );
-     		getRealTimeData();
+     		// getRealTimeData();
       }
 
       function getRealTimeData() {
@@ -288,7 +289,11 @@
 				ctx.save();
 				ctx.fillStyle = "rgb(0,0,200)";
 				ctx.fillRect(m2pix(realTimeData.tai.pos), 0, 1+m2pix(realTimeData.hea.pos-realTimeData.tai.pos), canvas.height);
-				ctx.fillStyle = "rgb(200,0,200)";
+				ctx.restore();
+
+				ctx.save();
+				ctx.fillStyle = "rgb(255,0,0)";
+				ctx.fillRect(m2pix(realTimeData.up.pos), 0, 2, canvas.height);
 				ctx.restore();
 
 			}
@@ -300,13 +305,13 @@
     		initializeWamp();
     	}
     	function setTimers() {
-    		if ( ! typeof timerGetRealTimeData === "undefined" )
-    			clearInterval(timerGetRealTimeData);
+    		if ( ! typeof timerSendMyPosition === "undefined" )
+    			clearInterval(timerSendMyPosition);
     		if ( ! typeof timerGetAndDisplayParticipants  === "undefined" )
     			clearInterval(timerGetAndDisplayParticipants);
     		var period = 1000 * $('#timerPeriod').val() 
     		// console.log("timerperiod:"+period);
-           	timerGetRealTimeData = setInterval(function() {getRealTimeData()}, period); 
+           	timerSendMyPosition = setInterval(function() {sendMyPosition()}, period); 
            	timerGetAndDisplayParticipants = setInterval(function() {getAndDisplayParticipants()}, period); 
     	}
     </script>

@@ -143,6 +143,9 @@ public class App
 		procession.setRoute(route);
 		ProcessionSingleton.setProcession(procession);
 		
+		double smoothingFactor = KeyValueStoreSingleton.getDouble("bnserver.procession.smoothing", 0.0);
+		procession.setUpdateSmoothingFactor(smoothingFactor);
+		
 		new Thread(new ComputeScheduler(procession, 1000)).start();
 		new Thread(new ParticipantCollector(procession, 10.0, 1000)).start();
 	}

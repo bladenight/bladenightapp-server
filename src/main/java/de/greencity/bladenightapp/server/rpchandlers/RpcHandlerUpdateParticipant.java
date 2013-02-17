@@ -5,6 +5,7 @@ import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
 import de.greencity.bladenightapp.procession.MovingPoint;
+import de.greencity.bladenightapp.procession.Participant;
 import de.greencity.bladenightapp.procession.ParticipantInput;
 import de.greencity.bladenightapp.procession.Procession;
 import fr.ocroquette.wampoc.server.RpcCall;
@@ -29,13 +30,16 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 		}
 		
 		ParticipantInput participantInput = new ParticipantInput(input.getDeviceId(), input.getLatitude(), input.getLongitude());
-		procession.updateParticipant(participantInput);
+		Participant participant = procession.updateParticipant(participantInput);
 		
 		RealTimeUpdateData data = new RealTimeUpdateData();
 		MovingPoint head = procession.getHead();
 		MovingPoint tail = procession.getTail();
-		data.setHead(head.getLinearPosition(), head.getLinearSpeed());
-		data.setTail(tail.getLinearPosition(), tail.getLinearSpeed());
+		data.setHead((int)head.getLinearPosition(), head.getLinearSpeed());
+		data.setTail((int)tail.getLinearPosition(), tail.getLinearSpeed());
+		data.setRouteLength((int)procession.getRoute().getLength());
+		data.setRouteName(procession.getRoute().getName());
+		data.setUserPosition((int)participant.getLinearPosition(), 0.0);
 		rpcCall.setOutput(data, RealTimeUpdateData.class);
 	}
 
