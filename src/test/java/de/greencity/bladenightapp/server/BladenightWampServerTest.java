@@ -29,7 +29,8 @@ import fr.ocroquette.wampoc.messages.MessageType;
 import fr.ocroquette.wampoc.server.Session;
 
 public class BladenightWampServerTest {
-	final String path = "/routes/Nord - kurz.kml";
+	final String routeName = "Nord - kurz";
+	final String path = "/routes/" + routeName + ".kml";
 
 	@Before
 	public void init() {
@@ -38,6 +39,7 @@ public class BladenightWampServerTest {
 		assertTrue(file != null);
 		route = new Route();
 		assertTrue(route.load(file));
+		assertEquals(routeName, route.getName());
 
 		procession = new Procession();
 		procession.setRoute(route);
@@ -52,9 +54,10 @@ public class BladenightWampServerTest {
 	@Test
 	public void userOutOfCorridor() throws IOException, BadArgumentException {
 		RealTimeUpdateData data = sendParticipantUpdate(0, 0);
-		System.out.println("xxx="+channel.handledMessages.get(1));
+		// System.out.println("xxx="+channel.handledMessages.get(1));
 		assertTrue(data != null);
 		assertEquals(12605, data.getRouteLength(), 1.0);
+		assertEquals(routeName, data.getRouteName());
 	}
 
 	@Test
