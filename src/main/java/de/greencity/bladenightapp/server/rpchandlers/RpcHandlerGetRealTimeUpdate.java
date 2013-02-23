@@ -21,6 +21,8 @@ public class RpcHandlerGetRealTimeUpdate extends RpcHandler {
 		data.setRouteName(procession.getRoute().getName());
 		data.setHead((int)head.getLinearPosition(), head.getLinearSpeed());
 		data.setTail((int)tail.getLinearPosition(), tail.getLinearSpeed());
+		data.setUserTotal(procession.getParticipantCount());
+		data.setUserOnRoute(procession.getParticipantOnRoute());
 		rpcCall.setOutput(data, RealTimeUpdateData.class);
 	}
 

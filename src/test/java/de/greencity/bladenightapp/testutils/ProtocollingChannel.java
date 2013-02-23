@@ -14,7 +14,7 @@ public class ProtocollingChannel implements Channel {
 		handledMessages.add(message);
 	}
 	
-	public String last() {
+	public String lastMessage() {
 		return handledMessages.get(handledMessages.size()-1);
 	}
 
