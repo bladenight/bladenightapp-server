@@ -39,7 +39,8 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 		data.setTail((int)tail.getLinearPosition(), tail.getLinearSpeed());
 		data.setRouteLength((int)procession.getRoute().getLength());
 		data.setRouteName(procession.getRoute().getName());
-		data.setUserPosition((int)participant.getLinearPosition(), 0.0);
+		data.isUserOnRoute(procession.isParticipantOnRoute(input.getDeviceId()));
+		data.setUserPosition((int)participant.getLinearPosition(), participant.getLinearSpeed());
 		data.setUserTotal(procession.getParticipantCount());
 		data.setUserOnRoute(procession.getParticipantOnRoute());
 		rpcCall.setOutput(data, RealTimeUpdateData.class);

@@ -58,22 +58,37 @@ public class BladenightWampServerTest {
 		assertEquals(routeName, data.getRouteName());
 	}
 
-	
 	@Test
-	public void userOutOfCorridor() throws IOException, BadArgumentException {
+	public void routeNameAndLength() throws IOException, BadArgumentException {
 		RealTimeUpdateData data = sendParticipantUpdate("userOutOfCorridor", 0, 0);
 		assertTrue(data != null);
 		assertEquals(12605, data.getRouteLength(), 1.0);
 		assertEquals(routeName, data.getRouteName());
 	}
+	
+	@Test
+	public void userOutOfCorridor() throws IOException, BadArgumentException {
+		RealTimeUpdateData data = sendParticipantUpdate("userOutOfCorridor", 0, 0);
+		assertTrue(data != null);
+		assertEquals(false, data.isUserOnRoute());
+	}
 
 	@Test
-	public void userInCorridor() throws IOException, BadArgumentException {
+	public void userOnRoute() throws IOException, BadArgumentException {
 		RealTimeUpdateData data = sendParticipantUpdate("userInCorridor", 48.139341, 11.547129);
 		assertTrue(data != null);
 		assertEquals(1241, data.getUserPosition().getPosition(), 1.0);
-		assertEquals(1, data.getUserOnRoute());
-		assertEquals(1, data.getUserTotal());
+		assertEquals(true, data.isUserOnRoute());
+	}
+
+	@Test
+	public void userSpeed() throws IOException, BadArgumentException {
+		RealTimeUpdateData data1 = sendParticipantUpdate("movingUser", 48.139341, 11.547129);
+		assertTrue(data1 != null);
+		assertEquals(0.0, data1.getUserPosition().getSpeed(), 1.0);
+		RealTimeUpdateData data2 = sendParticipantUpdate("movingUser", 48.143655, 11.548839);
+		assertTrue(data2 != null);
+		assertTrue(data2.getUserPosition().getSpeed() > 0.0);
 	}
 
 	@Test
