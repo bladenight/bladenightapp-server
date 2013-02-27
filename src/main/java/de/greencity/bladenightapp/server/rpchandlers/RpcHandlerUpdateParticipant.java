@@ -20,18 +20,18 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 	@Override
 	public void execute(RpcCall rpcCall) {
 		GpsInfo input = rpcCall.getInput(GpsInfo.class);
-		
+
 		if ( ! validateInput(rpcCall, input) )
 			return;
-		
+
 		if ( procession == null ) {
 			rpcCall.setError(BladenightError.INTERNAL_ERROR.getText(), "Internal error: Procession is null");
 			return;
 		}
-		
+
 		ParticipantInput participantInput = new ParticipantInput(input.getDeviceId(), input.getLatitude(), input.getLongitude());
 		Participant participant = procession.updateParticipant(participantInput);
-		
+
 		RealTimeUpdateData data = new RealTimeUpdateData();
 		MovingPoint head = procession.getHead();
 		MovingPoint tail = procession.getTail();
@@ -43,6 +43,9 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 		data.setUserPosition((int)participant.getLinearPosition(), participant.getLinearSpeed());
 		data.setUserTotal(procession.getParticipantCount());
 		data.setUserOnRoute(procession.getParticipantOnRoute());
+		if ( participant.getDeviceId().equals("TODO-generate")) {
+			double time = procession.evaluateTravelTimeBetween(procession.getTailPosition(), participant.getLinearPosition());
+		}
 		rpcCall.setOutput(data, RealTimeUpdateData.class);
 	}
 
