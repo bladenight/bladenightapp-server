@@ -50,7 +50,7 @@
 
     <script>
       var wampSession;
-      function initializeWamp() {
+      function connectToWampServer() {
         var wsuri = "ws://localhost:8081";
       
         console.log("Connecting to " + wsuri);
@@ -70,8 +70,10 @@
             },
             function (code, reason) {
                // WAMP session is gone
-               wampSession = null;
+               // wampSession = null;
                console.log("Connection lost (" + reason + ")");
+               clearTimers();
+               setTimeout(function() { connectToWampServer() }, 1000);
             }
          );
          
@@ -302,13 +304,16 @@
     <script>
     	function initialize() {
     		initializeMap();
-    		initializeWamp();
+    		connectToWampServer();
     	}
-    	function setTimers() {
+    	function clearTimers() {
     		if ( ! typeof timerSendMyPosition === "undefined" )
     			clearInterval(timerSendMyPosition);
     		if ( ! typeof timerGetAndDisplayParticipants  === "undefined" )
     			clearInterval(timerGetAndDisplayParticipants);
+    	}
+    	function setTimers() {
+    		clearTimers();
     		var period = 1000 * $('#timerPeriod').val() 
     		// console.log("timerperiod:"+period);
            	timerSendMyPosition = setInterval(function() {sendMyPosition()}, period); 

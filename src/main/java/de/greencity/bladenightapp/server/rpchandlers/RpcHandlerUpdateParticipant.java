@@ -1,5 +1,8 @@
 package de.greencity.bladenightapp.server.rpchandlers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
@@ -45,6 +48,9 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 		data.setUserOnRoute(procession.getParticipantOnRoute());
 		if ( participant.getDeviceId().equals("TODO-generate")) {
 			double time = procession.evaluateTravelTimeBetween(procession.getTailPosition(), participant.getLinearPosition());
+			// System.out.println("time="+time);
+			SimpleDateFormat sdf = new SimpleDateFormat("kk:mm:ss");
+			System.out.println("time left="+(int)(time/1000) + "  eta="+sdf.format(new Date((long) (System.currentTimeMillis() + time))));
 		}
 		rpcCall.setOutput(data, RealTimeUpdateData.class);
 	}
