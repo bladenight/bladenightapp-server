@@ -48,19 +48,31 @@ public class BladenightWampServerTest {
 
 		server = new BladenightWampServer();
 		session = server.openSession(channel);
+		
+		procession.setMaxComputeAge(0);
 	}
 	
 	@Test
-	public void clientOnlyObserving() throws IOException, BadArgumentException {
-		RealTimeUpdateData data = getRealTimeData();
+	public void basicUnlocalizedObserver() throws IOException, BadArgumentException {
+		RealTimeUpdateData data = getRealtimeUpdateFromUnlocalizedObserver();
 		assertTrue(data != null);
 		assertEquals(12605, data.getRouteLength(), 1.0);
 		assertEquals(routeName, data.getRouteName());
 	}
 
 	@Test
+	public void basicLocalizedObserver() throws IOException, BadArgumentException {
+		RealTimeUpdateData data = getRealtimeUpdateFromLocalizedObserver("userInCorridor", 48.139341, 11.547129);
+		assertTrue(data != null);
+		assertEquals(12605, data.getRouteLength(), 1.0);
+		assertEquals(routeName, data.getRouteName());
+		assertEquals(true, data.isUserOnRoute());
+	}
+
+
+	@Test
 	public void routeNameAndLength() throws IOException, BadArgumentException {
-		RealTimeUpdateData data = sendParticipantUpdate("userOutOfCorridor", 0, 0);
+		RealTimeUpdateData data = getRealtimeUpdateFromParticipant("userOutOfCorridor", 0, 0);
 		assertTrue(data != null);
 		assertEquals(12605, data.getRouteLength(), 1.0);
 		assertEquals(routeName, data.getRouteName());
@@ -68,46 +80,63 @@ public class BladenightWampServerTest {
 	
 	@Test
 	public void userOutOfCorridor() throws IOException, BadArgumentException {
-		RealTimeUpdateData data = sendParticipantUpdate("userOutOfCorridor", 0, 0);
+		RealTimeUpdateData data = getRealtimeUpdateFromParticipant("userOutOfCorridor", 0, 0);
 		assertTrue(data != null);
 		assertEquals(false, data.isUserOnRoute());
 	}
 
 	@Test
 	public void userOnRoute() throws IOException, BadArgumentException {
-		RealTimeUpdateData data = sendParticipantUpdate("userInCorridor", 48.139341, 11.547129);
+		RealTimeUpdateData data = getRealtimeUpdateFromParticipant("userInCorridor", 48.139341, 11.547129);
 		assertTrue(data != null);
 		assertEquals(1241, data.getUserPosition().getPosition(), 1.0);
 		assertEquals(true, data.isUserOnRoute());
+		// assertEquals(0.0, data.getHead().getPosition(), 0.0);
+		assertTrue(data.getHead().getPosition() > 0.0);
+		assertTrue(data.getTail().getPosition() > 0.0);
 	}
 
 	@Test
 	public void userSpeed() throws IOException, BadArgumentException {
-		RealTimeUpdateData data1 = sendParticipantUpdate("movingUser", 48.139341, 11.547129);
+		RealTimeUpdateData data1 = getRealtimeUpdateFromParticipant("movingUser", 48.139341, 11.547129);
 		assertTrue(data1 != null);
 		assertEquals(0.0, data1.getUserPosition().getSpeed(), 1.0);
-		RealTimeUpdateData data2 = sendParticipantUpdate("movingUser", 48.143655, 11.548839);
+		RealTimeUpdateData data2 = getRealtimeUpdateFromParticipant("movingUser", 48.143655, 11.548839);
 		assertTrue(data2 != null);
 		assertTrue(data2.getUserPosition().getSpeed() > 0.0);
 	}
 
+
 	@Test
 	public void userCounts() throws IOException, BadArgumentException {
-		RealTimeUpdateData data1 = sendParticipantUpdate("client-1", 48.139341, 11.547129);
+		RealTimeUpdateData data1 = getRealtimeUpdateFromParticipant("client-1", 48.139341, 11.547129);
 		assertEquals(1, data1.getUserOnRoute());
 		assertEquals(1, data1.getUserTotal());
-		RealTimeUpdateData data2 = sendParticipantUpdate("client-2", 0, 0);
+		RealTimeUpdateData data2 = getRealtimeUpdateFromParticipant("client-2", 0, 0);
 		assertEquals(1, data2.getUserOnRoute());
 		assertEquals(2, data2.getUserTotal());
-		RealTimeUpdateData data3 = getRealTimeData();
+		RealTimeUpdateData data3 = getRealtimeUpdateFromUnlocalizedObserver();
 		assertEquals(1, data3.getUserOnRoute());
 		assertEquals(2, data3.getUserTotal());
 	}
 	
-	RealTimeUpdateData getRealTimeData() throws IOException, BadArgumentException {
+	RealTimeUpdateData getRealtimeUpdateFromParticipant(String clientId, double lat, double lon) throws IOException, BadArgumentException {
+		return getRealtimeUpdate(new GpsInfo(clientId, true, lat, lon));
+	}
+
+	RealTimeUpdateData getRealtimeUpdateFromLocalizedObserver(String clientId, double lat, double lon) throws IOException, BadArgumentException {
+		return getRealtimeUpdate(new GpsInfo(clientId, false, lat, lon));
+	}
+
+	RealTimeUpdateData getRealtimeUpdateFromUnlocalizedObserver() throws IOException, BadArgumentException {
+		return getRealtimeUpdate(null);
+	}
+
+	RealTimeUpdateData getRealtimeUpdate(GpsInfo gpsInfo) throws IOException, BadArgumentException {
 		int messageCount = channel.handledMessages.size();
 		String callId = UUID.randomUUID().toString();
-		CallMessage msg = new CallMessage(callId,BladenightUrl.GET_REAL_TIME_UPDATE_DATA.getText());
+		CallMessage msg = new CallMessage(callId,BladenightUrl.GET_REALTIME_UPDATE.getText());
+		msg.setPayload(gpsInfo, GpsInfo.class);
 		server.handleIncomingMessage(session, msg);
 		assertEquals(messageCount+1, channel.handledMessages.size());
 		Message message = MessageMapper.fromJson(channel.lastMessage());
@@ -116,19 +145,6 @@ public class BladenightWampServerTest {
 		return callResult.getPayload(RealTimeUpdateData.class);
 	}
 
-	RealTimeUpdateData sendParticipantUpdate(String clientId, double lat, double lon) throws IOException, BadArgumentException {
-		int messageCount = channel.handledMessages.size();
-		String callId = UUID.randomUUID().toString();
-		CallMessage msg = new CallMessage(callId,BladenightUrl.PARTICIPANT_UPDATE.getText());
-		msg.setPayload(new GpsInfo(clientId, lat, lon), GpsInfo.class);
-		server.handleIncomingMessage(session, msg);
-		assertEquals(messageCount+1, channel.handledMessages.size());
-		Message message = MessageMapper.fromJson(channel.lastMessage());
-		assertTrue(message.getType() == MessageType.CALLRESULT);
-		CallResultMessage callResult = (CallResultMessage) message;
-		return callResult.getPayload(RealTimeUpdateData.class);
-	}
-	
 	private Route route;
 	private Procession procession;
 	private ProtocollingChannel channel;

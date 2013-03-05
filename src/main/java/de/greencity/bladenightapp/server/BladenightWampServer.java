@@ -10,7 +10,6 @@ import de.greencity.bladenightapp.routes.RouteStoreSingleton;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetActiveEvent;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetActiveRoute;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetAllParticipants;
-import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetRealTimeUpdate;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetRoute;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerUpdateParticipant;
 import fr.ocroquette.wampoc.server.WampServer;
@@ -27,9 +26,8 @@ public class BladenightWampServer extends WampServer {
 		registerRpcHandler(BladenightUrl.GET_ACTIVE_EVENT.getText(), 			new RpcHandlerGetActiveEvent(EventsListSingleton.getInstance()));
 		registerRpcHandler(BladenightUrl.GET_ACTIVE_ROUTE.getText(), 			new RpcHandlerGetActiveRoute(ProcessionSingleton.getInstance()));
 		registerRpcHandler(BladenightUrl.GET_ROUTE.getText(), 					new RpcHandlerGetRoute(RouteStoreSingleton.getInstance()));
-		registerRpcHandler(BladenightUrl.GET_REAL_TIME_UPDATE_DATA.getText(), 	new RpcHandlerGetRealTimeUpdate(ProcessionSingleton.getInstance()));
 		registerRpcHandler(BladenightUrl.GET_ALL_PARTICIPANTS.getText(), 		new RpcHandlerGetAllParticipants(ProcessionSingleton.getInstance()));
-		registerRpcHandler(BladenightUrl.PARTICIPANT_UPDATE.getText(), 			new RpcHandlerUpdateParticipant(ProcessionSingleton.getInstance()));
+		registerRpcHandler(BladenightUrl.GET_REALTIME_UPDATE.getText(), 			new RpcHandlerUpdateParticipant(ProcessionSingleton.getInstance()));
 	}
 	
 	private static Log log;

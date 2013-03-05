@@ -113,7 +113,7 @@
       function sendMyPosition(latlng) {
     	  var latlng = marker.getPosition();
 
-    	  var id = "http://www.greencity.de/bladenight/app/rpc/participantUpdate";
+    	  var id = "http://www.greencity.de/bladenight/app/rpc/getRealtimeUpdate";
 			
 			var data = {coo:{la:latlng.lat(), lo:latlng.lng()}, deviceId:"TODO-generate"};
 			// console.log("Calling " + id);
@@ -137,7 +137,7 @@
       }
 
       function getRealTimeData() {
-			var id = "http://www.greencity.de/bladenight/app/rpc/getRealTimeUpdateData";
+			var id = "http://www.greencity.de/bladenight/app/rpc/getRealtimeUpdate";
 
 			// console.log("Calling " + id);
        		wampSession.call(id).then(
