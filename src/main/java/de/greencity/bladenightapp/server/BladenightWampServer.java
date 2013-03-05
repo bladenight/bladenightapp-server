@@ -6,11 +6,13 @@ import org.apache.commons.logging.LogFactory;
 import de.greencity.bladenightapp.events.EventsListSingleton;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
+import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
 import de.greencity.bladenightapp.routes.RouteStoreSingleton;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetActiveEvent;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetActiveRoute;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetAllParticipants;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetRoute;
+import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerRelationship;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerUpdateParticipant;
 import fr.ocroquette.wampoc.server.WampServer;
 
@@ -28,6 +30,7 @@ public class BladenightWampServer extends WampServer {
 		registerRpcHandler(BladenightUrl.GET_ROUTE.getText(), 					new RpcHandlerGetRoute(RouteStoreSingleton.getInstance()));
 		registerRpcHandler(BladenightUrl.GET_ALL_PARTICIPANTS.getText(), 		new RpcHandlerGetAllParticipants(ProcessionSingleton.getInstance()));
 		registerRpcHandler(BladenightUrl.GET_REALTIME_UPDATE.getText(), 			new RpcHandlerUpdateParticipant(ProcessionSingleton.getInstance()));
+		registerRpcHandler(BladenightUrl.CREATE_RELATIONSHIP.getText(), 			new RpcHandlerRelationship(RelationshipStoreSingleton.getInstance()));
 	}
 	
 	private static Log log;
