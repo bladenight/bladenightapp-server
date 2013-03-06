@@ -7,6 +7,7 @@ import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.RelationshipInputMessage;
 import de.greencity.bladenightapp.network.messages.RelationshipOutputMessage;
+import de.greencity.bladenightapp.relationships.HandshakeInfo;
 import de.greencity.bladenightapp.relationships.RelationshipStore;
 import fr.ocroquette.wampoc.server.RpcCall;
 import fr.ocroquette.wampoc.server.RpcHandler;
@@ -45,9 +46,9 @@ public class RpcHandlerRelationship extends RpcHandler {
 		if ( input.getDeviceId2() != null || input.getRequestId() > 0 )
 			return false;
 
-		long id = relationshipStore.newRequest(input.getDeviceId1());
+		HandshakeInfo handshakeInfo = relationshipStore.newRequest(input.getDeviceId1());
 		
-		rpcCall.setOutput(new RelationshipOutputMessage(id, 0), RelationshipOutputMessage.class);
+		rpcCall.setOutput(new RelationshipOutputMessage(handshakeInfo.getRequestId(), handshakeInfo.getFriendId()), RelationshipOutputMessage.class);
 		
 		return true;
 	}
@@ -62,14 +63,15 @@ public class RpcHandlerRelationship extends RpcHandler {
 		if ( input.getDeviceId1() != null )
 			return false;
 
+		HandshakeInfo handshakeInfo = new HandshakeInfo();
 		try {
-			relationshipStore.finalize(input.getRequestId(), input.getDeviceId2());
+			handshakeInfo = relationshipStore.finalize(input.getRequestId(), input.getDeviceId2());
 		} catch (Exception e) {
 			getLog().error("Failed to finalize relationship: ", e);
 			return false;
 		}
 
-		rpcCall.setOutput(new RelationshipOutputMessage(input.getRequestId(), 0), RelationshipOutputMessage.class);
+		rpcCall.setOutput(new RelationshipOutputMessage(input.getRequestId(), handshakeInfo.getFriendId()), RelationshipOutputMessage.class);
 
 		return true;
 	}

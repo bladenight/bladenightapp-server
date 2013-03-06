@@ -50,20 +50,33 @@ public class RelationshipsTest {
 
 		RelationshipOutputMessage output = sendAndParse(deviceId1, null, 0);
 		assertTrue(output.getRequestId() > 0);
+		assertEquals(1, output.getFriendId());
 
-		sendAndParse(null, deviceId2, output.getRequestId());
+		output = sendAndParse(null, deviceId2, output.getRequestId());
 		assertTrue(output.getRequestId() > 0);
+		assertEquals(1, output.getFriendId());
+
+		output = sendAndParse(deviceId1, null, 0);
+		assertTrue(output.getRequestId() > 0);
+		assertEquals(2, output.getFriendId());
+
+		output = sendAndParse(deviceId2, null, 0);
+		assertTrue(output.getRequestId() > 0);
+		assertEquals(2, output.getFriendId());
 	}
 
 	@Test
 	public void openMultipleRequests() throws IOException, BadArgumentException {
 		String deviceId1 = UUID.randomUUID().toString();
-		RelationshipOutputMessage message1, message2;
-		message1 = sendAndParse(deviceId1, null, 0);
+
+		RelationshipOutputMessage message1 = sendAndParse(deviceId1, null, 0);
 		assertTrue(message1.getRequestId() > 0);
-		message2 = sendAndParse(deviceId1, null, 0);
+		assertEquals(1, message1.getFriendId());
+
+		RelationshipOutputMessage message2 = sendAndParse(deviceId1, null, 0);
 		assertTrue(message2.getRequestId() > 0);
 		assertTrue(message1.getRequestId() != message2.getRequestId());
+		assertEquals(2, message2.getFriendId());
 	}
 
 
