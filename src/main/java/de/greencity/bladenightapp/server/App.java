@@ -20,6 +20,8 @@ import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.procession.tasks.ComputeScheduler;
 import de.greencity.bladenightapp.procession.tasks.ParticipantCollector;
+import de.greencity.bladenightapp.relationships.RelationshipStore;
+import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
 import de.greencity.bladenightapp.routes.RouteStoreSingleton;
@@ -35,6 +37,7 @@ public class App
 		initializeRouteStore();
 		initializeEventsList();
 		initializeProcession();
+		initializeRelationshipStore();
 		tryStartServer();
 	}
 
@@ -148,6 +151,10 @@ public class App
 		
 		new Thread(new ComputeScheduler(procession, 1000)).start();
 		new Thread(new ParticipantCollector(procession, 50.0, 1000)).start();
+	}
+
+	private static void initializeRelationshipStore() {
+		RelationshipStoreSingleton.setInstance(new RelationshipStore());
 	}
 
 	private static Log log;

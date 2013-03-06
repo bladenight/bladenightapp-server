@@ -26,7 +26,7 @@ import fr.ocroquette.wampoc.messages.MessageMapper;
 import fr.ocroquette.wampoc.messages.MessageType;
 import fr.ocroquette.wampoc.server.Session;
 
-public class RelationshipsTest {
+public class RelationshipsManagementTest {
 
 	@BeforeClass
 	public static void beforeClass() {
@@ -37,7 +37,7 @@ public class RelationshipsTest {
 
 	@Before
 	public void before() {
-		RelationshipStoreSingleton.setRelationshipStore(new RelationshipStore());
+		RelationshipStoreSingleton.setInstance(new RelationshipStore());
 		channel = new ProtocollingChannel();
 		server = new BladenightWampServer();
 		session = server.openSession(channel);
@@ -104,6 +104,14 @@ public class RelationshipsTest {
 	}
 
 
+	public long createRelationShip(String deviceId1, String deviceId2) throws IOException, BadArgumentException {
+		RelationshipOutputMessage output;
+		output = sendAndParse(deviceId1, null, 0);
+		long friendId = output.getFriendId();
+		output = sendAndParse(null, deviceId2, output.getRequestId());
+		return friendId;
+	}
+	
 	public Message send(String deviceId1, String deviceId2, long relationshipId) throws IOException, BadArgumentException {
 		int messageCount = channel.handledMessages.size();
 		String callId = UUID.randomUUID().toString();

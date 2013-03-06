@@ -2,6 +2,7 @@ package de.greencity.bladenightapp.server.rpchandlers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,13 +15,16 @@ import de.greencity.bladenightapp.procession.MovingPoint;
 import de.greencity.bladenightapp.procession.Participant;
 import de.greencity.bladenightapp.procession.ParticipantInput;
 import de.greencity.bladenightapp.procession.Procession;
+import de.greencity.bladenightapp.relationships.RelationshipMember;
+import de.greencity.bladenightapp.relationships.RelationshipStore;
 import fr.ocroquette.wampoc.server.RpcCall;
 import fr.ocroquette.wampoc.server.RpcHandler;
 
 public class RpcHandlerUpdateParticipant extends RpcHandler {
 
-	public RpcHandlerUpdateParticipant(Procession procession) {
+	public RpcHandlerUpdateParticipant(Procession procession, RelationshipStore relationshipStore) {
 		this.procession = procession;
+		this.relationshipStore = relationshipStore;
 	}
 
 	@Override
@@ -58,7 +62,15 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 		data.setUserTotal(procession.getParticipantCount());
 		data.setUserOnRoute(procession.getParticipantOnRoute());
 
-		
+		if ( input != null ) {
+			List<RelationshipMember> relationships = relationshipStore.getRelationships(input.getDeviceId());
+			for (RelationshipMember relationshipMember : relationships) {
+				Participant participant = procession.getParticipant(relationshipMember.getDeviceId());
+				if ( participant != null)
+					data.addFriend(relationshipMember.getFriendId(), participant.getLinearPosition(), participant.getLinearSpeed());
+			}
+		}
+
 		rpcCall.setOutput(data, RealTimeUpdateData.class);
 	}
 
@@ -72,7 +84,8 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 
 
 	private Procession procession;
-	
+	private RelationshipStore relationshipStore;
+
 	private static Log log;
 
 	public static void setLog(Log log) {

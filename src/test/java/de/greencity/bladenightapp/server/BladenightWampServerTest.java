@@ -35,6 +35,7 @@ public class BladenightWampServerTest {
 	@Before
 	public void init() {
 		Route.setLog(new NoOpLog());
+
 		File file = FileUtils.toFile(EventsList.class.getResource(path));
 		assertTrue(file != null);
 		route = new Route();
@@ -43,13 +44,13 @@ public class BladenightWampServerTest {
 
 		procession = new Procession();
 		procession.setRoute(route);
+		procession.setMaxComputeAge(0);
 		ProcessionSingleton.setProcession(procession);
+
 		channel = new ProtocollingChannel();
 
 		server = new BladenightWampServer();
 		session = server.openSession(channel);
-		
-		procession.setMaxComputeAge(0);
 	}
 	
 	@Test
