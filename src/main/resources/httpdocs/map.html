@@ -30,18 +30,28 @@
         participantOverlays = []; 
         routeNodes = []
         
-        myPosition = new google.maps.LatLng(48.140520, 11.525794);
-        marker = new google.maps.Marker({
-            position: myPosition,
-            title: 'Point A',
+        myPositionMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(48.140520, 11.525794),
+            title: 'Me',
             map: map,
             draggable: true
         });
-        
-        google.maps.event.addListener(marker, "dragend", function(event) {
+        google.maps.event.addListener(myPositionMarker, "dragend", function(event) {
 			sendMyPosition();
            	getAndDisplayParticipants(); 
 		});
+
+        friendPositionMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(48.14, 11.52),
+            title: 'My friend',
+            map: map,
+            draggable: true
+        });
+        google.maps.event.addListener(friendPositionMarker, "dragend", function(event) {
+			sendFriendPosition();
+           	getAndDisplayParticipants(); 
+		});
+
       }
     </script>
     
@@ -65,7 +75,8 @@
                // Just an example so that something happens:
                getActiveEvent();
                // getRealTimeData();
-               
+               createRelationship();
+
                setTimers();
             },
             function (code, reason) {
@@ -73,7 +84,7 @@
                // wampSession = null;
                console.log("Connection lost (" + reason + ")");
                clearTimers();
-               setTimeout(function() { connectToWampServer() }, 1000);
+               // setTimeout(function() { connectToWampServer() }, 1000);
             }
          );
          
@@ -110,12 +121,10 @@
       }
 
       
-      function sendMyPosition(latlng) {
-    	  var latlng = marker.getPosition();
-
+      function sendPosition(deviceId, latlng, update) {
     	  var id = "http://www.greencity.de/bladenight/app/rpc/getRealtimeUpdate";
 			
-			var data = {coo:{la:latlng.lat(), lo:latlng.lng()}, deviceId:"TODO-generate"};
+			var data = {coo:{la:latlng.lat(), lo:latlng.lng()}, did:deviceId, par:true};
 			// console.log("Calling " + id);
 			// console.log(data);
      		wampSession.call(id,data).then(
@@ -123,8 +132,10 @@
 		            // RPC success callback
 	               // console.log("got result for sendMyPosition: ");
 		           // console.log(data);
-		           updateProcessionOverlay(data);
-		           updateProgress(data);
+		           if ( update ) {
+		           	updateProcessionOverlay(data);
+		           	updateProgress(data);
+		           }
 	            },
 	            function (error, desc) {
 		            // RPC error callback
@@ -136,6 +147,13 @@
      		// getRealTimeData();
       }
 
+      function sendMyPosition(latlng) {
+    	  sendPosition("Me", myPositionMarker.getPosition(), true);
+      }
+      function sendFriendPosition(latlng) {
+    	  sendPosition("MyFriend", friendPositionMarker.getPosition(), false);
+      }
+    	  
       function getRealTimeData() {
 			var id = "http://www.greencity.de/bladenight/app/rpc/getRealtimeUpdate";
 
@@ -250,7 +268,7 @@
 		          }
                   for (var i = 0; i < res.length; i++) {
                     var node = res[i]; 
-                    var marker = new google.maps.Marker({
+                    var myPositionMarker = new google.maps.Marker({
                  	  position: new google.maps.LatLng(node.la, node.lo),
                  	  icon: {
                  	    path: google.maps.SymbolPath.CIRCLE,
@@ -262,8 +280,8 @@
                  	    scale: 5 //pixels
                  	  }
                  	});
-                    marker.setMap(map);
-                    participantOverlays.push(marker);
+                    myPositionMarker.setMap(map);
+                    participantOverlays.push(myPositionMarker);
                   }
 	            },
 	            function (err) {
@@ -272,6 +290,32 @@
 	            }
 	         );
     	}
+
+      function createRelationship() {
+			var id = "http://www.greencity.de/bladenight/app/rpc/createRelationship";
+
+			// console.log("Calling " + id);
+     		wampSession.call(id, {did1:"Me"}).then(
+	            function (data) {
+	     			console.log(data);
+	         		wampSession.call(id, {did2:"MyFriend", req:data.rid}).then(
+	        	            function (data) {
+	        	            },
+	        	            function (error, desc) {
+	        	               console.log("error: ");
+	        	               console.log(error);
+	        	               console.log(desc);
+	        	            }
+	        	         );
+	            },
+	            function (error, desc) {
+	               console.log("error: ");
+	               console.log(error);
+	               console.log(desc);
+	            }
+	         );
+    	}
+
 
 		function updateProgress(realTimeData) {
 			var canvas = document.getElementById('bnprogress');
@@ -297,7 +341,14 @@
 				ctx.fillStyle = "rgb(255,0,0)";
 				ctx.fillRect(m2pix(realTimeData.up.pos), 0, 2, canvas.height);
 				ctx.restore();
-
+				
+				console.log(realTimeData.fri);
+				ctx.save();
+				ctx.fillStyle = "rgb(255,90,0)";
+                for (var friendId in realTimeData.fri) {
+    				ctx.fillRect(m2pix(realTimeData.fri[friendId].pos), 0, 2, canvas.height);
+                }
+				ctx.restore();
 			}
 		}
 	</script>

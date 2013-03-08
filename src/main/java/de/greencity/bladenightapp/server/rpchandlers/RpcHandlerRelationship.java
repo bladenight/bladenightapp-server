@@ -36,7 +36,7 @@ public class RpcHandlerRelationship extends RpcHandler {
 		if ( handleRequestFinalization(rpcCall, input) )
 			return;
 		
-		rpcCall.setError(BladenightError.INTERNAL_ERROR.getText(), "Protocol error", input);
+		rpcCall.setError(BladenightError.INTERNAL_ERROR.getText(), "Protocol error", "Neither new nor existing request");
 	}
 	
 	public boolean handleNewRequest(RpcCall rpcCall, RelationshipInputMessage input) {
