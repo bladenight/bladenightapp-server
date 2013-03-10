@@ -132,7 +132,7 @@ public class App
 		EventsList eventsList;
 		try {
 			eventsList = EventsList.newFromFile(asFile);
-			EventsListSingleton.setEventsList(eventsList);
+			EventsListSingleton.setInstance(eventsList);
 			log.info("Events list initialized with " + eventsList.size() + " events.");
 		} catch (IOException e) {
 			log.error("Could not load event list:",e);

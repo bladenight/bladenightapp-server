@@ -60,7 +60,7 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 		data.setRouteLength((int)procession.getRoute().getLength());
 		data.setRouteName(procession.getRoute().getName());
 		data.setUserTotal(procession.getParticipantCount());
-		data.setUserOnRoute(procession.getParticipantOnRoute());
+		data.setUserOnRoute(procession.getParticipantsOnRoute());
 
 		if ( input != null ) {
 			List<RelationshipMember> relationships = relationshipStore.getRelationships(input.getDeviceId());
