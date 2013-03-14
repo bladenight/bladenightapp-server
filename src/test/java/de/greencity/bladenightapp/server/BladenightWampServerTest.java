@@ -36,7 +36,7 @@ public class BladenightWampServerTest {
 	public void init() {
 		Route.setLog(new NoOpLog());
 
-		File file = FileUtils.toFile(EventsList.class.getResource(path));
+		File file = FileUtils.toFile(BladenightWampServerTest.class.getResource(path));
 		assertTrue(file != null);
 		route = new Route();
 		assertTrue(route.load(file));

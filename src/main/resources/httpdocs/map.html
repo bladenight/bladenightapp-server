@@ -76,7 +76,7 @@
                getActiveEvent();
                // getRealTimeData();
                createRelationship();
-
+               getActiveRoute();
                setTimers();
             },
             function (code, reason) {
@@ -315,6 +315,22 @@
 	            }
 	         );
     	}
+
+      function getActiveRoute() {
+			var id = "http://www.greencity.de/bladenight/app/rpc/getActiveRoute";
+
+			// console.log("Calling " + id);
+   			wampSession.call(id).then(
+	            function (data) {
+	     			console.log(data);
+	            },
+	            function (error, desc) {
+	               console.log("error: ");
+	               console.log(error);
+	               console.log(desc);
+	            }
+	         );
+  	}
 
 
 		function updateProgress(realTimeData) {
