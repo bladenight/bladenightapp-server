@@ -12,7 +12,6 @@ import org.apache.commons.logging.impl.NoOpLog;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.greencity.bladenightapp.events.EventsList;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
