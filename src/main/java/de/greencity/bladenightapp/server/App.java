@@ -63,7 +63,7 @@ public class App
 		};
 
 
-        String httpdocsPath = FileUtils.toFile(App.class.getResource("/httpdocs")).getAbsolutePath();
+		String httpdocsPath = FileUtils.toFile(App.class.getResource("/httpdocs")).getAbsolutePath();
 
 		ResourceHandler resourceHandler = new ResourceHandler();
 		resourceHandler.setDirectoriesListed(true);
@@ -95,7 +95,7 @@ public class App
 	private static Integer getPortToListenTo() {
 		return Integer.valueOf(KeyValueStoreSingleton.getString("bnserver.port"));
 	}
-	
+
 	private static void initializeLogger() {
 
 		String log4jConfiguration = System.getProperty("log4j.properties");
@@ -105,11 +105,11 @@ public class App
 			log4jConfiguration = "file://" + log4jConfiguration;
 			System.setProperty("log4j.configuration",log4jConfiguration);
 		}
-		
+
 		log = LogFactory.getLog(App.class);
 		log.debug("Logger initinalized, log4j.properties="+log4jConfiguration);
 	}
-	
+
 	private static void initializeRouteStore() {
 		String configurationKey = "bnserver.routes.path";
 		String asString = KeyValueStoreSingleton.getPath(configurationKey);
@@ -145,12 +145,27 @@ public class App
 		Route route = RouteStoreSingleton.getInstance().getRoute(nextEvent.getRouteName());
 		procession.setRoute(route);
 		ProcessionSingleton.setProcession(procession);
-		
+
 		double smoothingFactor = KeyValueStoreSingleton.getDouble("bnserver.procession.smoothing", 0.0);
 		procession.setUpdateSmoothingFactor(smoothingFactor);
-		
+
 		new Thread(new ComputeScheduler(procession, 1000)).start();
-		new Thread(new ParticipantCollector(procession, 50.0, 1000)).start();
+
+		initializeParticipantCollector(procession);
+
+	}
+
+	private static void initializeParticipantCollector(Procession procession) {
+		long maxAbsoluteAge 			= KeyValueStoreSingleton.getLong("bnserver.procession.collector.absolute", 		30000	);
+		double maxRelativeAgeFactor 	= KeyValueStoreSingleton.getDouble("bnserver.procession.collector.relative", 	5.0		);
+		long period 					= KeyValueStoreSingleton.getLong("bnserver.procession.collector.period", 		1000	);
+
+		ParticipantCollector collector = new ParticipantCollector(procession);
+		collector.setPeriod(period);
+		collector.setMaxAbsoluteAge(maxAbsoluteAge);
+		collector.setMaxRelativeAgeFactor(maxRelativeAgeFactor);
+
+		new Thread(collector).start();
 	}
 
 	private static void initializeRelationshipStore() {
