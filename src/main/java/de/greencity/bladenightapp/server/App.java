@@ -123,20 +123,16 @@ public class App
 	}
 
 	private static void initializeEventsList() {
-		String configurationKey = "bnserver.events.file";
+		String configurationKey = "bnserver.events.dir";
 		String asString = KeyValueStoreSingleton.getPath(configurationKey);
 		File asFile = new File(asString);
-		if ( ! asFile.isFile() ) {
-			log.error("Invalid file for the events: " + configurationKey + "=" + asString);
+		if ( ! asFile.isDirectory() ) {
+			log.error("Invalid directory for the events: " + configurationKey + "=" + asString);
 		}
 		EventsList eventsList;
-		try {
-			eventsList = EventsList.newFromFile(asFile);
-			EventsListSingleton.setInstance(eventsList);
-			log.info("Events list initialized with " + eventsList.size() + " events.");
-		} catch (IOException e) {
-			log.error("Could not load event list:",e);
-		}
+		eventsList = EventsList.newFromDir(asFile);
+		EventsListSingleton.setInstance(eventsList);
+		log.info("Events list initialized with " + eventsList.size() + " events.");
 	}
 
 	private static void initializeProcession() {
