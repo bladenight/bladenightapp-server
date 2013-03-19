@@ -129,11 +129,19 @@
 	</pois>
 
 
+	<!-- BLADENIGHT CUSTOM POIS -->
+	<pois>
+		<osm-tag key="station_type" value="sbahn" zoom-appear="14" />
+		<osm-tag key="station_type" value="ubahn;sbahn" zoom-appear="14" />
+		<osm-tag key="station_type" value="ubahn" zoom-appear="14" />
+	</pois>
 
 	<!-- ************* WAYS *************** -->
 
 	<!-- HIGHWAY TAGS -->
 	<ways>
+		<osm-tag key="highway" value="steps" zoom-appear="15" />
+
 		<osm-tag key="highway" value="bridleway" zoom-appear="13" />
 		<osm-tag key="highway" value="bus_guideway" zoom-appear="13" />
 		<osm-tag key="highway" value="byway" zoom-appear="13" />
@@ -141,25 +149,28 @@
 		<osm-tag key="highway" value="cycleway" zoom-appear="13" />
 		<osm-tag key="highway" value="footway" zoom-appear="13" />
 		<osm-tag key="highway" value="living_street" zoom-appear="13" />
-		<osm-tag key="highway" value="motorway" zoom-appear="6" />
-		<osm-tag key="highway" value="motorway_link" zoom-appear="6" />
 		<osm-tag key="highway" value="path" zoom-appear="13" />
 		<osm-tag key="highway" value="pedestrian" zoom-appear="13" />
-		<osm-tag key="highway" value="primary" zoom-appear="8" />
-		<osm-tag key="highway" value="primary_link" zoom-appear="8" />
-		<osm-tag key="highway" value="raceway" zoom-appear="12" />
-		<osm-tag key="highway" value="residential" zoom-appear="12" />
-		<osm-tag key="highway" value="road" zoom-appear="12" />
-		<osm-tag key="highway" value="secondary" zoom-appear="11" />
-		<osm-tag key="highway" value="secondary_link" zoom-appear="11" />
 		<osm-tag key="highway" value="service" zoom-appear="13" />
 		<osm-tag key="highway" value="services" zoom-appear="13" />
-		<osm-tag key="highway" value="steps" zoom-appear="15" />
-		<osm-tag key="highway" value="tertiary" zoom-appear="12" />
 		<osm-tag key="highway" value="track" zoom-appear="13" />
+		<osm-tag key="highway" value="unclassified" zoom-appear="13" />
+
+		<osm-tag key="highway" value="raceway" zoom-appear="14" />
+		<osm-tag key="highway" value="residential" zoom-appear="14" />
+		<osm-tag key="highway" value="road" zoom-appear="14" />
+		<osm-tag key="highway" value="tertiary" zoom-appear="14" />
+
+		<osm-tag key="highway" value="secondary" zoom-appear="13" />
+		<osm-tag key="highway" value="secondary_link" zoom-appear="13" />
+
+		<osm-tag key="highway" value="primary" zoom-appear="8" />
+		<osm-tag key="highway" value="primary_link" zoom-appear="8" />
+
+		<osm-tag key="highway" value="motorway" zoom-appear="6" />
+		<osm-tag key="highway" value="motorway_link" zoom-appear="6" />
 		<osm-tag key="highway" value="trunk" zoom-appear="6" />
 		<osm-tag key="highway" value="trunk_link" zoom-appear="6" />
-		<osm-tag key="highway" value="unclassified" zoom-appear="13" />
 	</ways>
 
 	<!-- NATURAL / WATERWAY TAGS -->
