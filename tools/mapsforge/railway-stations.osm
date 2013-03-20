@@ -1,1407 +1,1306 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <osm version='0.6' upload='true' generator='JOSM'>
   <bounds minlat='48.0' minlon='11.4' maxlat='48.3' maxlon='11.8' origin='0.42' />
-  <node id='999911218960' action='modify' timestamp='2011-10-09T20:40:55Z' uid='64536' user='Michael Forster' visible='true' version='16' changeset='9517138' lat='48.1420282' lon='11.548593'>
+  <node id='999911218960' timestamp='2011-10-09T20:40:55Z' uid='64536' user='Michael Forster' visible='true' version='16' changeset='9517138' lat='48.1420282' lon='11.548593'>
     <tag k='name' v='Hackerbrücke' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999913568152' action='modify' timestamp='2012-04-14T22:05:52Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11304506' lat='48.1490234' lon='11.44403'>
+  <node id='999913568152' timestamp='2012-04-14T22:05:52Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11304506' lat='48.1490234' lon='11.44403'>
     <tag k='name' v='Westkreuz' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999913568161' action='modify' timestamp='2012-06-13T09:31:38Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='11881308' lat='48.1054643' lon='11.4137145'>
+  <node id='999913568161' timestamp='2012-06-13T09:31:38Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='11881308' lat='48.1054643' lon='11.4137145'>
     <tag k='name' v='Planegg' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999913803176' action='modify' timestamp='2012-04-13T18:21:56Z' uid='64536' user='Michael Forster' visible='true' version='9' changeset='11290617' lat='48.1545246' lon='11.4284736'>
+  <node id='999913803176' timestamp='2012-04-13T18:21:56Z' uid='64536' user='Michael Forster' visible='true' version='9' changeset='11290617' lat='48.1545246' lon='11.4284736'>
     <tag k='name' v='Leienfelsstraße' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999913803177' action='modify' timestamp='2012-03-31T09:58:07Z' uid='64536' user='Michael Forster' visible='true' version='9' changeset='11164106' lat='48.1559927' lon='11.4133233'>
+  <node id='999913803177' timestamp='2012-03-31T09:58:07Z' uid='64536' user='Michael Forster' visible='true' version='9' changeset='11164106' lat='48.1559927' lon='11.4133233'>
     <tag k='name' v='Aubing' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999914342542' action='modify' timestamp='2012-04-10T23:25:50Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='11259463' lat='48.2877892' lon='11.5805266'>
+  <node id='999914342542' timestamp='2012-04-10T23:25:50Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='11259463' lat='48.2877892' lon='11.5805266'>
     <tag k='name' v='Lohhof' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999914342543' action='modify' timestamp='2012-04-10T23:25:51Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11259463' lat='48.2737115' lon='11.5685707'>
+  <node id='999914342543' timestamp='2012-04-10T23:25:51Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11259463' lat='48.2737115' lon='11.5685707'>
     <tag k='name' v='Unterschleißheim' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999914342544' action='modify' timestamp='2012-04-10T23:25:51Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='11259463' lat='48.2569245' lon='11.5576932'>
+  <node id='999914342544' timestamp='2012-04-10T23:25:51Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='11259463' lat='48.2569245' lon='11.5576932'>
     <tag k='name' v='Oberschleißheim' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999914342545' action='modify' timestamp='2012-04-10T23:25:48Z' uid='64536' user='Michael Forster' visible='true' version='8' changeset='11259463' lat='48.1978025' lon='11.5258677'>
+  <node id='999914342545' timestamp='2012-04-10T23:25:48Z' uid='64536' user='Michael Forster' visible='true' version='8' changeset='11259463' lat='48.1978025' lon='11.5258677'>
     <tag k='name' v='Fasanerie' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999914342547' action='modify' timestamp='2012-06-09T16:23:21Z' uid='290680' user='wheelmap_visitor' visible='true' version='12' changeset='11842426' lat='48.1800765' lon='11.5059684'>
+  <node id='999914342547' timestamp='2012-06-09T16:23:21Z' uid='290680' user='wheelmap_visitor' visible='true' version='12' changeset='11842426' lat='48.1800765' lon='11.5059684'>
     <tag k='name' v='Moosach' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999914342561' action='modify' timestamp='2012-04-24T09:24:53Z' uid='290680' user='wheelmap_visitor' visible='true' version='13' changeset='11402328' lat='48.2135821' lon='11.5411319'>
+  <node id='999914342561' timestamp='2012-04-24T09:24:53Z' uid='290680' user='wheelmap_visitor' visible='true' version='13' changeset='11402328' lat='48.2135821' lon='11.5411319'>
     <tag k='name' v='Feldmoching' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999916797073' action='modify' timestamp='2013-01-28T22:10:24Z' uid='321478' user='Guenni' visible='true' version='10' changeset='14828650' lat='48.1900282' lon='11.4680532'>
+  <node id='999916797073' timestamp='2013-01-28T22:10:24Z' uid='321478' user='Guenni' visible='true' version='10' changeset='14828650' lat='48.1900282' lon='11.4680532'>
     <tag k='name' v='Allach' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999918153970' action='modify' timestamp='2012-04-14T16:45:42Z' uid='64536' user='Michael Forster' visible='true' version='8' changeset='11300985' lat='48.1114521' lon='11.7312143'>
+  <node id='999918153970' timestamp='2012-04-14T16:45:42Z' uid='64536' user='Michael Forster' visible='true' version='8' changeset='11300985' lat='48.1114521' lon='11.7312143'>
     <tag k='name' v='Haar' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999919475890' action='modify' timestamp='2011-10-02T22:53:19Z' uid='64536' user='Michael Forster' visible='true' version='14' changeset='9455931' lat='48.1371066' lon='11.5756411'>
+  <node id='999919475890' timestamp='2011-10-02T22:53:19Z' uid='64536' user='Michael Forster' visible='true' version='14' changeset='9455931' lat='48.1371066' lon='11.5756411'>
     <tag k='name' v='Marienplatz' />
     <tag k='station_type' v='ubahn;sbahn' />
   </node>
-  <node id='999920979606' action='modify' timestamp='2011-10-16T20:29:04Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='9576754' lat='48.1183569' lon='11.6986005'>
+  <node id='999920979606' timestamp='2011-10-16T20:29:04Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='9576754' lat='48.1183569' lon='11.6986005'>
     <tag k='name' v='Gronsdorf' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999921113537' action='modify' timestamp='2011-10-15T14:06:34Z' uid='64536' user='Michael Forster' visible='true' version='13' changeset='9563791' lat='48.1186684' lon='11.5957179'>
+  <node id='999921113537' timestamp='2011-10-15T14:06:34Z' uid='64536' user='Michael Forster' visible='true' version='13' changeset='9563791' lat='48.1186684' lon='11.5957179'>
     <tag k='name' v='Sankt-Martin-Straße' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999921134887' action='modify' timestamp='2012-04-12T22:44:15Z' uid='64536' user='Michael Forster' visible='true' version='9' changeset='11282203' lat='48.0795765' lon='11.6094407'>
+  <node id='999921134887' timestamp='2012-04-12T22:44:15Z' uid='64536' user='Michael Forster' visible='true' version='9' changeset='11282203' lat='48.0795765' lon='11.6094407'>
     <tag k='name' v='Fasanenpark' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999921134896' action='modify' timestamp='2012-10-20T15:13:14Z' uid='8748' user='ToniE' visible='true' version='9' changeset='13568799' lat='48.0353229' lon='11.5931421'>
+  <node id='999921134896' timestamp='2012-10-20T15:13:14Z' uid='8748' user='ToniE' visible='true' version='9' changeset='13568799' lat='48.0353229' lon='11.5931421'>
     <tag k='name' v='Furth' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999924981988' action='modify' timestamp='2013-01-26T19:10:07Z' uid='321478' user='Guenni' visible='true' version='11' changeset='14796765' lat='48.2666583' lon='11.4397285'>
+  <node id='999924981988' timestamp='2013-01-26T19:10:07Z' uid='321478' user='Guenni' visible='true' version='11' changeset='14796765' lat='48.2666583' lon='11.4397285'>
     <tag k='name' v='Dachau Stadt' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999925874621' action='modify' timestamp='2012-08-22T16:36:10Z' uid='64536' user='Michael Forster' visible='true' version='13' changeset='12822998' lat='48.133649739369815' lon='11.531476745178209'>
+  <node id='999925874621' timestamp='2012-08-22T16:36:10Z' uid='64536' user='Michael Forster' visible='true' version='13' changeset='12822998' lat='48.133649739369815' lon='11.531476745178209'>
     <tag k='name' v='Heimeranplatz' />
     <tag k='station_type' v='ubahn;sbahn' />
   </node>
-  <node id='999926510435' action='modify' timestamp='2012-04-18T19:49:13Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11347866' lat='48.1416227' lon='11.4217383'>
+  <node id='999926510435' timestamp='2012-04-18T19:49:13Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11347866' lat='48.1416227' lon='11.4217383'>
     <tag k='name' v='Neuaubing' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999927120593' action='modify' timestamp='2012-06-14T11:17:30Z' uid='290680' user='wheelmap_visitor' visible='true' version='9' changeset='11891465' lat='48.1567624' lon='11.6483293'>
+  <node id='999927120593' timestamp='2012-06-14T11:17:30Z' uid='290680' user='wheelmap_visitor' visible='true' version='9' changeset='11891465' lat='48.1567624' lon='11.6483293'>
     <tag k='name' v='Englschalking' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999927120595' action='modify' timestamp='2012-01-01T18:26:18Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='10259953' lat='48.1900438' lon='11.6468087'>
+  <node id='999927120595' timestamp='2012-01-01T18:26:18Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='10259953' lat='48.1900438' lon='11.6468087'>
     <tag k='name' v='Unterföhring' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999927214338' action='modify' timestamp='2011-07-12T04:19:13Z' uid='64164' user='osmkurt' visible='true' version='7' changeset='8699431' lat='48.1186464' lon='11.6311551'>
+  <node id='999927214338' timestamp='2011-07-12T04:19:13Z' uid='64164' user='osmkurt' visible='true' version='7' changeset='8699431' lat='48.1186464' lon='11.6311551'>
     <tag k='name' v='Michaelibad' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999927231556' action='modify' timestamp='2011-11-13T11:01:36Z' uid='64536' user='Michael Forster' visible='true' version='9' changeset='9812365' lat='48.1496256' lon='11.6493552'>
+  <node id='999927231556' timestamp='2011-11-13T11:01:36Z' uid='64536' user='Michael Forster' visible='true' version='9' changeset='9812365' lat='48.1496256' lon='11.6493552'>
     <tag k='name' v='Daglfing' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999927232722' action='modify' timestamp='2012-04-12T19:02:37Z' uid='64536' user='Michael Forster' visible='true' version='9' changeset='11279887' lat='48.1586608' lon='11.7591793'>
+  <node id='999927232722' timestamp='2012-04-12T19:02:37Z' uid='64536' user='Michael Forster' visible='true' version='9' changeset='11279887' lat='48.1586608' lon='11.7591793'>
     <tag k='name' v='Heimstetten' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999927237618' action='modify' timestamp='2013-01-28T22:10:24Z' uid='321478' user='Guenni' visible='true' version='12' changeset='14828650' lat='48.1642107' lon='11.4780999'>
+  <node id='999927237618' timestamp='2013-01-28T22:10:24Z' uid='321478' user='Guenni' visible='true' version='12' changeset='14828650' lat='48.1642107' lon='11.4780999'>
     <tag k='name' v='Obermenzing' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999927238496' action='modify' timestamp='2012-04-15T15:51:53Z' uid='64536' user='Michael Forster' visible='true' version='13' changeset='11311989' lat='48.1078331' lon='11.5363154'>
+  <node id='999927238496' timestamp='2012-04-15T15:51:53Z' uid='64536' user='Michael Forster' visible='true' version='13' changeset='11311989' lat='48.1078331' lon='11.5363154'>
     <tag k='name' v='Mittersendling' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999927238497' action='modify' timestamp='2012-07-28T23:00:53Z' uid='64536' user='Michael Forster' visible='true' version='13' changeset='12529334' lat='48.117404837157956' lon='11.537972170544727'>
+  <node id='999927238497' timestamp='2012-07-28T23:00:53Z' uid='64536' user='Michael Forster' visible='true' version='13' changeset='12529334' lat='48.117404837157956' lon='11.537972170544727'>
     <tag k='name' v='Harras' />
     <tag k='station_type' v='ubahn;sbahn' />
   </node>
-  <node id='999927562310' action='modify' timestamp='2011-10-15T12:17:50Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='9562990' lat='48.0194636' lon='11.5836104'>
+  <node id='999927562310' timestamp='2011-10-15T12:17:50Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='9562990' lat='48.0194636' lon='11.5836104'>
     <tag k='name' v='Deisenhofen' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999927563383' action='modify' timestamp='2012-03-31T12:32:27Z' uid='64536' user='Michael Forster' visible='true' version='18' changeset='11165629' lat='48.0312509' lon='11.4974828'>
+  <node id='999927563383' timestamp='2012-03-31T12:32:27Z' uid='64536' user='Michael Forster' visible='true' version='18' changeset='11165629' lat='48.0312509' lon='11.4974828'>
     <tag k='name' v='Buchenhain' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999928176433' action='modify' timestamp='2011-09-29T12:52:26Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='9424500' lat='48.1260823' lon='11.6633538'>
+  <node id='999928176433' timestamp='2011-09-29T12:52:26Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='9424500' lat='48.1260823' lon='11.6633538'>
     <tag k='name' v='Trudering' />
     <tag k='station_type' v='ubahn;sbahn' />
   </node>
-  <node id='999928179307' action='modify' timestamp='2012-06-17T18:51:07Z' uid='8748' user='ToniE' visible='true' version='13' changeset='11929139' lat='48.018654' lon='11.7192407'>
+  <node id='999928179307' timestamp='2012-06-17T18:51:07Z' uid='8748' user='ToniE' visible='true' version='13' changeset='11929139' lat='48.018654' lon='11.7192407'>
     <tag k='name' v='Höhenkirchen-Siegertsbrunn' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999928179347' action='modify' timestamp='2011-10-17T21:37:19Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='9586689' lat='48.0633165' lon='11.6783523'>
+  <node id='999928179347' timestamp='2011-10-17T21:37:19Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='9586689' lat='48.0633165' lon='11.6783523'>
     <tag k='name' v='Ottobrunn' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999928179394' action='modify' timestamp='2011-09-27T16:21:24Z' uid='290680' user='wheelmap_visitor' visible='true' version='9' changeset='9408304' lat='48.0886878' lon='11.6451508'>
+  <node id='999928179394' timestamp='2011-09-27T16:21:24Z' uid='290680' user='wheelmap_visitor' visible='true' version='9' changeset='9408304' lat='48.0886878' lon='11.6451508'>
     <tag k='name' v='Neuperlach Süd' />
     <tag k='station_type' v='ubahn;sbahn' />
   </node>
-  <node id='999928201702' action='modify' timestamp='2010-03-31T17:39:02Z' uid='137160' user='xyzlr' visible='true' version='4' changeset='4287429' lat='48.195752' lon='11.5719271'>
+  <node id='999928201702' timestamp='2010-03-31T17:39:02Z' uid='137160' user='xyzlr' visible='true' version='4' changeset='4287429' lat='48.195752' lon='11.5719271'>
     <tag k='name' v='Am Hart' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999928201749' action='modify' timestamp='2011-07-24T08:20:44Z' uid='64164' user='osmkurt' visible='true' version='7' changeset='8812925' lat='48.1873214' lon='11.572667'>
+  <node id='999928201749' timestamp='2011-07-24T08:20:44Z' uid='64164' user='osmkurt' visible='true' version='7' changeset='8812925' lat='48.1873214' lon='11.572667'>
     <tag k='name' v='Frankfurter Ring' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999928202314' action='modify' timestamp='2012-07-17T18:29:49Z' uid='722137' user='OSMF Redaction Account' visible='true' version='9' changeset='12270238' lat='48.1809122' lon='11.5730733'>
+  <node id='999928202314' timestamp='2012-07-17T18:29:49Z' uid='722137' user='OSMF Redaction Account' visible='true' version='9' changeset='12270238' lat='48.1809122' lon='11.5730733'>
     <tag k='name' v='Milbertshofen' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999928205595' action='modify' timestamp='2010-03-31T17:39:03Z' uid='137160' user='xyzlr' visible='true' version='4' changeset='4287429' lat='48.2041487' lon='11.5693741'>
+  <node id='999928205595' timestamp='2010-03-31T17:39:03Z' uid='137160' user='xyzlr' visible='true' version='4' changeset='4287429' lat='48.2041487' lon='11.5693741'>
     <tag k='name' v='Harthof' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999928205606' action='modify' timestamp='2011-10-30T22:50:52Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='9690785' lat='48.2124765' lon='11.5634458'>
+  <node id='999928205606' timestamp='2011-10-30T22:50:52Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='9690785' lat='48.2124765' lon='11.5634458'>
     <tag k='name' v='Dülferstraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999928205626' action='modify' timestamp='2010-03-31T17:39:04Z' uid='137160' user='xyzlr' visible='true' version='4' changeset='4287429' lat='48.2131843' lon='11.5557318'>
+  <node id='999928205626' timestamp='2010-03-31T17:39:04Z' uid='137160' user='xyzlr' visible='true' version='4' changeset='4287429' lat='48.2131843' lon='11.5557318'>
     <tag k='name' v='Hasenbergl' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999928230856' action='modify' timestamp='2011-10-18T16:52:35Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='9587957' lat='48.1791237' lon='11.5560538'>
+  <node id='999928230856' timestamp='2011-10-18T16:52:35Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='9587957' lat='48.1791237' lon='11.5560538'>
     <tag k='name' v='Olympiazentrum' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999928230980' action='modify' timestamp='2009-07-10T14:31:31Z' uid='137160' user='xyzlr' visible='true' version='5' changeset='1789064' lat='48.1759932' lon='11.5664761'>
+  <node id='999928230980' timestamp='2009-07-10T14:31:31Z' uid='137160' user='xyzlr' visible='true' version='5' changeset='1789064' lat='48.1759932' lon='11.5664761'>
     <tag k='name' v='Petuelring' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999928238914' action='modify' timestamp='2009-05-07T19:31:13Z' uid='94149' user='markusri' visible='true' version='7' changeset='1110189' lat='48.1859575' lon='11.5482796'>
+  <node id='999928238914' timestamp='2009-05-07T19:31:13Z' uid='94149' user='markusri' visible='true' version='7' changeset='1110189' lat='48.1859575' lon='11.5482796'>
     <tag k='name' v='Oberwiesenfeld' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999928238917' action='modify' timestamp='2010-08-29T09:50:21Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='5623674' lat='48.182065' lon='11.5299517'>
+  <node id='999928238917' timestamp='2010-08-29T09:50:21Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='5623674' lat='48.182065' lon='11.5299517'>
     <tag k='name' v='Olympia-Einkaufszentrum' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999928238954' action='modify' timestamp='2011-10-27T19:41:23Z' uid='290680' user='wheelmap_visitor' visible='true' version='8' changeset='9665470' lat='48.1766749' lon='11.5294076'>
+  <node id='999928238954' timestamp='2011-10-27T19:41:23Z' uid='290680' user='wheelmap_visitor' visible='true' version='8' changeset='9665470' lat='48.1766749' lon='11.5294076'>
     <tag k='name' v='Georg-Brauchle-Ring' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999929075451' action='modify' timestamp='2012-07-11T14:50:55Z' uid='479256' user='geodreieck4711' visible='true' version='9' changeset='12186866' lat='48.0992681' lon='11.7869626'>
+  <node id='999929075451' timestamp='2012-07-11T14:50:55Z' uid='479256' user='geodreieck4711' visible='true' version='9' changeset='12186866' lat='48.0992681' lon='11.7869626'>
     <tag k='name' v='Baldham' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999929131476' action='modify' timestamp='2012-04-14T16:45:43Z' uid='64536' user='Michael Forster' visible='true' version='10' changeset='11300985' lat='48.1040848' lon='11.7643624'>
+  <node id='999929131476' timestamp='2012-04-14T16:45:43Z' uid='64536' user='Michael Forster' visible='true' version='10' changeset='11300985' lat='48.1040848' lon='11.7643624'>
     <tag k='name' v='Vaterstetten' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999929913714' action='modify' timestamp='2011-08-21T09:40:56Z' uid='54491' user='FloSch' visible='true' version='8' changeset='9082226' lat='48.1334011' lon='11.5667462'>
+  <node id='999929913714' timestamp='2011-08-21T09:40:56Z' uid='54491' user='FloSch' visible='true' version='8' changeset='9082226' lat='48.1334011' lon='11.5667462'>
     <tag k='name' v='Sendlinger Tor' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999933407678' action='modify' timestamp='2012-10-22T19:06:27Z' uid='8748' user='ToniE' visible='true' version='14' changeset='13596817' lat='48.0933529' lon='11.6315314'>
+  <node id='999933407678' timestamp='2012-10-22T19:06:27Z' uid='8748' user='ToniE' visible='true' version='14' changeset='13596817' lat='48.0933529' lon='11.6315314'>
     <tag k='name' v='Perlach Bahnhof' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999934402188' action='modify' timestamp='2012-04-14T22:05:48Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='11304506' lat='48.1196589' lon='11.4254509'>
+  <node id='999934402188' timestamp='2012-04-14T22:05:48Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='11304506' lat='48.1196589' lon='11.4254509'>
     <tag k='name' v='Gräfelfing' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999934526850' action='modify' timestamp='2011-10-17T21:37:20Z' uid='64536' user='Michael Forster' visible='true' version='8' changeset='9586689' lat='48.0338194' lon='11.712347'>
+  <node id='999934526850' timestamp='2011-10-17T21:37:20Z' uid='64536' user='Michael Forster' visible='true' version='8' changeset='9586689' lat='48.0338194' lon='11.712347'>
     <tag k='name' v='Wächterhof' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999935201967' action='modify' timestamp='2012-04-12T22:44:15Z' uid='64536' user='Michael Forster' visible='true' version='11' changeset='11282203' lat='48.0933048' lon='11.6057311'>
+  <node id='999935201967' timestamp='2012-04-12T22:44:15Z' uid='64536' user='Michael Forster' visible='true' version='11' changeset='11282203' lat='48.0933048' lon='11.6057311'>
     <tag k='name' v='Fasangarten' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999936679479' action='modify' timestamp='2010-12-07T11:08:59Z' uid='170813' user='Flose' visible='true' version='6' changeset='6573324' lat='48.1666933' lon='11.5901874'>
+  <node id='999936679479' timestamp='2010-12-07T11:08:59Z' uid='170813' user='Flose' visible='true' version='6' changeset='6573324' lat='48.1666933' lon='11.5901874'>
     <tag k='name' v='Dietlindenstraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999936679484' action='modify' timestamp='2012-06-15T07:06:58Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='11901222' lat='48.1618526' lon='11.5865457'>
+  <node id='999936679484' timestamp='2012-06-15T07:06:58Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='11901222' lat='48.1618526' lon='11.5865457'>
     <tag k='name' v='Münchner Freiheit' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999947115767' action='modify' timestamp='2012-04-11T21:43:33Z' uid='64536' user='Michael Forster' visible='true' version='9' changeset='11270649' lat='48.2111941' lon='11.4594441'>
+  <node id='999947115767' timestamp='2012-04-11T21:43:33Z' uid='64536' user='Michael Forster' visible='true' version='9' changeset='11270649' lat='48.2111941' lon='11.4594441'>
     <tag k='name' v='Karlsfeld' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999947140421' action='modify' timestamp='2012-04-15T15:51:54Z' uid='64536' user='Michael Forster' visible='true' version='16' changeset='11311989' lat='48.0942988' lon='11.5327555'>
+  <node id='999947140421' timestamp='2012-04-15T15:51:54Z' uid='64536' user='Michael Forster' visible='true' version='16' changeset='11311989' lat='48.0942988' lon='11.5327555'>
     <tag k='name' v='Siemenswerke' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999948027954' action='modify' timestamp='2011-10-17T21:37:16Z' uid='64536' user='Michael Forster' visible='true' version='17' changeset='9586689' lat='48.0186795' lon='11.480064'>
+  <node id='999948027954' timestamp='2011-10-17T21:37:16Z' uid='64536' user='Michael Forster' visible='true' version='17' changeset='9586689' lat='48.0186795' lon='11.480064'>
     <tag k='name' v='Baierbrunn' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999948032129' action='modify' timestamp='2012-04-15T13:39:45Z' uid='64536' user='Michael Forster' visible='true' version='14' changeset='11310347' lat='48.0433192' lon='11.5095573'>
+  <node id='999948032129' timestamp='2012-04-15T13:39:45Z' uid='64536' user='Michael Forster' visible='true' version='14' changeset='11310347' lat='48.0433192' lon='11.5095573'>
     <tag k='name' v='Höllriegelskreuth' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999960013075' action='modify' timestamp='2012-04-12T23:45:21Z' uid='64536' user='Michael Forster' visible='true' version='17' changeset='11282504' lat='48.1342356' lon='11.5832784'>
+  <node id='999960013075' timestamp='2012-04-12T23:45:21Z' uid='64536' user='Michael Forster' visible='true' version='17' changeset='11282504' lat='48.1342356' lon='11.5832784'>
     <tag k='name' v='Isartor' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999960013076' action='modify' timestamp='2011-10-03T07:53:44Z' uid='290680' user='wheelmap_visitor' visible='true' version='12' changeset='9456721' lat='48.1291572' lon='11.593027'>
+  <node id='999960013076' timestamp='2011-10-03T07:53:44Z' uid='290680' user='wheelmap_visitor' visible='true' version='12' changeset='9456721' lat='48.1291572' lon='11.593027'>
     <tag k='name' v='Rosenheimer Platz' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999960023416' action='modify' timestamp='2012-04-14T10:51:17Z' uid='64536' user='Michael Forster' visible='true' version='10' changeset='11297203' lat='48.1340204' lon='11.6335096'>
+  <node id='999960023416' timestamp='2012-04-14T10:51:17Z' uid='64536' user='Michael Forster' visible='true' version='10' changeset='11297203' lat='48.1340204' lon='11.6335096'>
     <tag k='name' v='Berg am Laim' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999960302894' action='modify' timestamp='2012-07-06T12:13:17Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='12126617' lat='48.1188534' lon='11.5769876'>
+  <node id='999960302894' timestamp='2012-07-06T12:13:17Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='12126617' lat='48.1188534' lon='11.5769876'>
     <tag k='name' v='Kolumbusplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999960303019' action='modify' timestamp='2011-12-29T14:45:11Z' uid='290680' user='wheelmap_visitor' visible='true' version='11' changeset='10232645' lat='48.1111378' lon='11.5961104'>
+  <node id='999960303019' timestamp='2011-12-29T14:45:11Z' uid='290680' user='wheelmap_visitor' visible='true' version='11' changeset='10232645' lat='48.1111378' lon='11.5961104'>
     <tag k='name' v='Giesing' />
     <tag k='station_type' v='ubahn;sbahn' />
   </node>
-  <node id='999960338754' action='modify' timestamp='2012-04-07T12:47:50Z' uid='43078' user='bib' visible='true' version='9' changeset='11213551' lat='48.1184307' lon='11.4895792'>
+  <node id='999960338754' timestamp='2012-04-07T12:47:50Z' uid='43078' user='bib' visible='true' version='9' changeset='11213551' lat='48.1184307' lon='11.4895792'>
     <tag k='name' v='Haderner Stern' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999960338755' action='modify' timestamp='2012-03-30T16:12:47Z' uid='8748' user='ToniE' visible='true' version='7' changeset='11156718' lat='48.1162564' lon='11.5024508'>
+  <node id='999960338755' timestamp='2012-03-30T16:12:47Z' uid='8748' user='ToniE' visible='true' version='7' changeset='11156718' lat='48.1162564' lon='11.5024508'>
     <tag k='name' v='Holzapfelkreuth' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999960338757' action='modify' timestamp='2012-03-30T16:12:49Z' uid='8748' user='ToniE' visible='true' version='8' changeset='11156718' lat='48.1177748' lon='11.5171021'>
+  <node id='999960338757' timestamp='2012-03-30T16:12:49Z' uid='8748' user='ToniE' visible='true' version='8' changeset='11156718' lat='48.1177748' lon='11.5171021'>
     <tag k='name' v='Westpark' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999967134965' action='modify' timestamp='2011-05-26T19:38:35Z' uid='8748' user='ToniE' visible='true' version='4' changeset='8256556' lat='48.0947222' lon='11.6426454'>
+  <node id='999967134965' timestamp='2011-05-26T19:38:35Z' uid='8748' user='ToniE' visible='true' version='4' changeset='8256556' lat='48.0947222' lon='11.6426454'>
     <tag k='name' v='Therese-Giehse-Allee' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999968655296' action='modify' timestamp='2011-07-12T04:37:31Z' uid='64164' user='osmkurt' visible='true' version='9' changeset='8699468' lat='48.1178709' lon='11.6084157'>
+  <node id='999968655296' timestamp='2011-07-12T04:37:31Z' uid='64164' user='osmkurt' visible='true' version='9' changeset='8699468' lat='48.1178709' lon='11.6084157'>
     <tag k='name' v='Karl-Preis-Platz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999968669239' action='modify' timestamp='2012-07-17T20:27:17Z' uid='722137' user='OSMF Redaction Account' visible='true' version='15' changeset='12271880' lat='48.0983498' lon='11.5362206'>
+  <node id='999968669239' timestamp='2012-07-17T20:27:17Z' uid='722137' user='OSMF Redaction Account' visible='true' version='15' changeset='12271880' lat='48.0983498' lon='11.5362206'>
     <tag k='name' v='Obersendling' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999968669245' action='modify' timestamp='2012-07-17T20:27:16Z' uid='722137' user='OSMF Redaction Account' visible='true' version='20' changeset='12271880' lat='48.0972954' lon='11.5147118'>
+  <node id='999968669245' timestamp='2012-07-17T20:27:16Z' uid='722137' user='OSMF Redaction Account' visible='true' version='20' changeset='12271880' lat='48.0972954' lon='11.5147118'>
     <tag k='name' v='Machtlfinger Straße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999968670814' action='modify' timestamp='2012-07-17T20:27:18Z' uid='722137' user='OSMF Redaction Account' visible='true' version='18' changeset='12271880' lat='48.1018205' lon='11.5461192'>
+  <node id='999968670814' timestamp='2012-07-17T20:27:18Z' uid='722137' user='OSMF Redaction Account' visible='true' version='18' changeset='12271880' lat='48.1018205' lon='11.5461192'>
     <tag k='name' v='Thalkirchen' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999973694586' action='modify' timestamp='2012-10-25T09:50:14Z' uid='8748' user='ToniE' visible='true' version='15' changeset='13625380' lat='48.1121203' lon='11.5486844'>
+  <node id='999973694586' timestamp='2012-10-25T09:50:14Z' uid='8748' user='ToniE' visible='true' version='15' changeset='13625380' lat='48.1121203' lon='11.5486844'>
     <tag k='name' v='Brudermühlstraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999973706462' action='modify' timestamp='2012-07-18T02:54:31Z' uid='722137' user='OSMF Redaction Account' visible='true' version='18' changeset='12274257' lat='48.095116' lon='11.4992883'>
+  <node id='999973706462' timestamp='2012-07-18T02:54:31Z' uid='722137' user='OSMF Redaction Account' visible='true' version='18' changeset='12274257' lat='48.095116' lon='11.4992883'>
     <tag k='name' v='Forstenrieder Allee' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999973712339' action='modify' timestamp='2012-07-18T02:54:24Z' uid='722137' user='OSMF Redaction Account' visible='true' version='19' changeset='12274251' lat='48.0910663' lon='11.4910701'>
+  <node id='999973712339' timestamp='2012-07-18T02:54:24Z' uid='722137' user='OSMF Redaction Account' visible='true' version='19' changeset='12274251' lat='48.0910663' lon='11.4910701'>
     <tag k='name' v='Basler Straße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999973736211' action='delete' timestamp='2012-09-04T14:39:32Z' uid='290680' user='wheelmap_visitor' visible='true' version='7' changeset='12976929' lat='48.1169329' lon='11.5370425'>
-    <tag k='name' v='Harras' />
-    <tag k='railway' v='station' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='999973745334' action='modify' timestamp='2010-04-27T18:31:23Z' uid='46472' user='sendelhorst' visible='true' version='5' changeset='4543551' lat='48.116968' lon='11.5265398'>
+  <node id='999973745334' timestamp='2010-04-27T18:31:23Z' uid='46472' user='sendelhorst' visible='true' version='5' changeset='4543551' lat='48.116968' lon='11.5265398'>
     <tag k='name' v='Partnachplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999973778052' action='modify' timestamp='2011-10-05T10:31:40Z' uid='8748' user='ToniE' visible='true' version='4' changeset='9476886' lat='48.1125885' lon='11.5875146'>
+  <node id='999973778052' timestamp='2011-10-05T10:31:40Z' uid='8748' user='ToniE' visible='true' version='4' changeset='9476886' lat='48.1125885' lon='11.5875146'>
     <tag k='name' v='Untersbergstraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999973783822' action='modify' timestamp='2009-06-08T17:52:10Z' uid='85761' user='klausis' visible='true' version='2' changeset='1460631' lat='48.1290494' lon='11.5745029'>
+  <node id='999973783822' timestamp='2009-06-08T17:52:10Z' uid='85761' user='klausis' visible='true' version='2' changeset='1460631' lat='48.1290494' lon='11.5745029'>
     <tag k='name' v='Fraunhoferstraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999973793044' action='modify' timestamp='2012-10-26T23:38:14Z' uid='8748' user='ToniE' visible='true' version='6' changeset='13644628' lat='48.1124817' lon='11.5713962'>
+  <node id='999973793044' timestamp='2012-10-26T23:38:14Z' uid='8748' user='ToniE' visible='true' version='6' changeset='13644628' lat='48.1124817' lon='11.5713962'>
     <tag k='name' v='Candidplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999973800960' action='modify' timestamp='2012-06-15T07:09:02Z' uid='290680' user='wheelmap_visitor' visible='true' version='8' changeset='11901222' lat='48.1046268' lon='11.5811397'>
+  <node id='999973800960' timestamp='2012-06-15T07:09:02Z' uid='290680' user='wheelmap_visitor' visible='true' version='8' changeset='11901222' lat='48.1046268' lon='11.5811397'>
     <tag k='name' v='St.-Quirin-Platz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999973800962' action='modify' timestamp='2012-07-10T19:53:50Z' uid='8748' user='ToniE' visible='true' version='7' changeset='12178626' lat='48.0972347' lon='11.5794301'>
+  <node id='999973800962' timestamp='2012-07-10T19:53:50Z' uid='8748' user='ToniE' visible='true' version='7' changeset='12178626' lat='48.0972347' lon='11.5794301'>
     <tag k='name' v='Mangfallplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999981787408' action='modify' timestamp='2012-03-21T13:19:49Z' uid='290680' user='wheelmap_visitor' visible='true' version='14' changeset='11048451' lat='48.2257932' lon='11.6795099'>
+  <node id='999981787408' timestamp='2012-03-21T13:19:49Z' uid='290680' user='wheelmap_visitor' visible='true' version='14' changeset='11048451' lat='48.2257932' lon='11.6795099'>
     <tag k='name' v='Ismaning' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='999984322745' action='modify' timestamp='2011-10-03T15:43:10Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='9456721' lat='48.1624459' lon='11.5293541'>
+  <node id='999984322745' timestamp='2011-10-03T15:43:10Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='9456721' lat='48.1624459' lon='11.5293541'>
     <tag k='name' v='Gern' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999984322749' action='modify' timestamp='2012-04-22T13:37:37Z' uid='46472' user='sendelhorst' visible='true' version='12' changeset='11384375' lat='48.1531786' lon='11.5332022'>
+  <node id='999984322749' timestamp='2012-04-22T13:37:37Z' uid='46472' user='sendelhorst' visible='true' version='12' changeset='11384375' lat='48.1531786' lon='11.5332022'>
     <tag k='name' v='Rotkreuzplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999984322751' action='modify' timestamp='2012-08-06T14:54:35Z' uid='290680' user='wheelmap_visitor' visible='true' version='7' changeset='12629380' lat='48.1498593' lon='11.546376'>
+  <node id='999984322751' timestamp='2012-08-06T14:54:35Z' uid='290680' user='wheelmap_visitor' visible='true' version='7' changeset='12629380' lat='48.1498593' lon='11.546376'>
     <tag k='name' v='Maillingerstraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999984322752' action='modify' timestamp='2012-06-15T07:27:40Z' uid='290680' user='wheelmap_visitor' visible='true' version='10' changeset='11901222' lat='48.1476908' lon='11.5582374'>
+  <node id='999984322752' timestamp='2012-06-15T07:27:40Z' uid='290680' user='wheelmap_visitor' visible='true' version='10' changeset='11901222' lat='48.1476908' lon='11.5582374'>
     <tag k='name' v='Stiglmaierplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999996886958' action='modify' timestamp='2011-10-02T14:45:13Z' uid='290680' user='wheelmap_visitor' visible='true' version='8' changeset='9447804' lat='48.2118574' lon='11.616905'>
+  <node id='999996886958' timestamp='2011-10-02T14:45:13Z' uid='290680' user='wheelmap_visitor' visible='true' version='8' changeset='9447804' lat='48.2118574' lon='11.616905'>
     <tag k='name' v='Fröttmaning' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999996886976' action='modify' timestamp='2012-12-08T16:42:09Z' uid='33223' user='k127' visible='true' version='6' changeset='14202402' lat='48.2473815' lon='11.6311374'>
+  <node id='999996886976' timestamp='2012-12-08T16:42:09Z' uid='33223' user='k127' visible='true' version='6' changeset='14202402' lat='48.2473815' lon='11.6311374'>
     <tag k='name' v='Garching-Hochbrück' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999998197992' action='modify' timestamp='2011-08-22T07:05:15Z' uid='338611' user='marek kleciak' visible='true' version='6' changeset='9091224' lat='48.2492675' lon='11.6519833'>
+  <node id='999998197992' timestamp='2011-08-22T07:05:15Z' uid='338611' user='marek kleciak' visible='true' version='6' changeset='9091224' lat='48.2492675' lon='11.6519833'>
     <tag k='name' v='Garching' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999999185841' action='delete' timestamp='2012-04-18T18:13:13Z' uid='64536' user='Michael Forster' visible='true' version='12' changeset='11346843' lat='48.0886878' lon='11.6451508'>
-    <tag k='layer' v='2' />
-    <tag k='name' v='Neuperlach Süd' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='999999191054' action='modify' timestamp='2009-06-26T18:27:32Z' uid='85761' user='klausis' visible='true' version='4' changeset='1643040' lat='48.1149818' lon='11.5801109'>
+  <node id='999999191054' timestamp='2009-06-26T18:27:32Z' uid='85761' user='klausis' visible='true' version='4' changeset='1643040' lat='48.1149818' lon='11.5801109'>
     <tag k='name' v='Silberhornstraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999999202259' action='modify' timestamp='2009-06-20T21:24:21Z' uid='85761' user='klausis' visible='true' version='3' changeset='1578334' lat='48.129003' lon='11.557316'>
+  <node id='999999202259' timestamp='2009-06-20T21:24:21Z' uid='85761' user='klausis' visible='true' version='3' changeset='1578334' lat='48.129003' lon='11.557316'>
     <tag k='name' v='Goetheplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999999202262' action='modify' timestamp='2012-07-12T20:57:19Z' uid='8748' user='ToniE' visible='true' version='7' changeset='12200475' lat='48.1254405' lon='11.5501952'>
+  <node id='999999202262' timestamp='2012-07-12T20:57:19Z' uid='8748' user='ToniE' visible='true' version='7' changeset='12200475' lat='48.1254405' lon='11.5501952'>
     <tag k='name' v='Poccistraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999999202271' action='modify' timestamp='2012-04-19T00:36:05Z' uid='46472' user='sendelhorst' visible='true' version='15' changeset='11349860' lat='48.1200748' lon='11.548401'>
+  <node id='999999202271' timestamp='2012-04-19T00:36:05Z' uid='46472' user='sendelhorst' visible='true' version='15' changeset='11349860' lat='48.1200748' lon='11.548401'>
     <tag k='name' v='Implerstraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999999283473' action='modify' timestamp='2011-10-11T11:04:36Z' uid='290680' user='wheelmap_visitor' visible='true' version='5' changeset='9527581' lat='48.1506572' lon='11.5812816'>
+  <node id='999999283473' timestamp='2011-10-11T11:04:36Z' uid='290680' user='wheelmap_visitor' visible='true' version='5' changeset='9527581' lat='48.1506572' lon='11.5812816'>
     <tag k='name' v='Universität' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='999999287029' action='modify' timestamp='2012-01-18T23:12:05Z' uid='85218' user='Aleks-Berlin' visible='true' version='5' changeset='10432677' lat='48.1565215' lon='11.584057'>
+  <node id='999999287029' timestamp='2012-01-18T23:12:05Z' uid='85218' user='Aleks-Berlin' visible='true' version='5' changeset='10432677' lat='48.1565215' lon='11.584057'>
     <tag k='name' v='Giselastraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999102950625' action='modify' timestamp='2011-11-06T15:47:06Z' uid='9402' user='ludwich' visible='true' version='6' changeset='9756464' lat='48.1086222' lon='11.5751318'>
+  <node id='9999102950625' timestamp='2011-11-06T15:47:06Z' uid='9402' user='ludwich' visible='true' version='6' changeset='9756464' lat='48.1086222' lon='11.5751318'>
     <tag k='name' v='Wettersteinplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999171370779' action='modify' timestamp='2012-07-23T21:14:07Z' uid='361746' user='raupach' visible='true' version='6' changeset='12457257' lat='48.1667307' lon='11.5785202'>
+  <node id='9999171370779' timestamp='2012-07-23T21:14:07Z' uid='361746' user='raupach' visible='true' version='6' changeset='12457257' lat='48.1667307' lon='11.5785202'>
     <tag k='name' v='Bonner Platz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999172983380' action='modify' timestamp='2011-10-04T19:44:22Z' uid='290680' user='wheelmap_visitor' visible='true' version='5' changeset='9466302' lat='48.2647204' lon='11.6714536'>
+  <node id='9999172983380' timestamp='2011-10-04T19:44:22Z' uid='290680' user='wheelmap_visitor' visible='true' version='5' changeset='9466302' lat='48.2647204' lon='11.6714536'>
     <tag k='name' v='Garching Forschungszentrum' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999184087374' action='modify' timestamp='2012-06-15T09:33:39Z' uid='290680' user='wheelmap_visitor' visible='true' version='10' changeset='11901222' lat='48.1440974' lon='11.6789359'>
+  <node id='9999184087374' timestamp='2012-06-15T09:33:39Z' uid='290680' user='wheelmap_visitor' visible='true' version='10' changeset='11901222' lat='48.1440974' lon='11.6789359'>
     <tag k='name' v='Riem' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999199125497' action='modify' timestamp='2012-03-30T20:53:32Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11160021' lat='48.1644847' lon='11.78245'>
+  <node id='9999199125497' timestamp='2012-03-30T20:53:32Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11160021' lat='48.1644847' lon='11.78245'>
     <tag k='name' v='Grub' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999207583981' action='modify' timestamp='2011-12-03T22:11:12Z' uid='534662' user='Q12' visible='true' version='11' changeset='10028865' lat='48.1403642' lon='11.5673267'>
+  <node id='9999207583981' timestamp='2011-12-03T22:11:12Z' uid='534662' user='Q12' visible='true' version='11' changeset='10028865' lat='48.1403642' lon='11.5673267'>
     <tag k='name' v='Karlsplatz (Stachus)' />
     <tag k='station_type' v='ubahn;sbahn' />
   </node>
-  <node id='9999207588044' action='modify' timestamp='2012-04-05T21:07:29Z' uid='64536' user='Michael Forster' visible='true' version='8' changeset='11194543' lat='48.1337728' lon='11.5409256'>
+  <node id='9999207588044' timestamp='2012-04-05T21:07:29Z' uid='64536' user='Michael Forster' visible='true' version='8' changeset='11194543' lat='48.1337728' lon='11.5409256'>
     <tag k='name' v='Schwanthalerhöhe' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999207594090' action='modify' timestamp='2012-04-05T21:07:29Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='11194543' lat='48.1357258' lon='11.5522541'>
+  <node id='9999207594090' timestamp='2012-04-05T21:07:29Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='11194543' lat='48.1357258' lon='11.5522541'>
     <tag k='name' v='Theresienwiese' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999207594097' action='modify' timestamp='2011-07-12T03:50:38Z' uid='64164' user='osmkurt' visible='true' version='8' changeset='8699288' lat='48.1396466' lon='11.5880388'>
+  <node id='9999207594097' timestamp='2011-07-12T03:50:38Z' uid='64164' user='osmkurt' visible='true' version='8' changeset='8699288' lat='48.1396466' lon='11.5880388'>
     <tag k='name' v='Lehel' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999207594105' action='modify' timestamp='2012-05-07T19:11:29Z' uid='13194' user='Chumwa' visible='true' version='20' changeset='11532263' lat='48.1356908' lon='11.5990554'>
+  <node id='9999207594105' timestamp='2012-05-07T19:11:29Z' uid='13194' user='Chumwa' visible='true' version='20' changeset='11532263' lat='48.1356908' lon='11.5990554'>
     <tag k='name' v='Max-Weber-Platz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999207598530' action='modify' timestamp='2012-05-09T05:58:51Z' uid='13194' user='Chumwa' visible='true' version='13' changeset='11546082' lat='48.1433049' lon='11.6154425'>
+  <node id='9999207598530' timestamp='2012-05-09T05:58:51Z' uid='13194' user='Chumwa' visible='true' version='13' changeset='11546082' lat='48.1433049' lon='11.6154425'>
     <tag k='name' v='Böhmerwaldplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999207598531' action='modify' timestamp='2012-05-07T06:05:31Z' uid='13194' user='Chumwa' visible='true' version='9' changeset='11524967' lat='48.1483589' lon='11.616597'>
+  <node id='9999207598531' timestamp='2012-05-07T06:05:31Z' uid='13194' user='Chumwa' visible='true' version='9' changeset='11524967' lat='48.1483589' lon='11.616597'>
     <tag k='name' v='Richard-Strauss-Straße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999211557411' action='modify' timestamp='2012-06-15T08:58:51Z' uid='290680' user='wheelmap_visitor' visible='true' version='13' changeset='11901222' lat='48.1513607' lon='11.5643306'>
+  <node id='9999211557411' timestamp='2012-06-15T08:58:51Z' uid='290680' user='wheelmap_visitor' visible='true' version='13' changeset='11901222' lat='48.1513607' lon='11.5643306'>
     <tag k='name' v='Theresienstraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999213519696' action='delete' timestamp='2012-04-12T19:42:45Z' uid='64536' user='Michael Forster' visible='true' version='20' changeset='11280378' lat='48.1277234' lon='11.6052044'>
-    <tag k='name' v='Ostbahnhof, Gleis 3' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='3' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999237620737' action='modify' timestamp='2012-09-14T10:08:47Z' uid='247670' user='burt13de' visible='true' version='11' changeset='13105381' lat='48.1501148' lon='11.4617216'>
+  <node id='9999237620737' timestamp='2012-09-14T10:08:47Z' uid='247670' user='burt13de' visible='true' version='11' changeset='13105381' lat='48.1501148' lon='11.4617216'>
     <tag k='name' v='München-Pasing' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999237680533' action='modify' timestamp='2011-10-02T22:05:51Z' uid='64536' user='Michael Forster' visible='true' version='10' changeset='9455717' lat='48.1410895' lon='11.5602424'>
+  <node id='9999237680533' timestamp='2011-10-02T22:05:51Z' uid='64536' user='Michael Forster' visible='true' version='10' changeset='9455717' lat='48.1410895' lon='11.5602424'>
     <tag k='name' v='Hauptbahnhof' />
     <tag k='station_type' v='ubahn;sbahn' />
   </node>
-  <node id='9999242109980' action='modify' timestamp='2011-03-22T02:20:37Z' uid='24632' user='klml' visible='true' version='10' changeset='7633451' lat='48.1457006' lon='11.5636272'>
+  <node id='9999242109980' timestamp='2011-03-22T02:20:37Z' uid='24632' user='klml' visible='true' version='10' changeset='7633451' lat='48.1457006' lon='11.5636272'>
     <tag k='name' v='Königsplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999246922487' action='modify' timestamp='2012-04-05T21:07:28Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='11194543' lat='48.135167' lon='11.510606'>
+  <node id='9999246922487' timestamp='2012-04-05T21:07:28Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='11194543' lat='48.135167' lon='11.510606'>
     <tag k='name' v='Friedenheimer Straße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999246922490' action='modify' timestamp='2012-04-05T21:07:29Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11194543' lat='48.1354433' lon='11.5020274'>
+  <node id='9999246922490' timestamp='2012-04-05T21:07:29Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11194543' lat='48.1354433' lon='11.5020274'>
     <tag k='name' v='Laimer Platz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999247674448' action='modify' timestamp='2011-10-22T19:19:23Z' uid='290680' user='wheelmap_visitor' visible='true' version='12' changeset='9621211' lat='48.1555781' lon='11.5668791'>
+  <node id='9999247674448' timestamp='2011-10-22T19:19:23Z' uid='290680' user='wheelmap_visitor' visible='true' version='12' changeset='9621211' lat='48.1555781' lon='11.5668791'>
     <tag k='name' v='Josephsplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999247674746' action='modify' timestamp='2013-01-16T21:50:38Z' uid='290680' user='wheelmap_visitor' visible='true' version='14' changeset='14668647' lat='48.1625111' lon='11.569088'>
+  <node id='9999247674746' timestamp='2013-01-16T21:50:38Z' uid='290680' user='wheelmap_visitor' visible='true' version='14' changeset='14668647' lat='48.1625111' lon='11.569088'>
     <tag k='name' v='Hohenzollernplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999248795453' action='modify' timestamp='2012-06-15T07:49:20Z' uid='290680' user='wheelmap_visitor' visible='true' version='9' changeset='11901222' lat='48.1391346' lon='11.6069632'>
+  <node id='9999248795453' timestamp='2012-06-15T07:49:20Z' uid='290680' user='wheelmap_visitor' visible='true' version='9' changeset='11901222' lat='48.1391346' lon='11.6069632'>
     <tag k='name' v='Prinzregentenplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999248796128' action='modify' timestamp='2012-08-21T11:03:16Z' uid='64536' user='Michael Forster' visible='true' version='11' changeset='12806839' lat='48.1534775' lon='11.6220686'>
+  <node id='9999248796128' timestamp='2012-08-21T11:03:16Z' uid='64536' user='Michael Forster' visible='true' version='11' changeset='12806839' lat='48.1534775' lon='11.6220686'>
     <tag k='name' v='Arabellapark' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999253450452' action='modify' timestamp='2012-04-12T22:44:16Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='11282203' lat='48.0514846' lon='11.6093343'>
+  <node id='9999253450452' timestamp='2012-04-12T22:44:16Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='11282203' lat='48.0514846' lon='11.6093343'>
     <tag k='name' v='Taufkirchen' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999277608575' action='modify' timestamp='2011-10-18T20:16:10Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='9587957' lat='48.2035205' lon='11.6131235'>
+  <node id='9999277608575' timestamp='2011-10-18T20:16:10Z' uid='290680' user='wheelmap_visitor' visible='true' version='6' changeset='9587957' lat='48.2035205' lon='11.6131235'>
     <tag k='name' v='Kieferngarten' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999279106850' action='modify' timestamp='2012-04-13T14:39:05Z' uid='8748' user='ToniE' visible='true' version='12' changeset='11288255' lat='48.0886954' lon='11.4802888'>
+  <node id='9999279106850' timestamp='2012-04-13T14:39:05Z' uid='8748' user='ToniE' visible='true' version='12' changeset='11288255' lat='48.0886954' lon='11.4802888'>
     <tag k='name' v='Fürstenried West' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999279547721' action='modify' timestamp='2012-07-25T18:58:29Z' uid='8748' user='ToniE' visible='true' version='5' changeset='12490497' lat='48.1148339' lon='11.477115'>
+  <node id='9999279547721' timestamp='2012-07-25T18:58:29Z' uid='8748' user='ToniE' visible='true' version='5' changeset='12490497' lat='48.1148339' lon='11.477115'>
     <tag k='name' v='Großhadern' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999316920606' action='delete' timestamp='2011-10-16T19:59:36Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='9576481' lat='48.1559927' lon='11.4133233'>
-    <tag k='name' v='Aubing' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='9999316920607' action='delete' timestamp='2012-04-13T18:21:56Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11290617' lat='48.1545596' lon='11.4284822'>
-    <tag k='name' v='Leienfelsstraße' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999316922237' action='modify' timestamp='2012-08-04T18:07:57Z' uid='64536' user='Michael Forster' visible='true' version='10' changeset='12612448' lat='48.142628' lon='11.5365256'>
+  <node id='9999316922237' timestamp='2012-08-04T18:07:57Z' uid='64536' user='Michael Forster' visible='true' version='10' changeset='12612448' lat='48.142628' lon='11.5365256'>
     <tag k='name' v='Donnersbergerbrücke' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999320498721' action='delete' timestamp='2012-06-09T16:23:21Z' uid='290680' user='wheelmap_visitor' visible='true' version='9' changeset='11842426' lat='48.1800906' lon='11.5059217'>
-    <tag k='name' v='Moosach' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='9999320613486' action='modify' timestamp='2013-02-21T21:27:36Z' uid='8748' user='ToniE' visible='true' version='15' changeset='15117027' lat='48.128112' lon='11.6036097'>
+  <node id='9999320613486' timestamp='2013-02-21T21:27:36Z' uid='8748' user='ToniE' visible='true' version='15' changeset='15117027' lat='48.128112' lon='11.6036097'>
     <tag k='name' v='Ostbahnhof' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999370658080' action='delete' timestamp='2012-04-12T19:42:41Z' uid='64536' user='Michael Forster' visible='true' version='8' changeset='11280378' lat='48.1274915' lon='11.6055585'>
-    <tag k='name' v='München Ost, Gleis 7' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='rail' v='yes' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='7' />
-  </node>
-  <node id='9999417075321' action='modify' timestamp='2011-10-16T09:57:43Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='9570525' lat='48.1340191' lon='11.6154462'>
+  <node id='9999417075321' timestamp='2011-10-16T09:57:43Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='9570525' lat='48.1340191' lon='11.6154462'>
     <tag k='name' v='Leuchtenbergring' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999417075327' action='delete' timestamp='2012-04-20T20:55:03Z' uid='290680' user='wheelmap_visitor' visible='true' version='4' changeset='11367451' lat='48.134408' lon='11.6165296'>
-    <tag k='name' v='Leuchtenbergring' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='9999462080887' action='delete' timestamp='2012-04-10T23:25:50Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='11259463' lat='48.2877242' lon='11.5806183'>
-    <tag k='name' v='Lohhof' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='9999462107131' action='delete' timestamp='2012-04-24T09:24:52Z' uid='290680' user='wheelmap_visitor' visible='true' version='7' changeset='11402328' lat='48.2135805' lon='11.5413387'>
-    <tag k='name' v='Feldmoching, Gleis 3' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='3' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999463183616' action='delete' timestamp='2012-04-10T23:25:48Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11259463' lat='48.1977523' lon='11.5258717'>
-    <tag k='name' v='Fasanerie' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='9999471766265' action='delete' timestamp='2012-04-11T21:43:33Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11270649' lat='48.2111941' lon='11.4594441'>
-    <tag k='name' v='Karlsfeld' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='sbahn' v='yes' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='9999471781372' action='modify' timestamp='2013-01-26T22:23:59Z' uid='321478' user='Guenni' visible='true' version='7' changeset='14799802' lat='48.2545178' lon='11.4442697'>
+  <node id='9999471781372' timestamp='2013-01-26T22:23:59Z' uid='321478' user='Guenni' visible='true' version='7' changeset='14799802' lat='48.2545178' lon='11.4442697'>
     <tag k='name' v='Dachau' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999472628587' action='modify' timestamp='2013-01-26T18:29:32Z' uid='321478' user='Guenni' visible='true' version='4' changeset='14796266' lat='48.2909775' lon='11.4554357'>
+  <node id='9999472628587' timestamp='2013-01-26T18:29:32Z' uid='321478' user='Guenni' visible='true' version='4' changeset='14796266' lat='48.2909775' lon='11.4554357'>
     <tag k='name' v='Hebertshausen' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999478521696' action='delete' timestamp='2011-10-03T07:53:44Z' uid='290680' user='wheelmap_visitor' visible='true' version='8' changeset='9456721' lat='48.1291572' lon='11.593027'>
-    <tag k='layer' v='-2' />
-    <tag k='name' v='Rosenheimer Platz' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999478521700' action='delete' timestamp='2011-11-05T19:27:28Z' uid='290680' user='wheelmap_visitor' visible='true' version='8' changeset='9744488' lat='48.1410895' lon='11.5602424'>
-    <tag k='name' v='Hauptbahnhof (Tief)' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref_name' v='Hauptbahnhof (Tief), München' />
-    <tag k='train' v='yes' />
-    <tag k='uic_ref' v='8098263' />
-    <tag k='wheelchair' v='limited' />
-  </node>
-  <node id='9999478521713' action='delete' timestamp='2012-04-12T23:45:20Z' uid='64536' user='Michael Forster' visible='true' version='11' changeset='11282504' lat='48.13417' lon='11.583151'>
-    <tag k='layer' v='-3' />
-    <tag k='name' v='Isartor' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref_name' v='Isartor, München' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='9999478521714' action='delete' timestamp='2011-10-02T22:53:19Z' uid='64536' user='Michael Forster' visible='true' version='8' changeset='9455931' lat='48.1370876' lon='11.5756329'>
-    <tag k='level' v='-1' />
-    <tag k='name' v='Marienplatz' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref_name' v='Marienplatz, München' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='9999494089565' action='delete' timestamp='2012-04-14T10:51:16Z' uid='64536' user='Michael Forster' visible='true' version='8' changeset='11297203' lat='48.1339316' lon='11.6334893'>
-    <tag k='name' v='Berg am Laim, Gleis 1' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='1' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999494233348' action='delete' timestamp='2012-06-17T18:51:08Z' uid='8748' user='ToniE' visible='true' version='7' changeset='11929139' lat='48.018654' lon='11.7192407'>
-    <tag k='name' v='Höhenkirchen-Siegertsbrunn' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='limited' />
-  </node>
-  <node id='9999494233382' action='modify' timestamp='2012-08-13T16:49:43Z' uid='8748' user='ToniE' visible='true' version='8' changeset='12716422' lat='48.0758226' lon='11.6601473'>
+  <node id='9999494233382' timestamp='2012-08-13T16:49:43Z' uid='8748' user='ToniE' visible='true' version='8' changeset='12716422' lat='48.0758226' lon='11.6601473'>
     <tag k='name' v='Neubiberg' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999520170689' action='delete' timestamp='2012-04-14T20:03:59Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='11303141' lat='48.1110526' lon='11.5956515'>
-    <tag k='name' v='Giesing Bahnhof' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='subway' v='yes' />
-  </node>
-  <node id='9999520170690' action='delete' timestamp='2011-10-15T14:06:33Z' uid='64536' user='Michael Forster' visible='true' version='6' changeset='9563791' lat='48.1111624' lon='11.5962613'>
-    <tag k='name' v='Giesing' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='9999520170703' action='delete' timestamp='2011-10-15T14:06:34Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='9563791' lat='48.1184523' lon='11.5958245'>
-    <tag k='layer' v='1' />
-    <tag k='name' v='Sankt-Martin-Straße' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='9999525847546' action='delete' timestamp='2012-04-12T22:44:15Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11282203' lat='48.0933048' lon='11.6057311'>
-    <tag k='name' v='Fasangarten' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999526026902' action='modify' timestamp='2012-04-12T22:44:16Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='11282203' lat='48.0653696' lon='11.6124172'>
+  <node id='9999526026902' timestamp='2012-04-12T22:44:16Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='11282203' lat='48.0653696' lon='11.6124172'>
     <tag k='name' v='Unterhaching' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999526026903' action='delete' timestamp='2012-04-12T22:44:16Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11282203' lat='48.0653716' lon='11.612365'>
-    <tag k='name' v='Unterhaching' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='limited' />
-  </node>
-  <node id='9999526026931' action='delete' timestamp='2012-04-12T22:44:14Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11282203' lat='48.0795765' lon='11.6094407'>
-    <tag k='name' v='Fasanenpark' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='9999526060731' action='delete' timestamp='2012-10-27T11:32:42Z' uid='8748' user='ToniE' visible='true' version='4' changeset='13648355' lat='48.0353392' lon='11.5930767'>
-    <tag k='name' v='Furth' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='9999526060782' action='delete' timestamp='2012-04-12T22:44:16Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='11282203' lat='48.0515068' lon='11.6092442'>
-    <tag k='name' v='Taufkirchen' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='9999601733617' action='delete' timestamp='2012-09-14T11:06:06Z' uid='247670' user='burt13de' visible='true' version='6' changeset='13105381' lat='48.1499721' lon='11.4616338'>
-    <tag k='name' v='München-Pasing' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='6' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999601733627' action='delete' timestamp='2011-10-09T20:40:55Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='9517138' lat='48.1419058' lon='11.5485744'>
-    <tag k='name' v='Hackerbrücke' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999603097507' action='delete' timestamp='2011-11-13T11:01:38Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='9812365' lat='48.2257932' lon='11.6795099'>
-    <tag k='name' v='Ismaning' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='9999615421829' action='delete' timestamp='2012-04-14T22:05:52Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11304506' lat='48.1490234' lon='11.44403'>
-    <tag k='name' v='Westkreuz' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='9999615422391' action='delete' timestamp='2012-09-14T11:06:06Z' uid='247670' user='burt13de' visible='true' version='7' changeset='13105381' lat='48.1498685' lon='11.4615699'>
-    <tag k='name' v='München-Pasing' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='5' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999616836527' action='modify' timestamp='2012-06-07T08:14:37Z' uid='439738' user='HarryCam' visible='true' version='4' changeset='11822689' lat='48.1398938' lon='11.40938'>
+  <node id='9999616836527' timestamp='2012-06-07T08:14:37Z' uid='439738' user='HarryCam' visible='true' version='4' changeset='11822689' lat='48.1398938' lon='11.40938'>
     <tag k='name' v='Freiham (im Bau)' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999616836533' action='delete' timestamp='2012-04-18T19:49:13Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11347866' lat='48.1417602' lon='11.4224465'>
-    <tag k='name' v='Neuaubing' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='9999617262605' action='modify' timestamp='2012-04-14T22:05:48Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='11304506' lat='48.1280449' lon='11.4307195'>
+  <node id='9999617262605' timestamp='2012-04-14T22:05:48Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='11304506' lat='48.1280449' lon='11.4307195'>
     <tag k='name' v='Lochham' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999617264580' action='delete' timestamp='2012-04-14T22:05:46Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11304506' lat='48.11964' lon='11.425585'>
-    <tag k='name' v='Gräfelfing' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999617275158' action='modify' timestamp='2012-06-13T09:36:44Z' uid='290680' user='wheelmap_visitor' visible='true' version='5' changeset='11881308' lat='48.0934888' lon='11.4011336'>
+  <node id='9999617275158' timestamp='2012-06-13T09:36:44Z' uid='290680' user='wheelmap_visitor' visible='true' version='5' changeset='11881308' lat='48.0934888' lon='11.4011336'>
     <tag k='name' v='Stockdorf' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999617275202' action='delete' timestamp='2012-06-13T09:31:38Z' uid='290680' user='wheelmap_visitor' visible='true' version='4' changeset='11881308' lat='48.1054643' lon='11.4137145'>
-    <tag k='name' v='Planegg' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='limited' />
-  </node>
-  <node id='9999650103868' action='modify' timestamp='2012-08-23T14:46:27Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='12833837' lat='48.1676279' lon='11.6460728'>
+  <node id='9999650103868' timestamp='2012-08-23T14:46:27Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='12833837' lat='48.1676279' lon='11.6460728'>
     <tag k='name' v='Johanneskirchen' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999737174131' action='delete' timestamp='2012-04-15T15:51:52Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='11311989' lat='48.1078236' lon='11.5364475'>
-    <tag k='name' v='Mittersendling' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='9999737174132' action='delete' timestamp='2012-08-04T18:07:58Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='12612448' lat='48.142813' lon='11.5365181'>
-    <tag k='name' v='Donnersbergerbrücke' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='9999737174133' action='delete' timestamp='2012-11-11T20:55:15Z' uid='46472' user='sendelhorst' visible='true' version='14' changeset='13839298' lat='48.1335274' lon='11.532303'>
-    <tag k='layer' v='-5' />
-    <tag k='name' v='U Heimeranplatz' />
-    <tag k='operator' v='MVG' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='subway' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999737174134' action='modify' timestamp='2011-10-17T20:32:24Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='9586104' lat='48.0711833' lon='11.5308487'>
+  <node id='9999737174134' timestamp='2011-10-17T20:32:24Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='9586104' lat='48.0711833' lon='11.5308487'>
     <tag k='name' v='Großhesselohe Isartalbahnhof' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999737174136' action='delete' timestamp='2012-08-22T16:36:11Z' uid='64536' user='Michael Forster' visible='true' version='10' changeset='12822998' lat='48.133098' lon='11.5316648'>
-    <tag k='layer' v='1' />
-    <tag k='name' v='Heimeranplatz' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='9999737174137' action='delete' timestamp='2012-03-31T12:32:27Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11165629' lat='48.0711591' lon='11.5309528'>
-    <tag k='name' v='Großhesselohe Isartalbahnhof' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='9999737174138' action='delete' timestamp='2012-06-21T19:16:32Z' uid='8748' user='ToniE' visible='true' version='5' changeset='11971962' lat='48.0758226' lon='11.6601473'>
-    <tag k='name' v='Neubiberg' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999737174140' action='delete' timestamp='2012-08-04T18:07:58Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='12612448' lat='48.1427197' lon='11.5365218'>
-    <tag k='name' v='Donnersbergerbrücke' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='9999737174144' action='modify' timestamp='2012-10-06T13:47:14Z' uid='8748' user='ToniE' visible='true' version='5' changeset='13385250' lat='48.0466076' lon='11.6988331'>
+  <node id='9999737174144' timestamp='2012-10-06T13:47:14Z' uid='8748' user='ToniE' visible='true' version='5' changeset='13385250' lat='48.0466076' lon='11.6988331'>
     <tag k='name' v='Hohenbrunn' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='9999737174147' action='delete' timestamp='2012-04-12T19:42:48Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11280378' lat='48.1276364' lon='11.6053359'>
-    <tag k='name' v='Ostbahnhof, Gleis 4' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='4' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999737174148' action='delete' timestamp='2012-08-04T18:07:57Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='12612448' lat='48.1425255' lon='11.5365297'>
-    <tag k='name' v='Donnersbergerbrücke' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='9999737174149' action='delete' timestamp='2012-04-15T15:51:53Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11311989' lat='48.0942988' lon='11.5327555'>
-    <tag k='name' v='Siemenswerke' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='9999751989475' action='delete' timestamp='2012-08-22T16:36:10Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='12822998' lat='48.1329937' lon='11.5311726'>
-    <tag k='layer' v='1' />
-    <tag k='name' v='Heimeranplatz' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='9999829081851' action='modify' timestamp='2012-06-08T12:20:27Z' uid='290680' user='wheelmap_visitor' visible='true' version='3' changeset='11831772' lat='48.1818143' lon='11.5182607'>
+  <node id='9999829081851' timestamp='2012-06-08T12:20:27Z' uid='290680' user='wheelmap_visitor' visible='true' version='3' changeset='11831772' lat='48.1818143' lon='11.5182607'>
     <tag k='name' v='Moosacher St.-Martins-Platz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='9999829081875' action='delete' timestamp='2010-12-12T16:26:40Z' uid='381750' user='andreaslrchr' visible='true' version='2' changeset='6637897' lat='48.1809093' lon='11.507193'>
-    <tag k='name' v='Moosach' />
-    <tag k='railway' v='station' />
-  </node>
-  <node id='9999921892747' action='delete' timestamp='2011-05-17T09:58:26Z' uid='113278' user='vpl' visible='true' version='4' changeset='8169972' lat='48.1370648' lon='11.5759846'>
-    <tag k='name' v='Marienplatz' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='rail' v='yes' />
-    <tag k='railway' v='station' />
-    <tag k='ref_name' v='Marienplatz, München' />
-  </node>
-  <node id='99991157376019' action='delete' timestamp='2012-06-13T09:36:45Z' uid='290680' user='wheelmap_visitor' visible='true' version='4' changeset='11881308' lat='48.0935417' lon='11.4010246'>
-    <tag k='name' v='Stockdorf' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='99991179597720' action='delete' timestamp='2012-04-14T16:45:43Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='11300985' lat='48.1040848' lon='11.7643624'>
-    <tag k='name' v='Vaterstetten' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991180641637' action='delete' timestamp='2012-04-14T16:45:41Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='11300985' lat='48.1113736' lon='11.7311381'>
-    <tag k='name' v='Haar' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991180848793' action='delete' timestamp='2012-04-20T20:53:44Z' uid='290680' user='wheelmap_visitor' visible='true' version='3' changeset='11367451' lat='48.1341174' lon='11.615385'>
-    <tag k='name' v='Leuchtenbergring' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='99991187860196' action='modify' timestamp='2012-04-12T19:02:35Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11279887' lat='48.1518362' lon='11.7321923'>
+  <node id='99991187860196' timestamp='2012-04-12T19:02:35Z' uid='64536' user='Michael Forster' visible='true' version='7' changeset='11279887' lat='48.1518362' lon='11.7321923'>
     <tag k='name' v='Feldkirchen' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='99991189888870' action='modify' timestamp='2012-06-11T13:43:31Z' uid='290680' user='wheelmap_visitor' visible='true' version='3' changeset='11861718' lat='48.1703342' lon='11.5284824'>
+  <node id='99991189888870' timestamp='2012-06-11T13:43:31Z' uid='290680' user='wheelmap_visitor' visible='true' version='3' changeset='11861718' lat='48.1703342' lon='11.5284824'>
     <tag k='name' v='Westfriedhof' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991191166180' action='delete' timestamp='2012-01-01T18:26:30Z' uid='290680' user='wheelmap_visitor' visible='true' version='3' changeset='10259953' lat='48.190066' lon='11.6467044'>
-    <tag k='name' v='Unterföhring' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='sbahn' v='yes' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991302634121' action='delete' timestamp='2012-09-14T11:06:06Z' uid='247670' user='burt13de' visible='true' version='5' changeset='13105381' lat='48.1500098' lon='11.4616573'>
-    <tag k='name' v='München-Pasing' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='7' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='99991327866990' action='modify' timestamp='2012-07-25T18:58:31Z' uid='8748' user='ToniE' visible='true' version='5' changeset='12490497' lat='48.1090184' lon='11.4733922'>
+  <node id='99991327866990' timestamp='2012-07-25T18:58:31Z' uid='8748' user='ToniE' visible='true' version='5' changeset='12490497' lat='48.1090184' lon='11.4733922'>
     <tag k='name' v='Klinikum Großhadern' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991358737745' action='modify' timestamp='2011-09-28T00:24:13Z' uid='290680' user='wheelmap_visitor' visible='true' version='4' changeset='9415774' lat='48.1204228' lon='11.6186528'>
+  <node id='99991358737745' timestamp='2011-09-28T00:24:13Z' uid='290680' user='wheelmap_visitor' visible='true' version='4' changeset='9415774' lat='48.1204228' lon='11.6186528'>
     <tag k='name' v='Innsbrucker Ring' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991358742633' action='modify' timestamp='2011-07-12T04:19:12Z' uid='64164' user='osmkurt' visible='true' version='1' changeset='8699431' lat='48.1204695' lon='11.6186532'>
+  <node id='99991358742633' timestamp='2011-07-12T04:19:12Z' uid='64164' user='osmkurt' visible='true' version='1' changeset='8699431' lat='48.1204695' lon='11.6186532'>
     <tag k='name' v='Innsbrucker Ring' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991379781760' action='delete' timestamp='2012-06-14T11:17:29Z' uid='290680' user='wheelmap_visitor' visible='true' version='3' changeset='11891465' lat='48.1567624' lon='11.6483293'>
-    <tag k='name' v='Englschalking' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='99991452724464' action='delete' timestamp='2012-04-12T19:42:40Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='11280378' lat='48.1271355' lon='11.606108'>
-    <tag k='name' v='München Ost, Gleis 14' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='rail' v='yes' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='14' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='99991452724472' action='delete' timestamp='2012-04-12T19:42:38Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='11280378' lat='48.1272095' lon='11.6059946'>
-    <tag k='name' v='München Ost, Gleis 13' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='rail' v='yes' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='13' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='99991452724475' action='delete' timestamp='2012-04-12T19:42:37Z' uid='64536' user='Michael Forster' visible='true' version='2' changeset='11280378' lat='48.1272413' lon='11.6059457'>
-    <tag k='name' v='München Ost, Gleis 12' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='rail' v='yes' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='12' />
-  </node>
-  <node id='99991452724476' action='delete' timestamp='2012-04-12T19:42:35Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='11280378' lat='48.1273204' lon='11.6058245'>
-    <tag k='name' v='München Ost, Gleis 11' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='rail' v='yes' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='11' />
-    <tag k='wheelchair' v='limited' />
-  </node>
-  <node id='99991452724488' action='delete' timestamp='2012-04-12T19:42:42Z' uid='64536' user='Michael Forster' visible='true' version='2' changeset='11280378' lat='48.1274092' lon='11.6056883'>
-    <tag k='name' v='München Ost, Gleis 8' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='rail' v='yes' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='8' />
-  </node>
-  <node id='99991452724492' action='delete' timestamp='2012-04-12T19:42:40Z' uid='64536' user='Michael Forster' visible='true' version='2' changeset='11280378' lat='48.1275185' lon='11.6055168'>
-    <tag k='name' v='München Ost, Gleis 6' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='rail' v='yes' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='6' />
-  </node>
-  <node id='99991452724494' action='delete' timestamp='2012-05-22T14:41:53Z' uid='290680' user='wheelmap_visitor' visible='true' version='5' changeset='11668662' lat='48.1276066' lon='11.605381'>
-    <tag k='name' v='Ostbahnhof, Gleis 5' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='5' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='99991452724502' action='delete' timestamp='2012-04-12T19:42:45Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11280378' lat='48.1277569' lon='11.6051537'>
-    <tag k='name' v='Ostbahnhof, Gleis 2' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='2' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='99991452724506' action='delete' timestamp='2012-04-12T19:42:43Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11280378' lat='48.1278325' lon='11.6050393'>
-    <tag k='name' v='Ostbahnhof, Gleis 1' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='1' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='99991452862956' action='delete' timestamp='2012-04-12T23:45:19Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='11282504' lat='48.2135817' lon='11.5411929'>
-    <tag k='name' v='Feldmoching, Gleis 2' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='2' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991452862960' action='modify' timestamp='2012-08-22T16:36:12Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='12822998' lat='48.1435884' lon='11.5191567'>
+  <node id='99991452862960' timestamp='2012-08-22T16:36:12Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='12822998' lat='48.1435884' lon='11.5191567'>
     <tag k='name' v='Hirschgarten' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='99991452862969' action='delete' timestamp='2012-08-22T16:36:12Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='12822998' lat='48.1435884' lon='11.5191567'>
-    <tag k='name' v='Hirschgarten' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='99991452862971' action='modify' timestamp='2012-04-10T23:25:49Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='11259463' lat='48.1443099' lon='11.5040719'>
+  <node id='99991452862971' timestamp='2012-04-10T23:25:49Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='11259463' lat='48.1443099' lon='11.5040719'>
     <tag k='name' v='Laim' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='99991452862973' action='delete' timestamp='2012-04-10T23:25:49Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11259463' lat='48.1443895' lon='11.503681'>
-    <tag k='name' v='Laim' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='99991452862982' action='delete' timestamp='2012-04-27T08:18:38Z' uid='290680' user='wheelmap_visitor' visible='true' version='5' changeset='11429672' lat='48.2569129' lon='11.5577374'>
-    <tag k='name' v='Oberschleißheim' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='99991452862998' action='delete' timestamp='2012-04-27T08:26:46Z' uid='669180' user='alexirimie' visible='true' version='7' changeset='11430563' lat='48.273701' lon='11.5686206'>
-    <tag k='name' v='Unterschleißheim' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='limited' />
-    <tag k='wheelchair:description' v='Stadtauswärts Rampe vorhanden' />
-  </node>
-  <node id='99991459930818' action='delete' timestamp='2013-01-26T22:23:59Z' uid='321478' user='Guenni' visible='true' version='5' changeset='14799802' lat='48.2545023' lon='11.4441064'>
-    <tag k='name' v='Dachau' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='limited' />
-  </node>
-  <node id='99991459930819' action='delete' timestamp='2013-01-26T18:29:32Z' uid='321478' user='Guenni' visible='true' version='2' changeset='14796266' lat='48.2909775' lon='11.4554357'>
-    <tag k='name' v='Hebertshausen' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991460254879' action='delete' timestamp='2013-01-28T22:10:24Z' uid='321478' user='Guenni' visible='true' version='3' changeset='14828650' lat='48.1900061' lon='11.4679153'>
-    <tag k='name' v='Allach' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='sbahn' v='yes' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991460254901' action='delete' timestamp='2012-03-30T20:53:32Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='11160021' lat='48.1645125' lon='11.7824292'>
-    <tag k='name' v='Grub' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991460254903' action='delete' timestamp='2012-04-12T19:02:37Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='11279887' lat='48.1586608' lon='11.7591793'>
-    <tag k='name' v='Heimstetten' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='99991460254910' action='delete' timestamp='2013-01-28T22:10:24Z' uid='321478' user='Guenni' visible='true' version='5' changeset='14828650' lat='48.1641976' lon='11.4779517'>
-    <tag k='name' v='Obermenzing' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='sbahn' v='yes' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991460254934' action='delete' timestamp='2012-12-02T16:26:49Z' uid='1104281' user='rugbear' visible='true' version='5' changeset='14126988' lat='48.143991' lon='11.6777627'>
-    <tag k='name' v='Riem' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='limited' />
-    <tag k='wheelchair:description' v='Bahnsteig stadtauswärts stufenlos erreichbar. In die S-Bahn eine große Stufe.  Bahnsteig Stadteinwärts nicht rollstuhlgerecht.' />
-  </node>
-  <node id='99991460254939' action='delete' timestamp='2012-12-02T16:27:16Z' uid='1104281' user='rugbear' visible='true' version='5' changeset='14126988' lat='48.1440867' lon='11.6777405'>
-    <tag k='name' v='Riem' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-    <tag k='wheelchair:description' v='Bahnsteig stadtauswärts stufenlos erreichbar. In die S-Bahn eine große Stufe.  Bahnsteig Stadteinwärts nicht rollstuhlgerecht.' />
-  </node>
-  <node id='99991460254943' action='modify' timestamp='2013-01-28T22:10:24Z' uid='321478' user='Guenni' visible='true' version='4' changeset='14828650' lat='48.1777027' lon='11.4725982'>
+  <node id='99991460254943' timestamp='2013-01-28T22:10:24Z' uid='321478' user='Guenni' visible='true' version='4' changeset='14828650' lat='48.1777027' lon='11.4725982'>
     <tag k='name' v='Untermenzing' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='99991468100840' action='delete' timestamp='2011-10-15T12:16:54Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='9562990' lat='48.0194771' lon='11.5836765'>
-    <tag k='name' v='Deisenhofen' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991468100843' action='delete' timestamp='2011-10-15T12:16:54Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='9562990' lat='48.0194971' lon='11.5837853'>
-    <tag k='name' v='Deisenhofen' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991468100875' action='delete' timestamp='2011-10-15T12:16:56Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='9562990' lat='48.1442199' lon='11.5040605'>
-    <tag k='name' v='Laim' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991468100877' action='modify' timestamp='2012-06-15T16:56:11Z' uid='290680' user='wheelmap_visitor' visible='true' version='3' changeset='11901222' lat='48.1631164' lon='11.4324289'>
+  <node id='99991468100877' timestamp='2012-06-15T16:56:11Z' uid='290680' user='wheelmap_visitor' visible='true' version='3' changeset='11901222' lat='48.1631164' lon='11.4324289'>
     <tag k='name' v='Langwied' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='99991468100887' action='delete' timestamp='2012-06-15T16:56:10Z' uid='290680' user='wheelmap_visitor' visible='true' version='3' changeset='11901222' lat='48.1631164' lon='11.4324289'>
-    <tag k='name' v='Langwied' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='99991468100890' action='modify' timestamp='2012-04-12T23:27:44Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='11282424' lat='48.1765291' lon='11.4079263'>
+  <node id='99991468100890' timestamp='2012-04-12T23:27:44Z' uid='64536' user='Michael Forster' visible='true' version='5' changeset='11282424' lat='48.1765291' lon='11.4079263'>
     <tag k='name' v='Lochhausen' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='99991468100893' action='delete' timestamp='2012-04-12T23:27:45Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='11282424' lat='48.1765291' lon='11.4079263'>
-    <tag k='name' v='Lochhausen' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='sbahn' v='yes' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991468335003' action='delete' timestamp='2012-09-14T10:08:47Z' uid='247670' user='burt13de' visible='true' version='4' changeset='13105381' lat='48.1496123' lon='11.4617562'>
-    <tag k='name' v='München-Pasing' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='ref' v='2' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='limited' />
-  </node>
-  <node id='99991469098205' action='delete' timestamp='2011-10-16T09:57:24Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='9570525' lat='48.1344995' lon='11.6164936'>
-    <tag k='name' v='Leuchtenbergring' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='99991469875156' action='delete' timestamp='2011-10-16T19:59:20Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='9576481' lat='48.125994' lon='11.663306'>
-    <tag k='name' v='Trudering Bahnhof' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991469907397' action='delete' timestamp='2012-07-11T14:50:55Z' uid='479256' user='geodreieck4711' visible='true' version='3' changeset='12186866' lat='48.0991606' lon='11.7870044'>
-    <tag k='name' v='Baldham' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='limited' />
-  </node>
-  <node id='99991469907409' action='delete' timestamp='2011-10-16T20:28:51Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='9576754' lat='48.1183569' lon='11.6986005'>
-    <tag k='name' v='Gronsdorf' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991470966669' action='delete' timestamp='2012-04-14T22:05:48Z' uid='64536' user='Michael Forster' visible='true' version='3' changeset='11304506' lat='48.1280449' lon='11.4307195'>
-    <tag k='name' v='Lochham' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='99991471188001' action='delete' timestamp='2011-10-17T20:32:02Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='9586104' lat='48.0186795' lon='11.480064'>
-    <tag k='name' v='Baierbrunn' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991471188002' action='delete' timestamp='2012-07-28T23:00:53Z' uid='64536' user='Michael Forster' visible='true' version='4' changeset='12529334' lat='48.1178999' lon='11.5364905'>
-    <tag k='name' v='Harras' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='99991501209653' action='delete' timestamp='2012-06-15T06:41:29Z' uid='290680' user='wheelmap_visitor' visible='true' version='2' changeset='11901222' lat='48.1496194' lon='11.6492393'>
-    <tag k='name' v='Daglfing' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='99991501209665' action='delete' timestamp='2012-08-23T14:46:27Z' uid='64536' user='Michael Forster' visible='true' version='2' changeset='12833837' lat='48.1676279' lon='11.6460728'>
-    <tag k='name' v='Johanneskirchen' />
-    <tag k='operator' v='DB' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='99991509848324' action='delete' timestamp='2013-01-26T23:05:27Z' uid='321478' user='Guenni' visible='true' version='6' changeset='14800336' lat='48.2553041' lon='11.4439807'>
-    <tag k='name' v='Dachau' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='limited' />
-  </node>
-  <node id='99991530217049' action='delete' timestamp='2011-12-03T22:12:57Z' uid='534662' user='Q12' visible='true' version='1' changeset='10028876' lat='48.1403642' lon='11.5673267'>
-    <tag k='name' v='Karlsplatz (Stachus)' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='subway' v='yes' />
-  </node>
-  <node id='99991544801370' action='modify' timestamp='2011-12-13T20:13:20Z' uid='8748' user='ToniE' visible='true' version='1' changeset='10110515' lat='48.1084474' lon='11.6465938'>
+  <node id='99991544801370' timestamp='2011-12-13T20:13:20Z' uid='8748' user='ToniE' visible='true' version='1' changeset='10110515' lat='48.1084474' lon='11.6465938'>
     <tag k='name' v='Quiddestraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991562853769' action='delete' timestamp='2011-12-26T19:56:06Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='10210507' lat='48.1393789' lon='11.5655929'>
-    <tag k='layer' v='-3' />
-    <tag k='level' v='-1' />
-    <tag k='name' v='Karlsplatz (Stachus)' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='99991562853773' action='delete' timestamp='2011-12-26T19:56:07Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='10210507' lat='48.1395132' lon='11.5657783'>
-    <tag k='layer' v='-3' />
-    <tag k='level' v='-1' />
-    <tag k='name' v='Karlsplatz (Stachus)' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991594808593' action='modify' timestamp='2012-01-17T15:12:40Z' uid='92233' user='tubaner' visible='true' version='1' changeset='10418573' lat='48.1921834' lon='11.6144259'>
+  <node id='99991594808593' timestamp='2012-01-17T15:12:40Z' uid='92233' user='tubaner' visible='true' version='1' changeset='10418573' lat='48.1921834' lon='11.6144259'>
     <tag k='name' v='Freimann' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991686194219' action='modify' timestamp='2012-03-22T20:01:33Z' uid='8748' user='ToniE' visible='true' version='1' changeset='11067111' lat='48.0799345' lon='11.5269704'>
+  <node id='99991686194219' timestamp='2012-03-22T20:01:33Z' uid='8748' user='ToniE' visible='true' version='1' changeset='11067111' lat='48.0799345' lon='11.5269704'>
     <tag k='name' v='Solln' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='99991686194222' action='delete' timestamp='2012-03-22T20:01:34Z' uid='8748' user='ToniE' visible='true' version='1' changeset='11067111' lat='48.0799418' lon='11.5268327'>
-    <tag k='name' v='Solln' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991686221620' action='delete' timestamp='2012-04-15T13:39:45Z' uid='64536' user='Michael Forster' visible='true' version='2' changeset='11310347' lat='48.0432732' lon='11.5096454'>
-    <tag k='name' v='Höllriegelskreuth' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991688609077' action='delete' timestamp='2012-04-12T19:02:35Z' uid='64536' user='Michael Forster' visible='true' version='2' changeset='11279887' lat='48.1518362' lon='11.7321923'>
-    <tag k='name' v='Feldkirchen' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991692348402' action='modify' timestamp='2012-08-21T11:03:18Z' uid='64536' user='Michael Forster' visible='true' version='2' changeset='12806839' lat='48.1263452' lon='11.6337833'>
+  <node id='99991692348402' timestamp='2012-08-21T11:03:18Z' uid='64536' user='Michael Forster' visible='true' version='2' changeset='12806839' lat='48.1263452' lon='11.6337833'>
     <tag k='name' v='Josephsburg' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991692348407' action='modify' timestamp='2012-04-05T13:07:36Z' uid='64536' user='Michael Forster' visible='true' version='2' changeset='11189113' lat='48.1257779' lon='11.6470295'>
+  <node id='99991692348407' timestamp='2012-04-05T13:07:36Z' uid='64536' user='Michael Forster' visible='true' version='2' changeset='11189113' lat='48.1257779' lon='11.6470295'>
     <tag k='name' v='Kreillerstraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991692348440' action='modify' timestamp='2012-11-14T20:18:25Z' uid='8748' user='ToniE' visible='true' version='2' changeset='13876163' lat='48.1333698' lon='11.703785'>
+  <node id='99991692348440' timestamp='2012-11-14T20:18:25Z' uid='8748' user='ToniE' visible='true' version='2' changeset='13876163' lat='48.1333698' lon='11.703785'>
     <tag k='name' v='Messestadt Ost' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991692348451' action='modify' timestamp='2012-03-26T20:01:58Z' uid='8748' user='ToniE' visible='true' version='1' changeset='11110083' lat='48.1333742' lon='11.6910603'>
+  <node id='99991692348451' timestamp='2012-03-26T20:01:58Z' uid='8748' user='ToniE' visible='true' version='1' changeset='11110083' lat='48.1333742' lon='11.6910603'>
     <tag k='name' v='Messestadt West' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991692348456' action='modify' timestamp='2012-06-15T07:43:05Z' uid='290680' user='wheelmap_visitor' visible='true' version='2' changeset='11901222' lat='48.1305053' lon='11.6707978'>
+  <node id='99991692348456' timestamp='2012-06-15T07:43:05Z' uid='290680' user='wheelmap_visitor' visible='true' version='2' changeset='11901222' lat='48.1305053' lon='11.6707978'>
     <tag k='name' v='Moosfeld' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991692348556' action='delete' timestamp='2012-03-26T20:02:03Z' uid='8748' user='ToniE' visible='true' version='1' changeset='11110083' lat='48.1259031' lon='11.6623697'>
-    <tag k='name' v='Trudering Bahnhof' />
-    <tag k='operator' v='MVG' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='subway' v='yes' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='99991698492592' action='delete' timestamp='2013-01-28T22:10:25Z' uid='321478' user='Guenni' visible='true' version='3' changeset='14828650' lat='48.1777185' lon='11.472741'>
-    <tag k='name' v='Untermenzing' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='sbahn' v='yes' />
-    <tag k='train' v='yes' />
-  </node>
-  <node id='99991699557692' action='modify' timestamp='2012-03-31T12:31:08Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='11165629' lat='48.058942' lon='11.5217942'>
+  <node id='99991699557692' timestamp='2012-03-31T12:31:08Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='11165629' lat='48.058942' lon='11.5217942'>
     <tag k='name' v='Pullach' />
     <tag k='station_type' v='sbahn' />
   </node>
-  <node id='99991699557702' action='delete' timestamp='2012-03-31T12:31:09Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='11165629' lat='48.058942' lon='11.5217942'>
-    <tag k='name' v='Pullach' />
-    <tag k='public_transport' v='stop_position' />
-    <tag k='railway' v='station' />
-    <tag k='train' v='yes' />
-    <tag k='wheelchair' v='yes' />
-  </node>
-  <node id='99991703373356' action='modify' timestamp='2012-04-05T21:07:19Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='11194543' lat='48.13474' lon='11.5216458'>
+  <node id='99991703373356' timestamp='2012-04-05T21:07:19Z' uid='64536' user='Michael Forster' visible='true' version='1' changeset='11194543' lat='48.13474' lon='11.5216458'>
     <tag k='name' v='Westendstraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991736057577' action='delete' timestamp='2012-06-07T08:14:37Z' uid='439738' user='HarryCam' visible='true' version='2' changeset='11822689' lat='48.1398938' lon='11.40938'>
-    <tag k='construction' v='yes' />
-    <tag k='name' v='Freiham (im Bau)' />
-    <tag k='railway' v='station' />
-    <tag k='wheelchair' v='no' />
-  </node>
-  <node id='99991767294515' action='modify' timestamp='2012-08-04T18:07:54Z' uid='64536' user='Michael Forster' visible='true' version='2' changeset='12612448' lat='48.0977956' lon='11.5242047'>
+  <node id='99991767294515' timestamp='2012-08-04T18:07:54Z' uid='64536' user='Michael Forster' visible='true' version='2' changeset='12612448' lat='48.0977956' lon='11.5242047'>
     <tag k='name' v='Aidenbachstraße' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991927183970' action='modify' timestamp='2012-09-22T12:25:27Z' uid='35918' user='Bomapius' visible='true' version='1' changeset='13206828' lat='48.1714369' lon='11.5728898'>
+  <node id='99991927183970' timestamp='2012-09-22T12:25:27Z' uid='35918' user='Bomapius' visible='true' version='1' changeset='13206828' lat='48.1714369' lon='11.5728898'>
     <tag k='name' v='Scheidplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991927202334' action='modify' timestamp='2012-09-22T12:39:25Z' uid='35918' user='Bomapius' visible='true' version='1' changeset='13206957' lat='48.1731944' lon='11.5969926'>
+  <node id='99991927202334' timestamp='2012-09-22T12:39:25Z' uid='35918' user='Bomapius' visible='true' version='1' changeset='13206957' lat='48.1731944' lon='11.5969926'>
     <tag k='name' v='Nordfriedhof' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991927202335' action='modify' timestamp='2012-09-25T05:28:26Z' uid='35918' user='Bomapius' visible='true' version='2' changeset='13241724' lat='48.178694' lon='11.6027183'>
+  <node id='99991927202335' timestamp='2012-09-25T05:28:26Z' uid='35918' user='Bomapius' visible='true' version='2' changeset='13241724' lat='48.178694' lon='11.6027183'>
     <tag k='name' v='Alte Heide' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991927202337' action='modify' timestamp='2012-09-22T12:39:25Z' uid='35918' user='Bomapius' visible='true' version='1' changeset='13206957' lat='48.142686' lon='11.5776629'>
+  <node id='99991927202337' timestamp='2012-09-22T12:39:25Z' uid='35918' user='Bomapius' visible='true' version='1' changeset='13206957' lat='48.142686' lon='11.5776629'>
     <tag k='name' v='Odeonsplatz' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991927202338' action='modify' timestamp='2012-09-22T12:39:25Z' uid='35918' user='Bomapius' visible='true' version='1' changeset='13206957' lat='48.1835232' lon='11.6076477'>
+  <node id='99991927202338' timestamp='2012-09-22T12:39:25Z' uid='35918' user='Bomapius' visible='true' version='1' changeset='13206957' lat='48.1835232' lon='11.6076477'>
     <tag k='name' v='Studentenstadt' />
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99991969503166' action='modify' timestamp='2012-10-17T09:02:51Z' uid='716545' user='GabCar' visible='true' version='1' changeset='13529025' lat='48.1798585' lon='11.5734492'>
+  <node id='99991969503166' timestamp='2012-10-17T09:02:51Z' uid='716545' user='GabCar' visible='true' version='1' changeset='13529025' lat='48.1798585' lon='11.5734492'>
     <tag k='station_type' v='ubahn' />
   </node>
-  <node id='99992056183955' action='delete' timestamp='2012-12-08T16:41:58Z' uid='33223' user='k127' visible='true' version='1' changeset='14202402' lat='48.2118452' lon='11.6169557'>
-    <tag k='name' v='Fröttmaning' />
-    <tag k='railway' v='station' />
-    <tag k='wheelchair' v='limited' />
-  </node>
-  <node id='99992056183985' action='modify' timestamp='2012-12-08T16:41:58Z' uid='33223' user='k127' visible='true' version='1' changeset='14202402' lat='48.2035135' lon='11.6131764'>
+  <node id='99992056183985' timestamp='2012-12-08T16:41:58Z' uid='33223' user='k127' visible='true' version='1' changeset='14202402' lat='48.2035135' lon='11.6131764'>
     <tag k='name' v='Kieferngarten' />
     <tag k='station_type' v='ubahn' />
+  </node>
+  <node id='888888888881792' action='modify' timestamp='2013-01-26T18:29:32Z' visible='true' version='1' lat='48.29098041975519' lon='11.455433819294209'>
+    <tag k='name' v='Hebertshausen' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881794' action='modify' timestamp='2012-01-17T15:12:40Z' visible='true' version='1' lat='48.19218632539963' lon='11.61442401929421'>
+    <tag k='name' v='Freimann' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881796' action='modify' timestamp='2011-10-30T22:50:52Z' visible='true' version='1' lat='48.21247942424091' lon='11.563443919294206'>
+    <tag k='name' v='Dülferstraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881798' action='modify' timestamp='2012-04-10T23:25:51Z' visible='true' version='1' lat='48.273714420742245' lon='11.568568819294208'>
+    <tag k='name' v='Unterschleißheim' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881800' action='modify' timestamp='2013-02-21T21:27:36Z' visible='true' version='1' lat='48.12811492905559' lon='11.603607819294206'>
+    <tag k='name' v='Ostbahnhof' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881802' action='modify' timestamp='2013-01-16T21:50:38Z' visible='true' version='1' lat='48.162514027093216' lon='11.569086119294207'>
+    <tag k='name' v='Hohenzollernplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881804' action='modify' timestamp='2012-03-31T09:58:07Z' visible='true' version='1' lat='48.155995627465146' lon='11.413321419294208'>
+    <tag k='name' v='Aubing' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881806' action='modify' timestamp='2012-04-22T13:37:37Z' visible='true' version='1' lat='48.153181527625705' lon='11.533200319294206'>
+    <tag k='name' v='Rotkreuzplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881808' action='modify' timestamp='2012-04-12T22:44:15Z' visible='true' version='1' lat='48.0933077310402' lon='11.605729219294208'>
+    <tag k='name' v='Fasangarten' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881810' action='modify' timestamp='2012-08-04T18:07:54Z' visible='true' version='1' lat='48.09779853078421' lon='11.524202819294207'>
+    <tag k='name' v='Aidenbachstraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881812' action='modify' timestamp='2011-10-17T21:37:19Z' visible='true' version='1' lat='48.063319432749175' lon='11.67835041929421'>
+    <tag k='name' v='Ottobrunn' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881814' action='modify' timestamp='2012-07-18T02:54:31Z' visible='true' version='1' lat='48.095118930936934' lon='11.49928641929421'>
+    <tag k='name' v='Forstenrieder Allee' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881816' action='modify' timestamp='2012-07-11T14:50:55Z' visible='true' version='1' lat='48.09927103070026' lon='11.786960719294207'>
+    <tag k='name' v='Baldham' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881818' action='modify' timestamp='2010-04-27T18:31:23Z' visible='true' version='1' lat='48.11697092969112' lon='11.526537919294208'>
+    <tag k='name' v='Partnachplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881820' action='modify' timestamp='2012-05-07T06:05:31Z' visible='true' version='1' lat='48.14836182790069' lon='11.616595119294207'>
+    <tag k='name' v='Richard-Strauss-Straße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881822' action='modify' timestamp='2012-07-17T20:27:17Z' visible='true' version='1' lat='48.09835273075261' lon='11.536218719294206'>
+    <tag k='name' v='Obersendling' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881824' action='modify' timestamp='2012-05-07T19:11:29Z' visible='true' version='1' lat='48.13569372862334' lon='11.599053519294205'>
+    <tag k='name' v='Max-Weber-Platz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881826' action='modify' timestamp='2012-04-15T15:51:53Z' visible='true' version='1' lat='48.10783603021195' lon='11.536313519294207'>
+    <tag k='name' v='Mittersendling' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881828' action='modify' timestamp='2011-10-18T16:52:35Z' visible='true' version='1' lat='48.179126626145134' lon='11.556051919294209'>
+    <tag k='name' v='Olympiazentrum' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881830' action='modify' timestamp='2012-04-05T21:07:28Z' visible='true' version='1' lat='48.13516992865322' lon='11.510604119294207'>
+    <tag k='name' v='Friedenheimer Straße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881832' action='modify' timestamp='2012-04-14T16:45:43Z' visible='true' version='1' lat='48.104087730425675' lon='11.764360519294208'>
+    <tag k='name' v='Vaterstetten' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881834' action='modify' timestamp='2012-07-25T18:58:31Z' visible='true' version='1' lat='48.10902133014438' lon='11.473390319294207'>
+    <tag k='name' v='Klinikum Großhadern' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881836' action='modify' timestamp='2012-04-14T22:05:52Z' visible='true' version='1' lat='48.149026327862764' lon='11.444028119294208'>
+    <tag k='name' v='Westkreuz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881838' action='modify' timestamp='2012-10-25T09:50:14Z' visible='true' version='1' lat='48.112123229967516' lon='11.548682519294209'>
+    <tag k='name' v='Brudermühlstraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881840' action='modify' timestamp='2012-04-05T21:07:29Z' visible='true' version='1' lat='48.133775728732715' lon='11.540923719294208'>
+    <tag k='name' v='Schwanthalerhöhe' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881842' action='modify' timestamp='2013-01-28T22:10:24Z' visible='true' version='1' lat='48.17770562622625' lon='11.472596319294206'>
+    <tag k='name' v='Untermenzing' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881844' action='modify' timestamp='2012-06-15T08:58:51Z' visible='true' version='1' lat='48.15136362772944' lon='11.564328719294206'>
+    <tag k='name' v='Theresienstraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881846' action='modify' timestamp='2012-10-17T09:02:51Z' visible='true' version='1' lat='48.17986142610319' lon='11.573447319294207'>
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881848' action='modify' timestamp='2009-06-26T18:27:32Z' visible='true' version='1' lat='48.114984729804384' lon='11.580109019294207'>
+    <tag k='name' v='Silberhornstraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881850' action='modify' timestamp='2011-12-13T20:13:20Z' visible='true' version='1' lat='48.108450330176936' lon='11.646591919294208'>
+    <tag k='name' v='Quiddestraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881852' action='modify' timestamp='2013-01-28T22:10:24Z' visible='true' version='1' lat='48.190031125522665' lon='11.468051319294204'>
+    <tag k='name' v='Allach' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881854' action='modify' timestamp='2010-03-31T17:39:04Z' visible='true' version='1' lat='48.213187224200496' lon='11.555729919294208'>
+    <tag k='name' v='Hasenbergl' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881856' action='modify' timestamp='2011-12-03T22:11:12Z' visible='true' version='1' lat='48.14036712835677' lon='11.567324819294209'>
+    <tag k='name' v='Karlsplatz (Stachus)' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881858' action='modify' timestamp='2011-07-12T04:19:13Z' visible='true' version='1' lat='48.118649329595385' lon='11.63115321929421'>
+    <tag k='name' v='Michaelibad' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881860' action='modify' timestamp='2011-08-22T07:05:15Z' visible='true' version='1' lat='48.24927042213928' lon='11.651981419294207'>
+    <tag k='name' v='Garching' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881862' action='modify' timestamp='2011-08-21T09:40:56Z' visible='true' version='1' lat='48.13340402875393' lon='11.566744319294207'>
+    <tag k='name' v='Sendlinger Tor' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881864' action='modify' timestamp='2011-10-11T11:04:36Z' visible='true' version='1' lat='48.15066012776955' lon='11.58127971929421'>
+    <tag k='name' v='Universität' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881866' action='modify' timestamp='2012-04-05T21:07:29Z' visible='true' version='1' lat='48.135728728621345' lon='11.552252219294209'>
+    <tag k='name' v='Theresienwiese' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881868' action='modify' timestamp='2012-04-13T14:39:05Z' visible='true' version='1' lat='48.08869833130293' lon='11.480286919294208'>
+    <tag k='name' v='Fürstenried West' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881870' action='modify' timestamp='2011-10-02T22:05:51Z' visible='true' version='1' lat='48.14109242831538' lon='11.56024051929421'>
+    <tag k='name' v='Hauptbahnhof' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881872' action='modify' timestamp='2012-04-14T22:05:48Z' visible='true' version='1' lat='48.119661829537684' lon='11.425449019294206'>
+    <tag k='name' v='Gräfelfing' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881874' action='modify' timestamp='2012-09-22T12:39:25Z' visible='true' version='1' lat='48.18352612589401' lon='11.607645819294207'>
+    <tag k='name' v='Studentenstadt' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881876' action='modify' timestamp='2009-06-20T21:24:21Z' visible='true' version='1' lat='48.12900592900477' lon='11.557314119294206'>
+    <tag k='name' v='Goetheplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881878' action='modify' timestamp='2012-06-15T07:06:58Z' visible='true' version='1' lat='48.1618555271308' lon='11.586543819294207'>
+    <tag k='name' v='Münchner Freiheit' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881880' action='modify' timestamp='2012-06-08T12:20:27Z' visible='true' version='1' lat='48.18181722599154' lon='11.518258819294207'>
+    <tag k='name' v='Moosacher St.-Martins-Platz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881882' action='modify' timestamp='2011-10-17T21:37:20Z' visible='true' version='1' lat='48.033822334429345' lon='11.71234511929421'>
+    <tag k='name' v='Wächterhof' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881884' action='modify' timestamp='2012-04-12T19:02:37Z' visible='true' version='1' lat='48.15866372731292' lon='11.759177419294206'>
+    <tag k='name' v='Heimstetten' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881886' action='modify' timestamp='2010-12-07T11:08:59Z' visible='true' version='1' lat='48.16669622685456' lon='11.590185519294208'>
+    <tag k='name' v='Dietlindenstraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881888' action='modify' timestamp='2012-06-15T16:56:11Z' visible='true' version='1' lat='48.16311932705868' lon='11.432427019294206'>
+    <tag k='name' v='Langwied' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881890' action='modify' timestamp='2012-06-13T09:31:38Z' visible='true' version='1' lat='48.10546723034704' lon='11.413712619294206'>
+    <tag k='name' v='Planegg' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881892' action='modify' timestamp='2012-09-22T12:39:25Z' visible='true' version='1' lat='48.173197326483546' lon='11.596990719294208'>
+    <tag k='name' v='Nordfriedhof' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881894' action='modify' timestamp='2013-01-26T22:23:59Z' visible='true' version='1' lat='48.25452072183926' lon='11.444267819294206'>
+    <tag k='name' v='Dachau' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881896' action='modify' timestamp='2012-06-15T07:49:20Z' visible='true' version='1' lat='48.139137528426886' lon='11.606961319294205'>
+    <tag k='name' v='Prinzregentenplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881898' action='modify' timestamp='2012-04-10T23:25:50Z' visible='true' version='1' lat='48.28779211993748' lon='11.580524719294207'>
+    <tag k='name' v='Lohhof' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881900' action='modify' timestamp='2010-03-31T17:39:02Z' visible='true' version='1' lat='48.19575492519589' lon='11.571925219294206'>
+    <tag k='name' v='Am Hart' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881902' action='modify' timestamp='2012-08-23T14:46:27Z' visible='true' version='1' lat='48.167630826801215' lon='11.646070919294209'>
+    <tag k='name' v='Johanneskirchen' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881904' action='modify' timestamp='2011-10-15T12:17:50Z' visible='true' version='1' lat='48.019466535246785' lon='11.583608519294206'>
+    <tag k='name' v='Deisenhofen' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881906' action='modify' timestamp='2012-07-23T21:14:07Z' visible='true' version='1' lat='48.166733626852434' lon='11.578518319294208'>
+    <tag k='name' v='Bonner Platz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881908' action='modify' timestamp='2012-06-11T13:43:31Z' visible='true' version='1' lat='48.17033712664678' lon='11.528480519294208'>
+    <tag k='name' v='Westfriedhof' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881910' action='modify' timestamp='2012-03-22T20:01:33Z' visible='true' version='1' lat='48.079937431802236' lon='11.526968519294208'>
+    <tag k='name' v='Solln' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881912' action='modify' timestamp='2012-04-19T00:36:05Z' visible='true' version='1' lat='48.12007772951395' lon='11.548399119294205'>
+    <tag k='name' v='Implerstraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881914' action='modify' timestamp='2012-04-18T19:49:13Z' visible='true' version='1' lat='48.14162562828497' lon='11.421736419294207'>
+    <tag k='name' v='Neuaubing' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881916' action='modify' timestamp='2012-09-22T12:25:27Z' visible='true' version='1' lat='48.17143982658384' lon='11.572887919294207'>
+    <tag k='name' v='Scheidplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881918' action='modify' timestamp='2011-07-12T04:19:12Z' visible='true' version='1' lat='48.120472429491436' lon='11.618651319294209'>
+    <tag k='name' v='Innsbrucker Ring' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881920' action='modify' timestamp='2012-08-13T16:49:43Z' visible='true' version='1' lat='48.07582553203655' lon='11.660145419294206'>
+    <tag k='name' v='Neubiberg' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881922' action='modify' timestamp='2012-10-26T23:38:14Z' visible='true' version='1' lat='48.1124846299469' lon='11.571394319294205'>
+    <tag k='name' v='Candidplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881924' action='modify' timestamp='2011-10-18T20:16:10Z' visible='true' version='1' lat='48.20352342475233' lon='11.61312161929421'>
+    <tag k='name' v='Kieferngarten' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881926' action='modify' timestamp='2011-10-09T20:40:55Z' visible='true' version='1' lat='48.14203112826182' lon='11.548591119294207'>
+    <tag k='name' v='Hackerbrücke' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881928' action='modify' timestamp='2012-04-05T21:07:19Z' visible='true' version='1' lat='48.13474292867756' lon='11.52164391929421'>
+    <tag k='name' v='Westendstraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881930' action='modify' timestamp='2012-04-12T22:44:16Z' visible='true' version='1' lat='48.06537253263219' lon='11.61241531929421'>
+    <tag k='name' v='Unterhaching' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881932' action='modify' timestamp='2012-08-21T11:03:18Z' visible='true' version='1' lat='48.12634812915637' lon='11.633781419294206'>
+    <tag k='name' v='Josephsburg' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881934' action='modify' timestamp='2011-10-16T20:29:04Z' visible='true' version='1' lat='48.1183598296119' lon='11.698598619294208'>
+    <tag k='name' v='Gronsdorf' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881936' action='modify' timestamp='2011-07-12T03:50:38Z' visible='true' version='1' lat='48.13964952839769' lon='11.588036919294206'>
+    <tag k='name' v='Lehel' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881938' action='modify' timestamp='2011-09-29T12:52:26Z' visible='true' version='1' lat='48.126085229171366' lon='11.663351919294207'>
+    <tag k='name' v='Trudering' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881940' action='modify' timestamp='2012-03-31T12:32:27Z' visible='true' version='1' lat='48.03125383457563' lon='11.497480919294208'>
+    <tag k='name' v='Buchenhain' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881942' action='modify' timestamp='2012-09-25T05:28:26Z' visible='true' version='1' lat='48.17869692616966' lon='11.602716419294207'>
+    <tag k='name' v='Alte Heide' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881944' action='modify' timestamp='2012-07-10T19:53:50Z' visible='true' version='1' lat='48.097237630816174' lon='11.579428219294206'>
+    <tag k='name' v='Mangfallplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881946' action='modify' timestamp='2011-05-26T19:38:35Z' visible='true' version='1' lat='48.0947251309594' lon='11.642643519294207'>
+    <tag k='name' v='Therese-Giehse-Allee' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881948' action='modify' timestamp='2012-04-14T22:05:48Z' visible='true' version='1' lat='48.12804782905941' lon='11.430717619294208'>
+    <tag k='name' v='Lochham' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881950' action='modify' timestamp='2012-04-10T23:25:51Z' visible='true' version='1' lat='48.25692742170172' lon='11.557691319294204'>
+    <tag k='name' v='Oberschleißheim' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881952' action='modify' timestamp='2011-10-27T19:41:23Z' visible='true' version='1' lat='48.17667782628488' lon='11.529405719294207'>
+    <tag k='name' v='Georg-Brauchle-Ring' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881954' action='modify' timestamp='2012-01-01T18:26:18Z' visible='true' version='1' lat='48.19004672552178' lon='11.646806819294207'>
+    <tag k='name' v='Unterföhring' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881956' action='modify' timestamp='2012-04-12T22:44:15Z' visible='true' version='1' lat='48.079579431822644' lon='11.60943881929421'>
+    <tag k='name' v='Fasanenpark' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881958' action='modify' timestamp='2011-10-02T14:45:13Z' visible='true' version='1' lat='48.21186032427629' lon='11.616903119294205'>
+    <tag k='name' v='Fröttmaning' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881960' action='modify' timestamp='2012-04-12T19:02:35Z' visible='true' version='1' lat='48.15183912770231' lon='11.732190419294207'>
+    <tag k='name' v='Feldkirchen' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881962' action='modify' timestamp='2012-04-10T23:25:49Z' visible='true' version='1' lat='48.14431282813169' lon='11.504070019294206'>
+    <tag k='name' v='Laim' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881964' action='modify' timestamp='2011-10-03T15:43:10Z' visible='true' version='1' lat='48.162448827096945' lon='11.529352219294209'>
+    <tag k='name' v='Gern' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881966' action='modify' timestamp='2012-04-15T15:51:54Z' visible='true' version='1' lat='48.09430173098352' lon='11.532753619294205'>
+    <tag k='name' v='Siemenswerke' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881968' action='modify' timestamp='2012-06-15T09:33:39Z' visible='true' version='1' lat='48.14410032814379' lon='11.678934019294207'>
+    <tag k='name' v='Riem' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881970' action='modify' timestamp='2012-08-21T11:03:16Z' visible='true' version='1' lat='48.153480427608656' lon='11.622066719294207'>
+    <tag k='name' v='Arabellapark' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881972' action='modify' timestamp='2012-06-13T09:36:44Z' visible='true' version='1' lat='48.093491731029715' lon='11.401131719294206'>
+    <tag k='name' v='Stockdorf' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881974' action='modify' timestamp='2009-06-08T17:52:10Z' visible='true' version='1' lat='48.129052329002114' lon='11.574501019294207'>
+    <tag k='name' v='Fraunhoferstraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881976' action='modify' timestamp='2011-10-16T09:57:43Z' visible='true' version='1' lat='48.13402202871868' lon='11.615444319294207'>
+    <tag k='name' v='Leuchtenbergring' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881978' action='modify' timestamp='2012-08-04T18:07:57Z' visible='true' version='1' lat='48.14263092822764' lon='11.536523719294204'>
+    <tag k='name' v='Donnersbergerbrücke' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881980' action='modify' timestamp='2012-04-13T18:21:56Z' visible='true' version='1' lat='48.15452752754891' lon='11.428471719294206'>
+    <tag k='name' v='Leienfelsstraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881982' action='modify' timestamp='2011-10-22T19:19:23Z' visible='true' version='1' lat='48.15558102748881' lon='11.566877219294208'>
+    <tag k='name' v='Josephsplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881984' action='modify' timestamp='2012-07-17T20:27:16Z' visible='true' version='1' lat='48.097298330812706' lon='11.514709919294207'>
+    <tag k='name' v='Machtlfinger Straße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881986' action='modify' timestamp='2012-08-06T14:54:35Z' visible='true' version='1' lat='48.14986222781509' lon='11.546374119294208'>
+    <tag k='name' v='Maillingerstraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881988' action='modify' timestamp='2012-04-11T21:43:33Z' visible='true' version='1' lat='48.21119702431415' lon='11.459442219294207'>
+    <tag k='name' v='Karlsfeld' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881990' action='modify' timestamp='2010-03-31T17:39:03Z' visible='true' version='1' lat='48.20415162471648' lon='11.569372219294209'>
+    <tag k='name' v='Harthof' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881992' action='modify' timestamp='2011-10-17T21:37:16Z' visible='true' version='1' lat='48.01868243529143' lon='11.480062119294207'>
+    <tag k='name' v='Baierbrunn' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881994' action='modify' timestamp='2012-10-20T15:13:14Z' visible='true' version='1' lat='48.03532583434373' lon='11.593140219294208'>
+    <tag k='name' v='Furth' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881996' action='modify' timestamp='2012-10-06T13:47:14Z' visible='true' version='1' lat='48.046610533701' lon='11.69883121929421'>
+    <tag k='name' v='Hohenbrunn' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888881998' action='modify' timestamp='2011-11-13T11:01:36Z' visible='true' version='1' lat='48.14962852782844' lon='11.649353319294208'>
+    <tag k='name' v='Daglfing' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882000' action='modify' timestamp='2012-07-25T18:58:29Z' visible='true' version='1' lat='48.114836829812795' lon='11.477113119294204'>
+    <tag k='name' v='Großhadern' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882002' action='modify' timestamp='2012-04-07T12:47:50Z' visible='true' version='1' lat='48.11843362960769' lon='11.489577319294208'>
+    <tag k='name' v='Haderner Stern' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882004' action='modify' timestamp='2012-04-24T09:24:53Z' visible='true' version='1' lat='48.21358502417781' lon='11.541130019294206'>
+    <tag k='name' v='Feldmoching' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882006' action='modify' timestamp='2012-09-22T12:39:25Z' visible='true' version='1' lat='48.1426889282243' lon='11.577661019294208'>
+    <tag k='name' v='Odeonsplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882008' action='modify' timestamp='2012-06-17T18:51:07Z' visible='true' version='1' lat='48.01865693529291' lon='11.719238819294208'>
+    <tag k='name' v='Höhenkirchen-Siegertsbrunn' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882010' action='modify' timestamp='2012-06-15T07:43:05Z' visible='true' version='1' lat='48.13050822891909' lon='11.670795919294209'>
+    <tag k='name' v='Moosfeld' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882012' action='modify' timestamp='2012-03-30T16:12:49Z' visible='true' version='1' lat='48.117777729645105' lon='11.517100219294209'>
+    <tag k='name' v='Westpark' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882014' action='modify' timestamp='2012-07-17T20:27:18Z' visible='true' version='1' lat='48.10182343055475' lon='11.546117319294206'>
+    <tag k='name' v='Thalkirchen' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882016' action='modify' timestamp='2011-11-06T15:47:06Z' visible='true' version='1' lat='48.108625130166985' lon='11.575129919294207'>
+    <tag k='name' v='Wettersteinplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882018' action='modify' timestamp='2012-06-14T11:17:30Z' visible='true' version='1' lat='48.15676532742122' lon='11.648327419294208'>
+    <tag k='name' v='Englschalking' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882020' action='modify' timestamp='2011-09-28T00:24:13Z' visible='true' version='1' lat='48.12042572949408' lon='11.618650919294206'>
+    <tag k='name' v='Innsbrucker Ring' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882022' action='modify' timestamp='2012-03-30T16:12:47Z' visible='true' version='1' lat='48.11625932973169' lon='11.502448919294205'>
+    <tag k='name' v='Holzapfelkreuth' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882024' action='modify' timestamp='2012-04-14T10:51:17Z' visible='true' version='1' lat='48.13402332871861' lon='11.633507719294206'>
+    <tag k='name' v='Berg am Laim' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882026' action='modify' timestamp='2011-10-17T20:32:24Z' visible='true' version='1' lat='48.071186232300924' lon='11.530846819294206'>
+    <tag k='name' v='Großhesselohe Isartalbahnhof' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882028' action='modify' timestamp='2012-04-12T22:44:16Z' visible='true' version='1' lat='48.05148753342323' lon='11.609332419294208'>
+    <tag k='name' v='Taufkirchen' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882030' action='modify' timestamp='2011-10-02T22:53:19Z' visible='true' version='1' lat='48.13710952854258' lon='11.575639219294208'>
+    <tag k='name' v='Marienplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882032' action='modify' timestamp='2012-04-15T13:39:45Z' visible='true' version='1' lat='48.043322133888324' lon='11.509555419294209'>
+    <tag k='name' v='Höllriegelskreuth' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882034' action='modify' timestamp='2012-12-08T16:41:58Z' visible='true' version='1' lat='48.203516424752756' lon='11.613174519294208'>
+    <tag k='name' v='Kieferngarten' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882036' action='modify' timestamp='2011-10-04T19:44:22Z' visible='true' version='1' lat='48.26472332125619' lon='11.671451719294208'>
+    <tag k='name' v='Garching Forschungszentrum' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882038' action='modify' timestamp='2011-09-27T16:21:24Z' visible='true' version='1' lat='48.08869073130336' lon='11.645148919294208'>
+    <tag k='name' v='Neuperlach Süd' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882040' action='modify' timestamp='2011-12-29T14:45:11Z' visible='true' version='1' lat='48.11114073002353' lon='11.596108519294207'>
+    <tag k='name' v='Giesing' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882042' action='modify' timestamp='2011-07-12T04:37:31Z' visible='true' version='1' lat='48.11787382963964' lon='11.608413819294206'>
+    <tag k='name' v='Karl-Preis-Platz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882044' action='modify' timestamp='2012-04-14T16:45:42Z' visible='true' version='1' lat='48.11145503000563' lon='11.731212419294204'>
+    <tag k='name' v='Haar' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882046' action='modify' timestamp='2012-06-07T08:14:37Z' visible='true' version='1' lat='48.139896728383604' lon='11.409378119294209'>
+    <tag k='name' v='Freiham (im Bau)' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882048' action='modify' timestamp='2012-08-22T16:36:12Z' visible='true' version='1' lat='48.14359132817282' lon='11.519154819294208'>
+    <tag k='name' v='Hirschgarten' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882050' action='modify' timestamp='2012-04-10T23:25:48Z' visible='true' version='1' lat='48.197805425078826' lon='11.525865819294207'>
+    <tag k='name' v='Fasanerie' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882052' action='modify' timestamp='2012-09-14T10:08:47Z' visible='true' version='1' lat='48.1501177278005' lon='11.461719719294209'>
+    <tag k='name' v='München-Pasing' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882054' action='modify' timestamp='2012-07-28T23:00:53Z' visible='true' version='1' lat='48.11740776682415' lon='11.537970289838931'>
+    <tag k='name' v='Harras' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882056' action='modify' timestamp='2011-10-05T10:31:40Z' visible='true' version='1' lat='48.112591429940835' lon='11.587512719294207'>
+    <tag k='name' v='Untersbergstraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882058' action='modify' timestamp='2012-10-22T19:06:27Z' visible='true' version='1' lat='48.093355831037464' lon='11.631529519294206'>
+    <tag k='name' v='Perlach Bahnhof' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882060' action='modify' timestamp='2009-07-10T14:31:31Z' visible='true' version='1' lat='48.17599612632382' lon='11.566474219294204'>
+    <tag k='name' v='Petuelring' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882062' action='modify' timestamp='2013-01-28T22:10:24Z' visible='true' version='1' lat='48.16421362699622' lon='11.478098019294208'>
+    <tag k='name' v='Obermenzing' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882064' action='modify' timestamp='2012-03-30T20:53:32Z' visible='true' version='1' lat='48.1644876269806' lon='11.782448119294209'>
+    <tag k='name' v='Grub' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882066' action='modify' timestamp='2013-01-26T19:10:07Z' visible='true' version='1' lat='48.26666122114544' lon='11.439726619294207'>
+    <tag k='name' v='Dachau Stadt' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882068' action='modify' timestamp='2012-07-06T12:13:17Z' visible='true' version='1' lat='48.118856329583586' lon='11.576985719294207'>
+    <tag k='name' v='Kolumbusplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882070' action='modify' timestamp='2012-04-05T13:07:36Z' visible='true' version='1' lat='48.12578082918873' lon='11.64702761929421'>
+    <tag k='name' v='Kreillerstraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882072' action='modify' timestamp='2012-06-15T07:27:40Z' visible='true' version='1' lat='48.147693727938794' lon='11.558235519294207'>
+    <tag k='name' v='Stiglmaierplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882074' action='modify' timestamp='2012-04-12T23:27:44Z' visible='true' version='1' lat='48.17653202629321' lon='11.407924419294208'>
+    <tag k='name' v='Lochhausen' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882076' action='modify' timestamp='2011-03-22T02:20:37Z' visible='true' version='1' lat='48.14570352805233' lon='11.563625319294207'>
+    <tag k='name' v='Königsplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882078' action='modify' timestamp='2012-03-31T12:31:08Z' visible='true' version='1' lat='48.058944932998386' lon='11.521792319294207'>
+    <tag k='name' v='Pullach' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882080' action='modify' timestamp='2012-08-22T16:36:10Z' visible='true' version='1' lat='48.13365266810957' lon='11.531474864472415'>
+    <tag k='name' v='Heimeranplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882082' action='modify' timestamp='2009-05-07T19:31:13Z' visible='true' version='1' lat='48.18596042575505' lon='11.548277719294209'>
+    <tag k='name' v='Oberwiesenfeld' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882084' action='modify' timestamp='2011-07-24T08:20:44Z' visible='true' version='1' lat='48.1873243256772' lon='11.572665119294205'>
+    <tag k='name' v='Frankfurter Ring' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882086' action='modify' timestamp='2012-06-09T16:23:21Z' visible='true' version='1' lat='48.18007942609073' lon='11.505966519294208'>
+    <tag k='name' v='Moosach' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882088' action='modify' timestamp='2012-03-26T20:01:58Z' visible='true' version='1' lat='48.133377128755484' lon='11.691058419294208'>
+    <tag k='name' v='Messestadt West' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882090' action='modify' timestamp='2011-10-15T14:06:34Z' visible='true' version='1' lat='48.11867132959414' lon='11.595716019294208'>
+    <tag k='name' v='Sankt-Martin-Straße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882092' action='modify' timestamp='2012-03-21T13:19:49Z' visible='true' version='1' lat='48.22579612348037' lon='11.679508019294206'>
+    <tag k='name' v='Ismaning' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882094' action='modify' timestamp='2012-07-18T02:54:24Z' visible='true' version='1' lat='48.091069231167786' lon='11.491068219294206'>
+    <tag k='name' v='Basler Straße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882096' action='modify' timestamp='2012-04-05T21:07:29Z' visible='true' version='1' lat='48.13544622863745' lon='11.502025519294207'>
+    <tag k='name' v='Laimer Platz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882098' action='modify' timestamp='2012-01-18T23:12:05Z' visible='true' version='1' lat='48.15652442743498' lon='11.58405511929421'>
+    <tag k='name' v='Giselastraße' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882100' action='modify' timestamp='2012-06-15T07:09:02Z' visible='true' version='1' lat='48.10462973039476' lon='11.581137819294208'>
+    <tag k='name' v='St.-Quirin-Platz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882102' action='modify' timestamp='2012-11-14T20:18:25Z' visible='true' version='1' lat='48.133372728755724' lon='11.703783119294208'>
+    <tag k='name' v='Messestadt Ost' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882104' action='modify' timestamp='2012-07-17T18:29:49Z' visible='true' version='1' lat='48.18091512604302' lon='11.573071419294209'>
+    <tag k='name' v='Milbertshofen' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882106' action='modify' timestamp='2011-10-03T07:53:44Z' visible='true' version='1' lat='48.12916012899599' lon='11.593025119294207'>
+    <tag k='name' v='Rosenheimer Platz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882108' action='modify' timestamp='2012-12-08T16:42:09Z' visible='true' version='1' lat='48.24738442224703' lon='11.631135519294208'>
+    <tag k='name' v='Garching-Hochbrück' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882110' action='modify' timestamp='2012-05-09T05:58:51Z' visible='true' version='1' lat='48.14330782818901' lon='11.615440619294207'>
+    <tag k='name' v='Böhmerwaldplatz' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882112' action='modify' timestamp='2012-04-12T23:45:21Z' visible='true' version='1' lat='48.134238528706334' lon='11.583276519294207'>
+    <tag k='name' v='Isartor' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882114' action='modify' timestamp='2010-08-29T09:50:21Z' visible='true' version='1' lat='48.182067925977236' lon='11.529949819294206'>
+    <tag k='name' v='Olympia-Einkaufszentrum' />
+    <tag k='station_name' v='yes' />
+  </node>
+  <node id='888888888882116' action='modify' timestamp='2012-07-12T20:57:19Z' visible='true' version='1' lat='48.12544342920797' lon='11.550193319294207'>
+    <tag k='name' v='Poccistraße' />
+    <tag k='station_name' v='yes' />
   </node>
 </osm>

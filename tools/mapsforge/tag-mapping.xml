@@ -134,6 +134,7 @@
 		<osm-tag key="station_type" value="sbahn" zoom-appear="14" />
 		<osm-tag key="station_type" value="ubahn;sbahn" zoom-appear="14" />
 		<osm-tag key="station_type" value="ubahn" zoom-appear="14" />
+		<osm-tag key="station_name" value="yes" zoom-appear="14" />
 	</pois>
 
 	<!-- ************* WAYS *************** -->
