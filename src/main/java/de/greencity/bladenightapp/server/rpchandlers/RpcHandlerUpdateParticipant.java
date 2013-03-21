@@ -46,6 +46,7 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 			Participant participant = procession.updateParticipant(participantInput);
 			data.isUserOnRoute(procession.isParticipantOnRoute(input.getDeviceId()));
 			data.setUserPosition((int)participant.getLinearPosition(), participant.getLinearSpeed());
+			// TODO remove test code 
 			if ( participant.getDeviceId().equals("TODO-generate")) {
 				double time = procession.evaluateTravelTimeBetween(procession.getTailPosition(), participant.getLinearPosition());
 				SimpleDateFormat sdf = new SimpleDateFormat("kk:mm:ss");
@@ -75,7 +76,10 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 	}
 
 	public boolean validateInput(RpcCall rpcCall, GpsInfo input) {
-		if ( input != null && ( input.getDeviceId() == null || input.getDeviceId().length() == 0 ) ) {
+		if ( input == null )
+			return true;
+		
+		if ( input.getDeviceId() == null || input.getDeviceId().length() == 0 ) {
 			rpcCall.setError(BladenightUrl.BASE+"invalidInput", "Invalid input: "+ input);
 			return false;
 		}
