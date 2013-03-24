@@ -85,25 +85,25 @@ public class RelationshipsLocalizationTest {
 		createRelationShip(deviceId1, deviceId3);
 
 		RealTimeUpdateData data2 = getRealtimeUpdateFromParticipant(deviceId2, 48.143655, 11.548839);
-		assertEquals(1751, data2.getUserPosition().getPosition(), 1.0);
+		assertEquals(1751, data2.getUserPosition(), 1.0);
 		assertEquals(true, data2.isUserOnRoute());
 
 		RealTimeUpdateData data3 = getRealtimeUpdateFromParticipant(deviceId3, 48.143755, 11.548839);
-		assertEquals(1762, data3.getUserPosition().getPosition(), 1.0);
+		assertEquals(1762, data3.getUserPosition(), 1.0);
 		assertEquals(true, data3.isUserOnRoute());
 
 		RealTimeUpdateData data1 = getRealtimeUpdateFromParticipant(deviceId1, 48.139341, 11.547129);
-		assertEquals(1241, data1.getUserPosition().getPosition(), 1.0);
+		assertEquals(1241, data1.getUserPosition(), 1.0);
 		assertEquals(true, data1.isUserOnRoute());
 		assertTrue(data1.getFriendsMap() != null);
 
 		PointOnRoute friend1 = data1.getFriendsMap().get(new Long(1)); 
 		assertTrue(friend1 != null);
-		assertEquals(data2.getUserPosition().getPosition(), friend1.getPosition(), 1.0);
+		assertEquals(data2.getUserPosition(), friend1.getPosition(), 1.0);
 
 		PointOnRoute friend2 = data1.getFriendsMap().get(new Long(2)); 
 		assertTrue(friend2 != null);
-		assertEquals(data3.getUserPosition().getPosition(), friend2.getPosition(), 1.0);
+		assertEquals(data3.getUserPosition(), friend2.getPosition(), 1.0);
 	}
 
 	public long createRelationShip(String deviceId1, String deviceId2) throws IOException, BadArgumentException {

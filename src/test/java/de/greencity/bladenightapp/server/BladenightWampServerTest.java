@@ -89,7 +89,7 @@ public class BladenightWampServerTest {
 	public void userOnRoute() throws IOException, BadArgumentException {
 		RealTimeUpdateData data = getRealtimeUpdateFromParticipant("userInCorridor", 48.139341, 11.547129);
 		assertTrue(data != null);
-		assertEquals(1241, data.getUserPosition().getPosition(), 1.0);
+		assertEquals(1241, data.getUserPosition(), 1.0);
 		assertEquals(true, data.isUserOnRoute());
 		// assertEquals(0.0, data.getHead().getPosition(), 0.0);
 		assertTrue(data.getHead().getPosition() > 0.0);
@@ -100,10 +100,10 @@ public class BladenightWampServerTest {
 	public void userSpeed() throws IOException, BadArgumentException {
 		RealTimeUpdateData data1 = getRealtimeUpdateFromParticipant("movingUser", 48.139341, 11.547129);
 		assertTrue(data1 != null);
-		assertEquals(0.0, data1.getUserPosition().getSpeed(), 1.0);
+		assertEquals(0.0, data1.getUserSpeed(), 1.0);
 		RealTimeUpdateData data2 = getRealtimeUpdateFromParticipant("movingUser", 48.143655, 11.548839);
 		assertTrue(data2 != null);
-		assertTrue(data2.getUserPosition().getSpeed() > 0.0);
+		assertTrue(data2.getUserSpeed() > 0.0);
 	}
 
 
