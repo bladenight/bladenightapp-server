@@ -45,7 +45,7 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 			ParticipantInput participantInput = new ParticipantInput(input.getDeviceId(), input.isParticipating(), input.getLatitude(), input.getLongitude());
 			Participant participant = procession.updateParticipant(participantInput);
 			data.isUserOnRoute(procession.isParticipantOnRoute(input.getDeviceId()));
-			data.setUserPosition((int)participant.getLinearPosition(), participant.getLinearSpeed());
+			data.setUserPosition((long)participant.getLinearPosition(), (long)participant.getLinearSpeed());
 			// TODO remove test code 
 			if ( participant.getDeviceId().equals("TODO-generate")) {
 				double time = procession.evaluateTravelTimeBetween(procession.getTailPosition(), participant.getLinearPosition());
@@ -54,10 +54,8 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 			}
 		}
 
-		MovingPoint head = procession.getHead();
-		MovingPoint tail = procession.getTail();
-		data.setHead((int)head.getLinearPosition(), head.getLinearSpeed());
-		data.setTail((int)tail.getLinearPosition(), tail.getLinearSpeed());
+		data.setHead(procession.getHead());
+		data.setTail(procession.getTail());
 		data.setRouteLength((int)procession.getRoute().getLength());
 		data.setRouteName(procession.getRoute().getName());
 		data.setUserTotal(procession.getParticipantCount());
@@ -68,7 +66,7 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 			for (RelationshipMember relationshipMember : relationships) {
 				Participant participant = procession.getParticipant(relationshipMember.getDeviceId());
 				if ( participant != null)
-					data.addFriend(relationshipMember.getFriendId(), participant.getLinearPosition(), participant.getLinearSpeed());
+					data.addFriend(relationshipMember.getFriendId(), participant.getLastKnownPoint());
 			}
 		}
 

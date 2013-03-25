@@ -16,7 +16,7 @@ import org.junit.Test;
 import de.greencity.bladenightapp.events.EventsList;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
-import de.greencity.bladenightapp.network.messages.PointOnRoute;
+import de.greencity.bladenightapp.network.messages.NetMovingPoint;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
 import de.greencity.bladenightapp.network.messages.RelationshipInputMessage;
 import de.greencity.bladenightapp.network.messages.RelationshipOutputMessage;
@@ -85,11 +85,11 @@ public class RelationshipsLocalizationTest {
 		createRelationShip(deviceId1, deviceId3);
 
 		RealTimeUpdateData data2 = getRealtimeUpdateFromParticipant(deviceId2, 48.143655, 11.548839);
-		assertEquals(1751, data2.getUserPosition(), 1.0);
+		assertEquals(1756, data2.getUserPosition(), 1.0);
 		assertEquals(true, data2.isUserOnRoute());
 
 		RealTimeUpdateData data3 = getRealtimeUpdateFromParticipant(deviceId3, 48.143755, 11.548839);
-		assertEquals(1762, data3.getUserPosition(), 1.0);
+		assertEquals(1766, data3.getUserPosition(), 1.0);
 		assertEquals(true, data3.isUserOnRoute());
 
 		RealTimeUpdateData data1 = getRealtimeUpdateFromParticipant(deviceId1, 48.139341, 11.547129);
@@ -97,11 +97,11 @@ public class RelationshipsLocalizationTest {
 		assertEquals(true, data1.isUserOnRoute());
 		assertTrue(data1.getFriendsMap() != null);
 
-		PointOnRoute friend1 = data1.getFriendsMap().get(new Long(1)); 
+		NetMovingPoint friend1 = data1.getFriendsMap().get(new Long(1)); 
 		assertTrue(friend1 != null);
 		assertEquals(data2.getUserPosition(), friend1.getPosition(), 1.0);
 
-		PointOnRoute friend2 = data1.getFriendsMap().get(new Long(2)); 
+		NetMovingPoint friend2 = data1.getFriendsMap().get(new Long(2)); 
 		assertTrue(friend2 != null);
 		assertEquals(data3.getUserPosition(), friend2.getPosition(), 1.0);
 	}
