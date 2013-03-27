@@ -20,17 +20,20 @@ import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.procession.tasks.ComputeScheduler;
 import de.greencity.bladenightapp.procession.tasks.ParticipantCollector;
+import de.greencity.bladenightapp.protocol.Protocol;
 import de.greencity.bladenightapp.relationships.RelationshipStore;
 import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
 import de.greencity.bladenightapp.routes.RouteStoreSingleton;
+import fr.ocroquette.wampoc.server.TextFrameEavesdropper;
+import fr.ocroquette.wampoc.server.WampServer;
 
 public class App 
 {
 	static final int port = 8081;
 
-	public static void main( String[] args )
+	public static void main( String[] args ) throws IOException
 	{
 		initializeApplicationConfiguration();
 		initializeLogger();
@@ -52,6 +55,8 @@ public class App
 	public static void startServer() throws Exception {
 		fr.ocroquette.wampoc.server.WampServer wampocServer = new BladenightWampServer();
 
+		initializeProtocol(wampocServer);
+		
 		BladenightJettyServerHandler wampocHandler = new BladenightJettyServerHandler(wampocServer) {
 
 			@Override
@@ -163,9 +168,21 @@ public class App
 
 		new Thread(collector).start();
 	}
-
+	
 	private static void initializeRelationshipStore() {
 		RelationshipStoreSingleton.setInstance(new RelationshipStore());
+	}
+	
+	private static void initializeProtocol(WampServer server) throws IOException {
+		String path = KeyValueStoreSingleton.getString("bnserver.protocol.path");
+		final Protocol protocol = new Protocol(new File(path));
+		TextFrameEavesdropper incomingEavesdropper = new TextFrameEavesdropper() {
+			@Override
+			public void handler(String session, String frame) {
+				protocol.write("WAMPIN", session, frame);
+			}
+		};
+		server.addIncomingFramesEavesdropper(incomingEavesdropper);
 	}
 
 	private static Log log;
