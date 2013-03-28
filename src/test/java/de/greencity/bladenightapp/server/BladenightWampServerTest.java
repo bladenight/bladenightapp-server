@@ -136,7 +136,7 @@ public class BladenightWampServerTest {
 		int messageCount = channel.handledMessages.size();
 		String callId = UUID.randomUUID().toString();
 		CallMessage msg = new CallMessage(callId,BladenightUrl.GET_REALTIME_UPDATE.getText());
-		msg.setPayload(gpsInfo, GpsInfo.class);
+		msg.setPayload(gpsInfo);
 		server.handleIncomingMessage(session, msg);
 		assertEquals(messageCount+1, channel.handledMessages.size());
 		Message message = MessageMapper.fromJson(channel.lastMessage());

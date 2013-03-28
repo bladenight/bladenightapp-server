@@ -119,7 +119,7 @@ public class RelationshipsLocalizationTest {
 		String callId = UUID.randomUUID().toString();
 		CallMessage msg = new CallMessage(callId,BladenightUrl.CREATE_RELATIONSHIP.getText());
 		RelationshipInputMessage partnershipMessage = new RelationshipInputMessage(deviceId1, deviceId2, relationshipId);
-		msg.setPayload(partnershipMessage, RelationshipInputMessage.class);
+		msg.setPayload(partnershipMessage);
 		server.handleIncomingMessage(session, msg);
 		assertEquals(messageCount+1, channel.handledMessages.size());
 		return MessageMapper.fromJson(channel.lastMessage());
@@ -140,7 +140,7 @@ public class RelationshipsLocalizationTest {
 		int messageCount = channel.handledMessages.size();
 		String callId = UUID.randomUUID().toString();
 		CallMessage msg = new CallMessage(callId,BladenightUrl.GET_REALTIME_UPDATE.getText());
-		msg.setPayload(gpsInfo, GpsInfo.class);
+		msg.setPayload(gpsInfo);
 		server.handleIncomingMessage(session, msg);
 		assertEquals(messageCount+1, channel.handledMessages.size());
 		Message message = MessageMapper.fromJson(channel.lastMessage());
