@@ -173,11 +173,22 @@ public class App
 		RelationshipStoreSingleton.setInstance(new RelationshipStore());
 	}
 	
-	private static void initializeProtocol(WampServer server) throws IOException {
-		String path = KeyValueStoreSingleton.getString("bnserver.protocol.path");
+	private static void initializeProtocol(WampServer server)  {
+		try {
+			initializeProtocolWithException(server);
+		}
+		catch (IOException e) {
+			log.error("Failed to open protocol file: "+e);
+			System.exit(1);
+		}
+	}
+	private static void initializeProtocolWithException(WampServer server) throws IOException {
+		String path = KeyValueStoreSingleton.getPath("bnserver.protocol.path");
 		if ( path == null )
 			return;
-		final Protocol protocol = new Protocol(new File(path));
+		File file = new File(path);
+		FileUtils.forceMkdir(file.getParentFile());
+		final Protocol protocol = new Protocol(file);
 		TextFrameEavesdropper incomingEavesdropper = new TextFrameEavesdropper() {
 			@Override
 			public void handler(String session, String frame) {
