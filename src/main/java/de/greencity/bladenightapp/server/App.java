@@ -8,8 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ResourceHandler;
+import org.eclipse.jetty.server.nio.SelectChannelConnector;
+import org.eclipse.jetty.server.ssl.SslSelectChannelConnector;
+import org.eclipse.jetty.server.ssl.SslSocketConnector;
+import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.websocket.WebSocket;
 
 import de.greencity.bladenightapp.events.Event;
@@ -56,7 +61,7 @@ public class App
 		fr.ocroquette.wampoc.server.WampServer wampocServer = new BladenightWampServer();
 
 		initializeProtocol(wampocServer);
-		
+
 		BladenightJettyServerHandler wampocHandler = new BladenightJettyServerHandler(wampocServer) {
 
 			@Override
@@ -77,10 +82,39 @@ public class App
 
 		int port = getPortToListenTo();
 		org.eclipse.jetty.server.Server server = new Server(port);
+		configureSsl(server);
 		server.setHandler(wampocHandler);
 		server.start();
 		log.info("The server is now listening for HTTP and WebSocket connections on port " + port);
 		server.join();
+	}
+
+	private static void configureSsl(Server server) {
+		if ( KeyValueStoreSingleton.getInt("bnserver.ssl.enable", 0) == 0 )
+			return;
+		
+		String KEYSTORE_LOCATION = "/Volumes/DD500/ocroquette/Desktop/workspace_demo3/bladenightapp-server/config/users/olivier/service_keystore.jks";
+		String KEYSTORE_PASS = "iosfe45047asdf";
+		String TRUSTSTORE_LOCATION = "/Volumes/DD500/ocroquette/Desktop/workspace_demo3/bladenightapp-server/config/users/olivier/service_truststore.jks";
+		String TRUSTSTORE_PASS = "iosfe45047asdf";
+		
+		SslContextFactory sslContextFactory = new SslContextFactory(KeyValueStoreSingleton.getPath("bnserver.ssl.keystore.path"));
+		sslContextFactory.setKeyStorePassword(KeyValueStoreSingleton.getString("bnserver.ssl.keystore.password"));
+		sslContextFactory.setKeyManagerPassword(KeyValueStoreSingleton.getString("bnserver.ssl.keystore.password"));
+		sslContextFactory.setTrustStore(KeyValueStoreSingleton.getPath("bnserver.ssl.truststore.path"));
+		sslContextFactory.setTrustStorePassword(KeyValueStoreSingleton.getString("bnserver.ssl.truststore.password"));
+		sslContextFactory.setNeedClientAuth(true);
+		
+		SslSelectChannelConnector sslConnector = new SslSelectChannelConnector(sslContextFactory);
+        
+		int port = KeyValueStoreSingleton.getInt("bnserver.ssl.port", 0);
+		sslConnector.setPort(port);
+		
+		log.info("SSL listening on port " + port);
+
+		// Add the SocketConnector to the server
+		server.setConnectors(new Connector[] {sslConnector});
+		
 	}
 
 	private static void initializeApplicationConfiguration() {
@@ -168,11 +202,11 @@ public class App
 
 		new Thread(collector).start();
 	}
-	
+
 	private static void initializeRelationshipStore() {
 		RelationshipStoreSingleton.setInstance(new RelationshipStore());
 	}
-	
+
 	private static void initializeProtocol(WampServer server)  {
 		try {
 			initializeProtocolWithException(server);
