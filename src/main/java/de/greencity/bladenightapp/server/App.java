@@ -175,6 +175,8 @@ public class App
 	
 	private static void initializeProtocol(WampServer server) throws IOException {
 		String path = KeyValueStoreSingleton.getString("bnserver.protocol.path");
+		if ( path == null )
+			return;
 		final Protocol protocol = new Protocol(new File(path));
 		TextFrameEavesdropper incomingEavesdropper = new TextFrameEavesdropper() {
 			@Override
