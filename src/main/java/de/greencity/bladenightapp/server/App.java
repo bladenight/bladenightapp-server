@@ -11,9 +11,7 @@ import org.apache.commons.logging.LogFactory;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ResourceHandler;
-import org.eclipse.jetty.server.nio.SelectChannelConnector;
 import org.eclipse.jetty.server.ssl.SslSelectChannelConnector;
-import org.eclipse.jetty.server.ssl.SslSocketConnector;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.websocket.WebSocket;
 
@@ -92,11 +90,6 @@ public class App
 	private static void configureSsl(Server server) {
 		if ( KeyValueStoreSingleton.getInt("bnserver.ssl.enable", 0) == 0 )
 			return;
-		
-		String KEYSTORE_LOCATION = "/Volumes/DD500/ocroquette/Desktop/workspace_demo3/bladenightapp-server/config/users/olivier/service_keystore.jks";
-		String KEYSTORE_PASS = "iosfe45047asdf";
-		String TRUSTSTORE_LOCATION = "/Volumes/DD500/ocroquette/Desktop/workspace_demo3/bladenightapp-server/config/users/olivier/service_truststore.jks";
-		String TRUSTSTORE_PASS = "iosfe45047asdf";
 		
 		SslContextFactory sslContextFactory = new SslContextFactory(KeyValueStoreSingleton.getPath("bnserver.ssl.keystore.path"));
 		sslContextFactory.setKeyStorePassword(KeyValueStoreSingleton.getString("bnserver.ssl.keystore.password"));
