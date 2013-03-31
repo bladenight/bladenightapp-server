@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.logging.impl.NoOpLog;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +17,7 @@ import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.routes.Route;
+import de.greencity.bladenightapp.testutils.LogHelper;
 import de.greencity.bladenightapp.testutils.ProtocollingChannel;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
 import fr.ocroquette.wampoc.messages.CallMessage;
@@ -33,7 +33,7 @@ public class BladenightWampServerTest {
 
 	@Before
 	public void init() {
-		Route.setLog(new NoOpLog());
+		LogHelper.disableLogs();
 
 		File file = FileUtils.toFile(BladenightWampServerTest.class.getResource(path));
 		assertTrue(file != null);

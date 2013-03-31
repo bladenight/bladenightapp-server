@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.util.UUID;
 
-import org.apache.commons.logging.impl.NoOpLog;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,7 +15,7 @@ import de.greencity.bladenightapp.network.messages.RelationshipInputMessage;
 import de.greencity.bladenightapp.network.messages.RelationshipOutputMessage;
 import de.greencity.bladenightapp.relationships.RelationshipStore;
 import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
-import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerRelationship;
+import de.greencity.bladenightapp.testutils.LogHelper;
 import de.greencity.bladenightapp.testutils.ProtocollingChannel;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
 import fr.ocroquette.wampoc.messages.CallMessage;
@@ -30,9 +29,7 @@ public class RelationshipsManagementTest {
 
 	@BeforeClass
 	public static void beforeClass() {
-		BladenightWampServer.setLog(new NoOpLog());
-		RelationshipStore.setLog(new NoOpLog());
-		RpcHandlerRelationship.setLog(new NoOpLog());
+		LogHelper.disableLogs();
 	}
 
 	@Before

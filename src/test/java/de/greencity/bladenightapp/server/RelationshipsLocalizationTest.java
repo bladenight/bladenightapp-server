@@ -13,22 +13,19 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.greencity.bladenightapp.events.EventsList;
+import de.greencity.bladenightapp.events.EventList;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
 import de.greencity.bladenightapp.network.messages.NetMovingPoint;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
 import de.greencity.bladenightapp.network.messages.RelationshipInputMessage;
 import de.greencity.bladenightapp.network.messages.RelationshipOutputMessage;
-import de.greencity.bladenightapp.procession.HeadAndTailComputer;
-import de.greencity.bladenightapp.procession.ParticipantUpdater;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
-import de.greencity.bladenightapp.procession.TravelTimeComputer;
 import de.greencity.bladenightapp.relationships.RelationshipStore;
 import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
 import de.greencity.bladenightapp.routes.Route;
-import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerRelationship;
+import de.greencity.bladenightapp.testutils.LogHelper;
 import de.greencity.bladenightapp.testutils.ProtocollingChannel;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
 import fr.ocroquette.wampoc.messages.CallMessage;
@@ -44,20 +41,13 @@ public class RelationshipsLocalizationTest {
 
 	@BeforeClass
 	public static void beforeClass() {
-		BladenightWampServer.setLog(new NoOpLog());
-		RelationshipStore.setLog(new NoOpLog());
-		RpcHandlerRelationship.setLog(new NoOpLog());
-		Route.setLog(new NoOpLog());
-		Procession.setLog(new NoOpLog());
-		HeadAndTailComputer.setLog(new NoOpLog());
-		ParticipantUpdater.setLog(new NoOpLog());
-		TravelTimeComputer.setLog(new NoOpLog());
+		LogHelper.disableLogs();
 	}
 
 	@Before
 	public void before() {
 		Route.setLog(new NoOpLog());
-		File file = FileUtils.toFile(EventsList.class.getResource(path));
+		File file = FileUtils.toFile(EventList.class.getResource(path));
 		assertTrue(file != null);
 		route = new Route();
 		assertTrue(route.load(file));

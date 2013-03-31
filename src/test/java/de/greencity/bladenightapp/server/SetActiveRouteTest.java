@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.logging.impl.NoOpLog;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +16,7 @@ import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
 import de.greencity.bladenightapp.routes.RouteStoreSingleton;
+import de.greencity.bladenightapp.testutils.LogHelper;
 import de.greencity.bladenightapp.testutils.ProtocollingChannel;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
 import fr.ocroquette.wampoc.messages.CallMessage;
@@ -25,16 +25,16 @@ import fr.ocroquette.wampoc.messages.MessageMapper;
 import fr.ocroquette.wampoc.messages.MessageType;
 import fr.ocroquette.wampoc.server.Session;
 
-public class ChangeActiveRouteTest {
+public class SetActiveRouteTest {
 	final String initialRouteName = "Nord - kurz";
 	final String newRouteName = "Ost - lang";
 	final String routesDir = "/routes/";
 
 	@Before
 	public void init() {
-		Route.setLog(new NoOpLog());
+		LogHelper.disableLogs();
 
-		RouteStore routeStore = new RouteStore(FileUtils.toFile(ChangeActiveRouteTest.class.getResource(routesDir)));
+		RouteStore routeStore = new RouteStore(FileUtils.toFile(SetActiveRouteTest.class.getResource(routesDir)));
 		RouteStoreSingleton.setInstance(routeStore);
 		route = routeStore.getRoute(initialRouteName);
 		assertEquals(initialRouteName, route.getName());
@@ -52,7 +52,7 @@ public class ChangeActiveRouteTest {
 	
 	@Test
 	public void setActiveRouteToValidRoute() throws IOException, BadArgumentException {
-		Message returnMessage = changeActiveRoute(newRouteName);
+		Message returnMessage = setActiveRouteTo(newRouteName);
 		assertTrue(returnMessage.getType() == MessageType.CALLRESULT);
 		Route newRoute = procession.getRoute();
 		assertEquals(newRouteName, newRoute.getName());
@@ -61,7 +61,7 @@ public class ChangeActiveRouteTest {
 
 	@Test
 	public void setActiveRouteToUnavailableRoute() throws IOException, BadArgumentException {
-		Message returnMessage = changeActiveRoute(newRouteName+"-invalid");
+		Message returnMessage = setActiveRouteTo(newRouteName+"-invalid");
 		assertTrue(returnMessage.getType() == MessageType.CALLERROR);
 		Route newRoute = procession.getRoute();
 		assertEquals(initialRouteName, newRoute.getName());
@@ -70,7 +70,7 @@ public class ChangeActiveRouteTest {
 
 	@Test
 	public void setActiveRouteToNullRoute() throws IOException, BadArgumentException {
-		Message returnMessage = changeActiveRoute(null);
+		Message returnMessage = setActiveRouteTo(null);
 		assertTrue(returnMessage.getType() == MessageType.CALLERROR);
 		Route newRoute = procession.getRoute();
 		assertEquals(initialRouteName, newRoute.getName());
@@ -78,7 +78,7 @@ public class ChangeActiveRouteTest {
 	}
 
 
-	Message changeActiveRoute(String newRoute) throws IOException, BadArgumentException {
+	Message setActiveRouteTo(String newRoute) throws IOException, BadArgumentException {
 		int messageCount = channel.handledMessages.size();
 		String callId = UUID.randomUUID().toString();
 		CallMessage msg = new CallMessage(callId,BladenightUrl.SET_ACTIVE_ROUTE.getText());

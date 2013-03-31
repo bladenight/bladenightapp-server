@@ -9,15 +9,14 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.logging.impl.NoOpLog;
 import org.junit.Before;
 import org.junit.Test;
 
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.RouteNamesMessage;
-import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
 import de.greencity.bladenightapp.routes.RouteStoreSingleton;
+import de.greencity.bladenightapp.testutils.LogHelper;
 import de.greencity.bladenightapp.testutils.ProtocollingChannel;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
 import fr.ocroquette.wampoc.messages.CallMessage;
@@ -34,7 +33,7 @@ public class GetAllRouteNamesTest {
 
 	@Before
 	public void init() {
-		Route.setLog(new NoOpLog());
+		LogHelper.disableLogs();
 
 		RouteStore routeStore = new RouteStore(FileUtils.toFile(GetAllRouteNamesTest.class.getResource(routesDir)));
 		RouteStoreSingleton.setInstance(routeStore);

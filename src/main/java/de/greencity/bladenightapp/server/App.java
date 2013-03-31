@@ -16,7 +16,7 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.websocket.WebSocket;
 
 import de.greencity.bladenightapp.events.Event;
-import de.greencity.bladenightapp.events.EventsList;
+import de.greencity.bladenightapp.events.EventList;
 import de.greencity.bladenightapp.events.EventsListSingleton;
 import de.greencity.bladenightapp.keyvaluestore.KeyValueStoreSingleton;
 import de.greencity.bladenightapp.procession.Procession;
@@ -161,15 +161,15 @@ public class App
 		if ( ! asFile.isDirectory() ) {
 			log.error("Invalid directory for the events: " + configurationKey + "=" + asString);
 		}
-		EventsList eventsList;
-		eventsList = EventsList.newFromDir(asFile);
+		EventList eventsList;
+		eventsList = EventList.newFromDir(asFile);
 		EventsListSingleton.setInstance(eventsList);
 		log.info("Events list initialized with " + eventsList.size() + " events.");
 	}
 
 	private static void initializeProcession() {
 		Procession procession = new Procession();
-		Event nextEvent = EventsListSingleton.getInstance().getNextEvent();
+		Event nextEvent = EventsListSingleton.getInstance().getActiveEvent();
 		Route route = RouteStoreSingleton.getInstance().getRoute(nextEvent.getRouteName());
 		procession.setRoute(route);
 		ProcessionSingleton.setProcession(procession);
