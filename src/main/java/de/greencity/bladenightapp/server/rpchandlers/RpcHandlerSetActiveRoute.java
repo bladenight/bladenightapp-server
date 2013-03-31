@@ -1,5 +1,10 @@
 package de.greencity.bladenightapp.server.rpchandlers;
 
+import java.io.IOException;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import de.greencity.bladenightapp.events.EventList;
 import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.procession.Procession;
@@ -31,6 +36,23 @@ public class RpcHandlerSetActiveRoute extends RpcHandler {
 
 		procession.setRoute(newRoute);
 		eventList.setActiveRoute(newRouteName);
+		try {
+			eventList.writeToDir();
+		} catch (IOException e) {
+			getLog().error("Failed to save events: " + e);
+		}
+	}
+	
+	private static Log log;
+
+	public static void setLog(Log log) {
+		RpcHandlerSetActiveRoute.log = log;
+	}
+
+	protected static Log getLog() {
+		if (log == null)
+			setLog(LogFactory.getLog(RpcHandlerSetActiveRoute.class));
+		return log;
 	}
 	
 	private Procession procession;

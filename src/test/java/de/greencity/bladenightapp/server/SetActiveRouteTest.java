@@ -3,6 +3,7 @@ package de.greencity.bladenightapp.server;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -10,6 +11,9 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.greencity.bladenightapp.events.Event;
+import de.greencity.bladenightapp.events.EventList;
+import de.greencity.bladenightapp.events.EventsListSingleton;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
@@ -31,13 +35,21 @@ public class SetActiveRouteTest {
 	final String routesDir = "/routes/";
 
 	@Before
-	public void init() {
+	public void init() throws IOException {
 		LogHelper.disableLogs();
 
 		RouteStore routeStore = new RouteStore(FileUtils.toFile(SetActiveRouteTest.class.getResource(routesDir)));
 		RouteStoreSingleton.setInstance(routeStore);
 		route = routeStore.getRoute(initialRouteName);
 		assertEquals(initialRouteName, route.getName());
+
+		File tmpFolder = createTemporaryFolder();
+		persistenceFolder = new File(tmpFolder, "copy");
+		File srcDir = FileUtils.toFile(EventList.class.getResource("/events/"));
+		FileUtils.copyDirectory(srcDir, persistenceFolder);
+
+		eventList = EventList.newFromDir(persistenceFolder);
+		EventsListSingleton.setInstance(eventList);
 
 		procession = new Procession();
 		procession.setRoute(route);
@@ -57,6 +69,7 @@ public class SetActiveRouteTest {
 		Route newRoute = procession.getRoute();
 		assertEquals(newRouteName, newRoute.getName());
 		assertEquals(16727, newRoute.getLength(), 1);
+		verifyPersistency(newRouteName);
 	}
 
 	@Test
@@ -88,9 +101,28 @@ public class SetActiveRouteTest {
 		return MessageMapper.fromJson(channel.lastMessage());
 	}
 
+	public File createTemporaryFolder() throws IOException  {
+		File file = File.createTempFile("tmpfolder", ".d");
+		file.delete();
+		file.mkdir();
+		assertTrue(file.exists());
+		assertTrue(file.isDirectory());
+		return file;
+	}
+
+	private void verifyPersistency(String routeName) {
+		File file = new File(persistenceFolder, "2020-03-03.evt");
+		Event event = Event.newFromFile(file);
+		assertEquals(routeName, event.getRouteName());
+	}
+	
+
+
 	private Route route;
 	private Procession procession;
 	private ProtocollingChannel channel;
 	private BladenightWampServer server;
 	private Session session;
+	private File persistenceFolder;
+	private EventList eventList;
 }
