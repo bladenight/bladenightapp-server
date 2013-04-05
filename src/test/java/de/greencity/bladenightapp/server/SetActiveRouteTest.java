@@ -11,10 +11,14 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.gson.JsonSyntaxException;
+
 import de.greencity.bladenightapp.events.Event;
+import de.greencity.bladenightapp.events.EventGsonHelper;
 import de.greencity.bladenightapp.events.EventList;
 import de.greencity.bladenightapp.events.EventsListSingleton;
 import de.greencity.bladenightapp.network.BladenightUrl;
+import de.greencity.bladenightapp.persistence.ListPersistor;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.routes.Route;
@@ -48,7 +52,12 @@ public class SetActiveRouteTest {
 		File srcDir = FileUtils.toFile(EventList.class.getResource("/events/"));
 		FileUtils.copyDirectory(srcDir, persistenceFolder);
 
-		eventList = EventList.newFromDir(persistenceFolder);
+		ListPersistor<Event> persistor = new ListPersistor<Event>(Event.class, persistenceFolder);
+
+		eventList = new EventList();
+		eventList.setPersistor(persistor);
+		eventList.read();
+
 		EventsListSingleton.setInstance(eventList);
 
 		procession = new Procession();
@@ -110,9 +119,9 @@ public class SetActiveRouteTest {
 		return file;
 	}
 
-	private void verifyPersistency(String routeName) {
-		File file = new File(persistenceFolder, "2020-03-03.evt");
-		Event event = Event.newFromFile(file);
+	private void verifyPersistency(String routeName) throws JsonSyntaxException, IOException {
+		File file = new File(persistenceFolder, "2020-03-03.per");
+		Event event = EventGsonHelper.getGson().fromJson(FileUtils.readFileToString(file), Event.class);
 		assertEquals(routeName, event.getRouteName());
 	}
 	

@@ -19,6 +19,7 @@ import de.greencity.bladenightapp.events.Event;
 import de.greencity.bladenightapp.events.EventList;
 import de.greencity.bladenightapp.events.EventsListSingleton;
 import de.greencity.bladenightapp.keyvaluestore.KeyValueStoreSingleton;
+import de.greencity.bladenightapp.persistence.ListPersistor;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.procession.tasks.ComputeScheduler;
@@ -161,17 +162,31 @@ public class App
 		if ( ! asFile.isDirectory() ) {
 			log.error("Invalid directory for the events: " + configurationKey + "=" + asString);
 		}
-		EventList eventsList;
-		eventsList = EventList.newFromDir(asFile);
-		EventsListSingleton.setInstance(eventsList);
-		log.info("Events list initialized with " + eventsList.size() + " events.");
+
+		ListPersistor<Event> persistor = new ListPersistor<Event>(Event.class, asFile);
+
+		EventList eventList = new EventList();
+		eventList.setPersistor(persistor);
+		try {
+			eventList.read();
+		} catch (IOException e) {
+			log.error("Failed to read events: " + e.toString());
+			System.exit(1);
+		}
+		EventsListSingleton.setInstance(eventList);
+		log.info("Events list initialized with " + eventList.size() + " events.");
 	}
 
 	private static void initializeProcession() {
 		Procession procession = new Procession();
 		Event nextEvent = EventsListSingleton.getInstance().getActiveEvent();
-		Route route = RouteStoreSingleton.getInstance().getRoute(nextEvent.getRouteName());
-		procession.setRoute(route);
+		if ( nextEvent != null ) {
+			Route route = RouteStoreSingleton.getInstance().getRoute(nextEvent.getRouteName());
+			procession.setRoute(route);
+		}
+		else {
+			log.warn("No upcoming event found");
+		}
 		ProcessionSingleton.setProcession(procession);
 
 		double smoothingFactor = KeyValueStoreSingleton.getDouble("bnserver.procession.smoothing", 0.0);

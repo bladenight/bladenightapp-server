@@ -22,7 +22,7 @@ public class RpcHandlerSetActiveStatus extends RpcHandler {
 		EventStatus newStatus = rpcCall.getInput(EventStatus.class);
 		eventList.setActiveStatus(EventMessage.convertStatus(newStatus));
 		try {
-			eventList.writeToDir();
+			eventList.write();
 		}
 		catch(IOException e) {
 			getLog().error("Failed to write to dir: " + e);

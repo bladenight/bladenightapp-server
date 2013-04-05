@@ -37,7 +37,7 @@ public class RpcHandlerSetActiveRoute extends RpcHandler {
 		procession.setRoute(newRoute);
 		eventList.setActiveRoute(newRouteName);
 		try {
-			eventList.writeToDir();
+			eventList.write();
 		} catch (IOException e) {
 			getLog().error("Failed to save events: " + e);
 		}

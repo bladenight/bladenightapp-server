@@ -11,7 +11,6 @@ import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
-import de.greencity.bladenightapp.procession.MovingPoint;
 import de.greencity.bladenightapp.procession.Participant;
 import de.greencity.bladenightapp.procession.ParticipantInput;
 import de.greencity.bladenightapp.procession.Procession;
