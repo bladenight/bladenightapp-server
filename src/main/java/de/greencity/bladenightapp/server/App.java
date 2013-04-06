@@ -19,12 +19,14 @@ import de.greencity.bladenightapp.events.Event;
 import de.greencity.bladenightapp.events.EventList;
 import de.greencity.bladenightapp.events.EventsListSingleton;
 import de.greencity.bladenightapp.keyvaluestore.KeyValueStoreSingleton;
+import de.greencity.bladenightapp.persistence.ListItem;
 import de.greencity.bladenightapp.persistence.ListPersistor;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.procession.tasks.ComputeScheduler;
 import de.greencity.bladenightapp.procession.tasks.ParticipantCollector;
 import de.greencity.bladenightapp.protocol.Protocol;
+import de.greencity.bladenightapp.relationships.Relationship;
 import de.greencity.bladenightapp.relationships.RelationshipStore;
 import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
 import de.greencity.bladenightapp.routes.Route;
@@ -83,7 +85,13 @@ public class App
 		org.eclipse.jetty.server.Server server = new Server(port);
 		configureSsl(server);
 		server.setHandler(wampocHandler);
-		server.start();
+		try {
+			server.start();
+		}
+		catch(Exception e) {
+			log.error("Failed to start server: " + e);
+			System.exit(1);
+		}
 		log.info("The server is now listening for HTTP and WebSocket connections on port " + port);
 		server.join();
 	}
@@ -91,24 +99,24 @@ public class App
 	private static void configureSsl(Server server) {
 		if ( KeyValueStoreSingleton.getInt("bnserver.ssl.enable", 0) == 0 )
 			return;
-		
+
 		SslContextFactory sslContextFactory = new SslContextFactory(KeyValueStoreSingleton.getPath("bnserver.ssl.keystore.path"));
 		sslContextFactory.setKeyStorePassword(KeyValueStoreSingleton.getString("bnserver.ssl.keystore.password"));
 		sslContextFactory.setKeyManagerPassword(KeyValueStoreSingleton.getString("bnserver.ssl.keystore.password"));
 		sslContextFactory.setTrustStore(KeyValueStoreSingleton.getPath("bnserver.ssl.truststore.path"));
 		sslContextFactory.setTrustStorePassword(KeyValueStoreSingleton.getString("bnserver.ssl.truststore.password"));
 		sslContextFactory.setNeedClientAuth(true);
-		
+
 		SslSelectChannelConnector sslConnector = new SslSelectChannelConnector(sslContextFactory);
-        
+
 		int port = KeyValueStoreSingleton.getInt("bnserver.ssl.port", 0);
 		sslConnector.setPort(port);
-		
+
 		log.info("SSL listening on port " + port);
 
 		// Add the SocketConnector to the server
 		server.setConnectors(new Connector[] {sslConnector});
-		
+
 	}
 
 	private static void initializeApplicationConfiguration() {
@@ -212,7 +220,23 @@ public class App
 	}
 
 	private static void initializeRelationshipStore() {
-		RelationshipStoreSingleton.setInstance(new RelationshipStore());
+		RelationshipStore relationshipStore = new RelationshipStore();
+		String configurationKey = "bnserver.relationships.path";
+		String path = KeyValueStoreSingleton.getPath(configurationKey);
+		if ( path == null || ! new File(path).isDirectory()) {
+			log.error(configurationKey + " in the configuraiton file needs to point to a valid directory");
+			System.exit(1);
+		}
+		ListPersistor<Relationship> persistor = new ListPersistor<Relationship>(Relationship.class, new File(path));
+		relationshipStore.setPersistor(persistor);
+		try {
+			relationshipStore.read();
+		} catch (IOException e) {
+			log.error("Failed to read relationships from " + path);
+			System.exit(1);
+		}
+
+		RelationshipStoreSingleton.setInstance(relationshipStore);
 	}
 
 	private static void initializeProtocol(WampServer server)  {
