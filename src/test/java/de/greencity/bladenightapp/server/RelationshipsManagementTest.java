@@ -45,83 +45,84 @@ public class RelationshipsManagementTest {
 		String deviceId1 = UUID.randomUUID().toString();
 		String deviceId2 = UUID.randomUUID().toString();
 
-		RelationshipOutputMessage output = sendAndParse(deviceId1, null, 0);
+		RelationshipOutputMessage output = sendAndParse(deviceId1, ++friendIdCounter, 0);
 		assertTrue(output.getRequestId() > 0);
-		assertEquals(1, output.getFriendId());
+		assertEquals(friendIdCounter, output.getFriendId());
 
-		output = sendAndParse(null, deviceId2, output.getRequestId());
+		output = sendAndParse(deviceId2, ++friendIdCounter, output.getRequestId());
 		assertTrue(output.getRequestId() > 0);
-		assertEquals(1, output.getFriendId());
+		assertEquals(friendIdCounter, output.getFriendId());
 
-		output = sendAndParse(deviceId1, null, 0);
+		output = sendAndParse(deviceId1, ++friendIdCounter, 0);
 		assertTrue(output.getRequestId() > 0);
-		assertEquals(2, output.getFriendId());
+		assertEquals(friendIdCounter, output.getFriendId());
 
-		output = sendAndParse(deviceId2, null, 0);
+		output = sendAndParse(deviceId2, ++friendIdCounter, 0);
 		assertTrue(output.getRequestId() > 0);
-		assertEquals(2, output.getFriendId());
+		assertEquals(friendIdCounter, output.getFriendId());
 	}
 
 	@Test
 	public void openMultipleRequests() throws IOException, BadArgumentException {
 		String deviceId1 = UUID.randomUUID().toString();
 
-		RelationshipOutputMessage message1 = sendAndParse(deviceId1, null, 0);
+		RelationshipOutputMessage message1 = sendAndParse(deviceId1, ++friendIdCounter, 0);
 		assertTrue(message1.getRequestId() > 0);
-		assertEquals(1, message1.getFriendId());
+		assertEquals(friendIdCounter, message1.getFriendId());
 
-		RelationshipOutputMessage message2 = sendAndParse(deviceId1, null, 0);
+		RelationshipOutputMessage message2 = sendAndParse(deviceId1, ++friendIdCounter, 0);
 		assertTrue(message2.getRequestId() > 0);
 		assertTrue(message1.getRequestId() != message2.getRequestId());
-		assertEquals(2, message2.getFriendId());
+		assertEquals(friendIdCounter, message2.getFriendId());
 	}
 
 
 	@Test
 	public void invalidRequest1() throws IOException, BadArgumentException {
-		Message message = send(null, null, 0);
+		Message message = send(null, ++friendIdCounter, 0);
 		assertTrue(message.getType() == MessageType.CALLERROR);
 	}
 
 	@Test
 	public void invalidRequest2() throws IOException, BadArgumentException {
-		RelationshipOutputMessage output = sendAndParse(UUID.randomUUID().toString(), null, 0);
+		RelationshipOutputMessage output = sendAndParse(UUID.randomUUID().toString(), ++friendIdCounter, 0);
 		assertTrue(output.getRequestId() > 0);
-		Message message = send(null, null, output.getRequestId());
+		Message message = send(null, ++friendIdCounter, output.getRequestId());
 		assertTrue(message.getType() == MessageType.CALLERROR);
 	}
 
 	@Test
 	public void selfRelationship() throws IOException, BadArgumentException {
 		String deviceId = UUID.randomUUID().toString();
-		RelationshipOutputMessage output = sendAndParse(deviceId, null, 0);
+		RelationshipOutputMessage output = sendAndParse(deviceId, ++friendIdCounter, 0);
 		assertTrue(output.getRequestId() > 0);
-		Message message = send(null, deviceId, output.getRequestId());
+		System.out.println("requestid="+output.getRequestId());
+		Message message = send(deviceId, ++friendIdCounter, output.getRequestId());
 		assertTrue(message.getType() == MessageType.CALLERROR);
 	}
 
 
 	public long createRelationShip(String deviceId1, String deviceId2) throws IOException, BadArgumentException {
 		RelationshipOutputMessage output;
-		output = sendAndParse(deviceId1, null, 0);
-		long friendId = output.getFriendId();
-		output = sendAndParse(null, deviceId2, output.getRequestId());
+		output = sendAndParse(deviceId1, ++friendIdCounter, 0);
+		long friendId = friendIdCounter;
+		output = sendAndParse(deviceId2, ++friendIdCounter, output.getRequestId());
 		return friendId;
 	}
 	
-	public Message send(String deviceId1, String deviceId2, long relationshipId) throws IOException, BadArgumentException {
+	public Message send(String deviceId, long friendId, long requestId) throws IOException, BadArgumentException {
 		int messageCount = channel.handledMessages.size();
 		String callId = UUID.randomUUID().toString();
 		CallMessage msg = new CallMessage(callId,BladenightUrl.CREATE_RELATIONSHIP.getText());
-		RelationshipInputMessage partnershipMessage = new RelationshipInputMessage(deviceId1, deviceId2, relationshipId);
+		RelationshipInputMessage partnershipMessage = new RelationshipInputMessage(deviceId, friendId, requestId);
 		msg.setPayload(partnershipMessage);
 		server.handleIncomingMessage(session, msg);
 		assertEquals(messageCount+1, channel.handledMessages.size());
 		return MessageMapper.fromJson(channel.lastMessage());
 	}
 
-	public RelationshipOutputMessage sendAndParse(String deviceId1, String deviceId2, long relationshipId) throws IOException, BadArgumentException {
-		Message message = send(deviceId1, deviceId2, relationshipId);
+	public RelationshipOutputMessage sendAndParse(String deviceId, long friendId, long requestId) throws IOException, BadArgumentException {
+		Message message = send(deviceId, friendId, requestId);
 		assertTrue(message.getType() == MessageType.CALLRESULT);
 		CallResultMessage callResult = (CallResultMessage) message;
 		return callResult.getPayload(RelationshipOutputMessage.class);
@@ -130,4 +131,5 @@ public class RelationshipsManagementTest {
 	private ProtocollingChannel channel;
 	private BladenightWampServer server;
 	private Session session;
+	static long friendIdCounter = 1;
 }

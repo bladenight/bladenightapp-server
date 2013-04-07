@@ -24,56 +24,45 @@ public class RpcHandlerRelationship extends RpcHandler {
 
 		if ( ! validateInput(rpcCall, input) )
 			return;
-		
+
 		if ( relationshipStore == null ) {
 			rpcCall.setError(BladenightError.INTERNAL_ERROR.getText(), "Internal error: relationshipStore is null");
 			return;
 		}
-		
-		if ( handleNewRequest(rpcCall, input) )
+
+		if ( input.getDeviceId() == null || input.getDeviceId().length() == 0 ) {
+			rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Invalid device id:" + input.getDeviceId() );
 			return;
+		}
 
-		if ( handleRequestFinalization(rpcCall, input) )
+		if ( input.getFriendId() <= 0 ) {
+			rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Invalid device id:" + input.getDeviceId() );
 			return;
-		
-		rpcCall.setError(BladenightError.INTERNAL_ERROR.getText(), "Protocol error", "Neither new nor existing request");
-	}
-	
-	public boolean handleNewRequest(RpcCall rpcCall, RelationshipInputMessage input) {
-		if ( input.getDeviceId1() == null || input.getDeviceId1().length() == 0 )
-			return false;
-
-		if ( input.getDeviceId2() != null || input.getRequestId() > 0 )
-			return false;
-
-		HandshakeInfo handshakeInfo = relationshipStore.newRequest(input.getDeviceId1());
-		
-		rpcCall.setOutput(new RelationshipOutputMessage(handshakeInfo.getRequestId(), handshakeInfo.getFriendId()), RelationshipOutputMessage.class);
-		
-		return true;
-	}
-
-	private boolean handleRequestFinalization(RpcCall rpcCall, RelationshipInputMessage input) {
-		if ( input.getDeviceId2() == null || input.getDeviceId2().length() == 0 )
-			return false;
+		}
 
 		if ( input.getRequestId() <= 0 )
-			return false;
+			handleNewRequest(rpcCall, input);
+		else
+			handleRequestFinalization(rpcCall, input);
+	}
 
-		if ( input.getDeviceId1() != null )
-			return false;
+	public void handleNewRequest(RpcCall rpcCall, RelationshipInputMessage input) {
+		HandshakeInfo handshakeInfo = relationshipStore.newRequest(input.getDeviceId(), input.getFriendId());
+		rpcCall.setOutput(new RelationshipOutputMessage(handshakeInfo.getRequestId(), handshakeInfo.getFriendId()), RelationshipOutputMessage.class);
+	}
 
+	private void handleRequestFinalization(RpcCall rpcCall, RelationshipInputMessage input) {
 		HandshakeInfo handshakeInfo = new HandshakeInfo();
 		try {
-			handshakeInfo = relationshipStore.finalize(input.getRequestId(), input.getDeviceId2());
+			handshakeInfo = relationshipStore.finalize(input.getRequestId(), input.getDeviceId(), input.getFriendId());
 		} catch (Exception e) {
 			getLog().error("Failed to finalize relationship: ", e);
-			return false;
+			rpcCall.setError(BladenightError.INTERNAL_ERROR.getText(), "Failed to finalize the relationship");
+			return;
 		}
 
 		rpcCall.setOutput(new RelationshipOutputMessage(input.getRequestId(), handshakeInfo.getFriendId()), RelationshipOutputMessage.class);
 
-		return true;
 	}
 
 
@@ -87,7 +76,7 @@ public class RpcHandlerRelationship extends RpcHandler {
 
 
 	private RelationshipStore relationshipStore;
-	
+
 	private static Log log;
 
 	public static void setLog(Log log) {

@@ -71,8 +71,8 @@ public class RelationshipsLocalizationTest {
 		String deviceId2 = "user-2";
 		String deviceId3 = "user-3";
 
-		createRelationShip(deviceId1, deviceId2);
-		createRelationShip(deviceId1, deviceId3);
+		long friendId1 = createRelationShip(deviceId1, deviceId2);
+		long friendId2 = createRelationShip(deviceId1, deviceId3);
 
 		RealTimeUpdateData data2 = getRealtimeUpdateFromParticipant(deviceId2, 48.143655, 11.548839);
 		assertEquals(1756, data2.getUserPosition(), 1.0);
@@ -87,36 +87,36 @@ public class RelationshipsLocalizationTest {
 		assertEquals(true, data1.isUserOnRoute());
 		assertTrue(data1.getFriendsMap() != null);
 
-		NetMovingPoint friend1 = data1.getFriendsMap().get(new Long(1)); 
+		NetMovingPoint friend1 = data1.getFriendsMap().get(friendId1); 
 		assertTrue(friend1 != null);
 		assertEquals(data2.getUserPosition(), friend1.getPosition(), 1.0);
 
-		NetMovingPoint friend2 = data1.getFriendsMap().get(new Long(2)); 
+		NetMovingPoint friend2 = data1.getFriendsMap().get(friendId2); 
 		assertTrue(friend2 != null);
 		assertEquals(data3.getUserPosition(), friend2.getPosition(), 1.0);
 	}
 
 	public long createRelationShip(String deviceId1, String deviceId2) throws IOException, BadArgumentException {
 		RelationshipOutputMessage output;
-		output = sendAndParse(deviceId1, null, 0);
+		output = sendAndParse(deviceId1, ++friendIdCounter, (long)0);
 		long friendId = output.getFriendId();
-		output = sendAndParse(null, deviceId2, output.getRequestId());
+		output = sendAndParse(deviceId2, ++friendIdCounter, output.getRequestId());
 		return friendId;
 	}
 
-	public Message send(String deviceId1, String deviceId2, long relationshipId) throws IOException, BadArgumentException {
+	public Message send(String deviceId, long friendId, long requestId) throws IOException, BadArgumentException {
 		int messageCount = channel.handledMessages.size();
 		String callId = UUID.randomUUID().toString();
 		CallMessage msg = new CallMessage(callId,BladenightUrl.CREATE_RELATIONSHIP.getText());
-		RelationshipInputMessage partnershipMessage = new RelationshipInputMessage(deviceId1, deviceId2, relationshipId);
+		RelationshipInputMessage partnershipMessage = new RelationshipInputMessage(deviceId, friendId, requestId);
 		msg.setPayload(partnershipMessage);
 		server.handleIncomingMessage(session, msg);
 		assertEquals(messageCount+1, channel.handledMessages.size());
 		return MessageMapper.fromJson(channel.lastMessage());
 	}
 
-	public RelationshipOutputMessage sendAndParse(String deviceId1, String deviceId2, long relationshipId) throws IOException, BadArgumentException {
-		Message message = send(deviceId1, deviceId2, relationshipId);
+	public RelationshipOutputMessage sendAndParse(String deviceId, long friendId, long relationshipId) throws IOException, BadArgumentException {
+		Message message = send(deviceId, friendId, relationshipId);
 		assertTrue(message.getType() == MessageType.CALLRESULT);
 		CallResultMessage callResult = (CallResultMessage) message;
 		return callResult.getPayload(RelationshipOutputMessage.class);
@@ -145,5 +145,6 @@ public class RelationshipsLocalizationTest {
 	private Session session;
 	private Route route;
 	private Procession procession;
+	static long friendIdCounter = 1;
 
 }
