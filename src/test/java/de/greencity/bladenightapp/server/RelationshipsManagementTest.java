@@ -96,7 +96,6 @@ public class RelationshipsManagementTest {
 		String deviceId = UUID.randomUUID().toString();
 		RelationshipOutputMessage output = sendAndParse(deviceId, ++friendIdCounter, 0);
 		assertTrue(output.getRequestId() > 0);
-		System.out.println("requestid="+output.getRequestId());
 		Message message = send(deviceId, ++friendIdCounter, output.getRequestId());
 		assertTrue(message.getType() == MessageType.CALLERROR);
 	}
