@@ -74,17 +74,28 @@ public class App
 		};
 
 
-		String httpdocsPath = FileUtils.toFile(App.class.getResource("/httpdocs")).getAbsolutePath();
-
-		ResourceHandler resourceHandler = new ResourceHandler();
-		resourceHandler.setDirectoriesListed(true);
-		resourceHandler.setResourceBase(httpdocsPath);
-		wampocHandler.setHandler(resourceHandler);
-
 		int port = getPortToListenTo();
 		org.eclipse.jetty.server.Server server = new Server(port);
 		configureSsl(server);
+
+		String httpdocsConfigKey = "bnserver.httpdocs";
+		String httpdocsPath = KeyValueStoreSingleton.getPath(httpdocsConfigKey, null); 
+		if ( httpdocsPath == null ) {
+			log.info("No httpdocs path has been set ("+httpdocsConfigKey+")");
+		}
+		else if ( ! new File(httpdocsPath).isDirectory() ) {
+			log.fatal("The provided httpdocs path is not a valid directory: " + httpdocsPath);
+			System.exit(1);
+		}
+		else {
+			ResourceHandler resourceHandler = new ResourceHandler();
+			resourceHandler.setDirectoriesListed(true);
+			resourceHandler.setResourceBase(httpdocsPath);
+			wampocHandler.setHandler(resourceHandler);
+		}
+
 		server.setHandler(wampocHandler);
+
 		try {
 			server.start();
 		}
