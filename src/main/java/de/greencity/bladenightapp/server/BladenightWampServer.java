@@ -12,6 +12,8 @@ import de.greencity.bladenightapp.relationships.RelationshipStore;
 import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
 import de.greencity.bladenightapp.routes.RouteStore;
 import de.greencity.bladenightapp.routes.RouteStoreSingleton;
+import de.greencity.bladenightapp.security.PasswordSafe;
+import de.greencity.bladenightapp.security.PasswordSafeSingleton;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetActiveEvent;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetActiveRoute;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetAllEvents;
@@ -22,6 +24,7 @@ import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerRelationship;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerSetActiveRoute;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerSetActiveStatus;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerUpdateParticipant;
+import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerVerifyAdminPassword;
 import fr.ocroquette.wampoc.server.WampServer;
 
 public class BladenightWampServer extends WampServer {
@@ -37,6 +40,7 @@ public class BladenightWampServer extends WampServer {
 		Procession procession = ProcessionSingleton.getInstance();
 		RouteStore routeStore = RouteStoreSingleton.getInstance();
 		RelationshipStore relationshipStore = RelationshipStoreSingleton.getInstance();
+		PasswordSafe passwordSafe = PasswordSafeSingleton.getInstance();
 		registerRpcHandler(BladenightUrl.GET_ACTIVE_EVENT.getText(), 			new RpcHandlerGetActiveEvent(eventList));
 		registerRpcHandler(BladenightUrl.GET_ALL_EVENTS.getText(), 				new RpcHandlerGetAllEvents(eventList));
 		registerRpcHandler(BladenightUrl.GET_ACTIVE_ROUTE.getText(), 			new RpcHandlerGetActiveRoute(procession));
@@ -47,6 +51,7 @@ public class BladenightWampServer extends WampServer {
 		registerRpcHandler(BladenightUrl.SET_ACTIVE_ROUTE.getText(), 			new RpcHandlerSetActiveRoute(eventList, procession, routeStore));
 		registerRpcHandler(BladenightUrl.SET_ACTIVE_STATUS.getText(), 			new RpcHandlerSetActiveStatus(eventList));
 		registerRpcHandler(BladenightUrl.GET_ALL_ROUTE_NAMES.getText(), 		new RpcHandlerGetAllRouteNames(routeStore));
+		registerRpcHandler(BladenightUrl.VERIFY_ADMIN_PASSWORD.getText(), 		new RpcHandlerVerifyAdminPassword(passwordSafe));
 	}
 	
 	private static Log log;
