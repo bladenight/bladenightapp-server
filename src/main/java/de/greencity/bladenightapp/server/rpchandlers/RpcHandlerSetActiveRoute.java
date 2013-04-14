@@ -7,23 +7,38 @@ import org.apache.commons.logging.LogFactory;
 
 import de.greencity.bladenightapp.events.EventList;
 import de.greencity.bladenightapp.network.BladenightError;
+import de.greencity.bladenightapp.network.messages.SetActiveRouteMessage;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
+import de.greencity.bladenightapp.security.PasswordSafe;
 import fr.ocroquette.wampoc.server.RpcCall;
 import fr.ocroquette.wampoc.server.RpcHandler;
 
 public class RpcHandlerSetActiveRoute extends RpcHandler {
 
-	public RpcHandlerSetActiveRoute(EventList eventList, Procession procession, RouteStore routeStore) {
+	private PasswordSafe passwordSafe;
+
+	public RpcHandlerSetActiveRoute(EventList eventList, Procession procession, RouteStore routeStore, PasswordSafe passwordSafe) {
 		this.procession = procession;
 		this.routeStore = routeStore;
 		this.eventList = eventList;
+		this.passwordSafe = passwordSafe;
 	}
 
 	@Override
 	public void execute(RpcCall rpcCall) {
-		String newRouteName = rpcCall.getInput(String.class);
+		SetActiveRouteMessage msg = rpcCall.getInput(SetActiveRouteMessage.class);
+		
+		if ( msg == null ) {
+			rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Could not parse the input");
+			return;
+		}
+		if ( ! msg.verify(passwordSafe.getAdminPassword(), 10000)) {
+			rpcCall.setError(BladenightError.INVALID_PASSWORD.getText(), "Invalid password");
+			return;
+		}
+		String newRouteName = msg.getRouteName();
 		if (newRouteName == null) {
 			rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Input route name = " + newRouteName);
 			return;

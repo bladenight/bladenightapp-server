@@ -6,20 +6,38 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import de.greencity.bladenightapp.events.EventList;
+import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.messages.EventMessage;
 import de.greencity.bladenightapp.network.messages.EventMessage.EventStatus;
+import de.greencity.bladenightapp.network.messages.SetActiveStatusMessage;
+import de.greencity.bladenightapp.security.PasswordSafe;
 import fr.ocroquette.wampoc.server.RpcCall;
 import fr.ocroquette.wampoc.server.RpcHandler;
 
 public class RpcHandlerSetActiveStatus extends RpcHandler {
 
-	public RpcHandlerSetActiveStatus(EventList eventList) {
+	public RpcHandlerSetActiveStatus(EventList eventList, PasswordSafe passwordSafe) {
 		this.eventList = eventList;
+		this.passwordSafe = passwordSafe;
 	}
 
 	@Override
 	public void execute(RpcCall rpcCall) {
-		EventStatus newStatus = rpcCall.getInput(EventStatus.class);
+		SetActiveStatusMessage msg = rpcCall.getInput(SetActiveStatusMessage.class);
+		if ( msg == null ) {
+			rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Could not parse the input");
+			return;
+		}
+		if ( ! msg.verify(passwordSafe.getAdminPassword(), 10000)) {
+			rpcCall.setError(BladenightError.INVALID_PASSWORD.getText(), "Invalid password");
+			return;
+		}
+		EventStatus newStatus = msg.getStatus();
+		if (newStatus == null) {
+			rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Invalid status");
+			return;
+		}
+		
 		eventList.setActiveStatus(EventMessage.convertStatus(newStatus));
 		try {
 			eventList.write();
@@ -42,4 +60,6 @@ public class RpcHandlerSetActiveStatus extends RpcHandler {
 	}
 
 	private EventList eventList;
+	private PasswordSafe passwordSafe;
+
 }

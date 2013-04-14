@@ -2,6 +2,7 @@ package de.greencity.bladenightapp.server;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,7 +20,6 @@ import de.greencity.bladenightapp.events.Event;
 import de.greencity.bladenightapp.events.EventList;
 import de.greencity.bladenightapp.events.EventsListSingleton;
 import de.greencity.bladenightapp.keyvaluestore.KeyValueStoreSingleton;
-import de.greencity.bladenightapp.persistence.ListItem;
 import de.greencity.bladenightapp.persistence.ListPersistor;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
@@ -32,6 +32,8 @@ import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
 import de.greencity.bladenightapp.routes.RouteStoreSingleton;
+import de.greencity.bladenightapp.security.PasswordSafe;
+import de.greencity.bladenightapp.security.PasswordSafeSingleton;
 import fr.ocroquette.wampoc.server.TextFrameEavesdropper;
 import fr.ocroquette.wampoc.server.WampServer;
 
@@ -47,6 +49,7 @@ public class App
 		initializeEventsList();
 		initializeProcession();
 		initializeRelationshipStore();
+		initializePasswordSafe();
 		tryStartServer();
 	}
 
@@ -248,6 +251,18 @@ public class App
 		}
 
 		RelationshipStoreSingleton.setInstance(relationshipStore);
+	}
+
+	private static void initializePasswordSafe() {
+		PasswordSafe passwordSafe = new PasswordSafe();
+		String configurationKey = "bnserver.admin.password";
+		String password = KeyValueStoreSingleton.getString(configurationKey);
+		if ( password == null ) {
+			log.warn(configurationKey + " is not set in the configuraiton file, defaulting to a random but safe value");
+			password = UUID.randomUUID().toString() + UUID.randomUUID().toString(); 
+		}
+		passwordSafe.setAdminPassword(password);
+		PasswordSafeSingleton.setInstance(passwordSafe);
 	}
 
 	private static void initializeProtocol(WampServer server)  {

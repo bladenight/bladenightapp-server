@@ -17,16 +17,21 @@ import de.greencity.bladenightapp.events.Event;
 import de.greencity.bladenightapp.events.EventGsonHelper;
 import de.greencity.bladenightapp.events.EventList;
 import de.greencity.bladenightapp.events.EventsListSingleton;
+import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.BladenightUrl;
+import de.greencity.bladenightapp.network.messages.SetActiveRouteMessage;
 import de.greencity.bladenightapp.persistence.ListPersistor;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
 import de.greencity.bladenightapp.routes.RouteStoreSingleton;
+import de.greencity.bladenightapp.security.PasswordSafe;
+import de.greencity.bladenightapp.security.PasswordSafeSingleton;
 import de.greencity.bladenightapp.testutils.LogHelper;
 import de.greencity.bladenightapp.testutils.ProtocollingChannel;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
+import fr.ocroquette.wampoc.messages.CallErrorMessage;
 import fr.ocroquette.wampoc.messages.CallMessage;
 import fr.ocroquette.wampoc.messages.Message;
 import fr.ocroquette.wampoc.messages.MessageMapper;
@@ -37,6 +42,7 @@ public class SetActiveRouteTest {
 	final String initialRouteName = "Nord - kurz";
 	final String newRouteName = "Ost - lang";
 	final String routesDir = "/routes/";
+	final String adminPassword = "test1234";
 
 	@Before
 	public void init() throws IOException {
@@ -64,6 +70,10 @@ public class SetActiveRouteTest {
 		procession.setRoute(route);
 		procession.setMaxComputeAge(0);
 		ProcessionSingleton.setProcession(procession);
+		
+		passwordSafe = new PasswordSafe();
+		passwordSafe.setAdminPassword(adminPassword);
+		PasswordSafeSingleton.setInstance(passwordSafe);
 
 		channel = new ProtocollingChannel();
 
@@ -73,7 +83,7 @@ public class SetActiveRouteTest {
 	
 	@Test
 	public void setActiveRouteToValidRoute() throws IOException, BadArgumentException {
-		Message returnMessage = setActiveRouteTo(newRouteName);
+		Message returnMessage = setActiveRouteTo(newRouteName, adminPassword);
 		assertTrue(returnMessage.getType() == MessageType.CALLRESULT);
 		Route newRoute = procession.getRoute();
 		assertEquals(newRouteName, newRoute.getName());
@@ -82,8 +92,19 @@ public class SetActiveRouteTest {
 	}
 
 	@Test
+	public void setActiveRouteToValidRouteWithInvalidPassword() throws IOException, BadArgumentException {
+		Message returnMessage = setActiveRouteTo(newRouteName, adminPassword + "-invalid");
+		assertTrue(returnMessage.getType() == MessageType.CALLERROR);
+		CallErrorMessage errorMessage = (CallErrorMessage)returnMessage;
+		assertEquals(BladenightError.INVALID_PASSWORD.getText(), errorMessage.getErrorUri());
+		Route newRoute = procession.getRoute();
+		assertEquals(initialRouteName, newRoute.getName());
+		verifyPersistency(initialRouteName);
+	}
+
+	@Test
 	public void setActiveRouteToUnavailableRoute() throws IOException, BadArgumentException {
-		Message returnMessage = setActiveRouteTo(newRouteName+"-invalid");
+		Message returnMessage = setActiveRouteTo(newRouteName+"-invalid", adminPassword);
 		assertTrue(returnMessage.getType() == MessageType.CALLERROR);
 		Route newRoute = procession.getRoute();
 		assertEquals(initialRouteName, newRoute.getName());
@@ -92,7 +113,7 @@ public class SetActiveRouteTest {
 
 	@Test
 	public void setActiveRouteToNullRoute() throws IOException, BadArgumentException {
-		Message returnMessage = setActiveRouteTo(null);
+		Message returnMessage = setActiveRouteTo(null, adminPassword);
 		assertTrue(returnMessage.getType() == MessageType.CALLERROR);
 		Route newRoute = procession.getRoute();
 		assertEquals(initialRouteName, newRoute.getName());
@@ -100,11 +121,14 @@ public class SetActiveRouteTest {
 	}
 
 
-	Message setActiveRouteTo(String newRoute) throws IOException, BadArgumentException {
+	Message setActiveRouteTo(String newRoute, String password) throws IOException, BadArgumentException {
 		int messageCount = channel.handledMessages.size();
 		String callId = UUID.randomUUID().toString();
 		CallMessage msg = new CallMessage(callId,BladenightUrl.SET_ACTIVE_ROUTE.getText());
-		msg.setPayload(newRoute);
+		SetActiveRouteMessage payload = new SetActiveRouteMessage(newRoute, password);
+		assertTrue(payload.verify(password, 10000));
+		payload.setRouteName(newRoute);
+		msg.setPayload(payload);
 		server.handleIncomingMessage(session, msg);
 		assertEquals(messageCount+1, channel.handledMessages.size());
 		return MessageMapper.fromJson(channel.lastMessage());
@@ -134,4 +158,5 @@ public class SetActiveRouteTest {
 	private Session session;
 	private File persistenceFolder;
 	private EventList eventList;
+	private PasswordSafe passwordSafe;
 }
