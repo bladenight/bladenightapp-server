@@ -109,7 +109,7 @@ public class RelationshipsManagementTest {
 		return friendId;
 	}
 	
-	public Message send(String deviceId, long friendId, long requestId) throws IOException, BadArgumentException {
+	public Message send(String deviceId, int friendId, long requestId) throws IOException, BadArgumentException {
 		int messageCount = channel.handledMessages.size();
 		String callId = UUID.randomUUID().toString();
 		CallMessage msg = new CallMessage(callId,BladenightUrl.CREATE_RELATIONSHIP.getText());
@@ -120,7 +120,7 @@ public class RelationshipsManagementTest {
 		return MessageMapper.fromJson(channel.lastMessage());
 	}
 
-	public RelationshipOutputMessage sendAndParse(String deviceId, long friendId, long requestId) throws IOException, BadArgumentException {
+	public RelationshipOutputMessage sendAndParse(String deviceId, int friendId, long requestId) throws IOException, BadArgumentException {
 		Message message = send(deviceId, friendId, requestId);
 		assertTrue(message.getType() == MessageType.CALLRESULT);
 		CallResultMessage callResult = (CallResultMessage) message;
@@ -130,5 +130,5 @@ public class RelationshipsManagementTest {
 	private ProtocollingChannel channel;
 	private BladenightWampServer server;
 	private Session session;
-	static long friendIdCounter = 1;
+	static int friendIdCounter = 1;
 }

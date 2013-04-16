@@ -71,8 +71,8 @@ public class RelationshipsLocalizationTest {
 		String deviceId2 = "user-2";
 		String deviceId3 = "user-3";
 
-		long friendId1 = createRelationShip(deviceId1, deviceId2);
-		long friendId2 = createRelationShip(deviceId1, deviceId3);
+		int friendId1 = createRelationShip(deviceId1, deviceId2);
+		int friendId2 = createRelationShip(deviceId1, deviceId3);
 
 		RealTimeUpdateData data2 = getRealtimeUpdateFromParticipant(deviceId2, 48.143655, 11.548839);
 		assertEquals(1756, data2.getUserPosition(), 1.0);
@@ -96,15 +96,15 @@ public class RelationshipsLocalizationTest {
 		assertEquals(data3.getUserPosition(), friend2.getPosition(), 1.0);
 	}
 
-	public long createRelationShip(String deviceId1, String deviceId2) throws IOException, BadArgumentException {
+	public int createRelationShip(String deviceId1, String deviceId2) throws IOException, BadArgumentException {
 		RelationshipOutputMessage output;
 		output = sendAndParse(deviceId1, ++friendIdCounter, (long)0);
-		long friendId = output.getFriendId();
+		int friendId = output.getFriendId();
 		output = sendAndParse(deviceId2, ++friendIdCounter, output.getRequestId());
 		return friendId;
 	}
 
-	public Message send(String deviceId, long friendId, long requestId) throws IOException, BadArgumentException {
+	public Message send(String deviceId, int friendId, long requestId) throws IOException, BadArgumentException {
 		int messageCount = channel.handledMessages.size();
 		String callId = UUID.randomUUID().toString();
 		CallMessage msg = new CallMessage(callId,BladenightUrl.CREATE_RELATIONSHIP.getText());
@@ -115,7 +115,7 @@ public class RelationshipsLocalizationTest {
 		return MessageMapper.fromJson(channel.lastMessage());
 	}
 
-	public RelationshipOutputMessage sendAndParse(String deviceId, long friendId, long relationshipId) throws IOException, BadArgumentException {
+	public RelationshipOutputMessage sendAndParse(String deviceId, int friendId, long relationshipId) throws IOException, BadArgumentException {
 		Message message = send(deviceId, friendId, relationshipId);
 		assertTrue(message.getType() == MessageType.CALLRESULT);
 		CallResultMessage callResult = (CallResultMessage) message;
@@ -145,6 +145,6 @@ public class RelationshipsLocalizationTest {
 	private Session session;
 	private Route route;
 	private Procession procession;
-	static long friendIdCounter = 1;
+	static int friendIdCounter = 1;
 
 }
