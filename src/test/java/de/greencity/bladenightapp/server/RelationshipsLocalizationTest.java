@@ -70,9 +70,11 @@ public class RelationshipsLocalizationTest {
 		String deviceId1 = "user-1";
 		String deviceId2 = "user-2";
 		String deviceId3 = "user-3";
+		String deviceId4 = "user-4";
 
 		int friendId1 = createRelationShip(deviceId1, deviceId2);
 		int friendId2 = createRelationShip(deviceId1, deviceId3);
+		int friendId3 = createRelationShip(deviceId1, deviceId4);
 
 		RealTimeUpdateData data2 = getRealtimeUpdateFromParticipant(deviceId2, 48.143655, 11.548839);
 		assertEquals(1756, data2.getUserPosition(), 1.0);
@@ -94,6 +96,11 @@ public class RelationshipsLocalizationTest {
 		NetMovingPoint friend2 = data1.getFriendsMap().get(friendId2); 
 		assertTrue(friend2 != null);
 		assertEquals(data3.getUserPosition(), friend2.getPosition(), 1.0);
+
+		NetMovingPoint friend3 = data1.getFriendsMap().get(friendId3); 
+		assertTrue(friend3 != null);
+		assertEquals(false, friend3.isInProcession());
+		assertEquals(false, friend3.isOnRoute());
 	}
 
 	public int createRelationShip(String deviceId1, String deviceId2) throws IOException, BadArgumentException {

@@ -23,7 +23,7 @@ import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetRoute;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerRelationship;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerSetActiveRoute;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerSetActiveStatus;
-import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerUpdateParticipant;
+import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetRealtimeUpdate;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerVerifyAdminPassword;
 import fr.ocroquette.wampoc.server.WampServer;
 
@@ -46,7 +46,7 @@ public class BladenightWampServer extends WampServer {
 		registerRpcHandler(BladenightUrl.GET_ACTIVE_ROUTE.getText(), 			new RpcHandlerGetActiveRoute(procession));
 		registerRpcHandler(BladenightUrl.GET_ROUTE.getText(), 					new RpcHandlerGetRoute(routeStore));
 		registerRpcHandler(BladenightUrl.GET_ALL_PARTICIPANTS.getText(), 		new RpcHandlerGetAllParticipants(procession));
-		registerRpcHandler(BladenightUrl.GET_REALTIME_UPDATE.getText(), 		new RpcHandlerUpdateParticipant(procession, relationshipStore));
+		registerRpcHandler(BladenightUrl.GET_REALTIME_UPDATE.getText(), 		new RpcHandlerGetRealtimeUpdate(procession, relationshipStore));
 		registerRpcHandler(BladenightUrl.CREATE_RELATIONSHIP.getText(), 		new RpcHandlerRelationship(relationshipStore));
 		registerRpcHandler(BladenightUrl.SET_ACTIVE_ROUTE.getText(), 			new RpcHandlerSetActiveRoute(eventList, procession, routeStore, passwordSafe));
 		registerRpcHandler(BladenightUrl.SET_ACTIVE_STATUS.getText(), 			new RpcHandlerSetActiveStatus(eventList, passwordSafe));

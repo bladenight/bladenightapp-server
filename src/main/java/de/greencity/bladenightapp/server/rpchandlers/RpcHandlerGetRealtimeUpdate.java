@@ -11,6 +11,7 @@ import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
+import de.greencity.bladenightapp.procession.MovingPoint;
 import de.greencity.bladenightapp.procession.Participant;
 import de.greencity.bladenightapp.procession.ParticipantInput;
 import de.greencity.bladenightapp.procession.Procession;
@@ -19,9 +20,9 @@ import de.greencity.bladenightapp.relationships.RelationshipStore;
 import fr.ocroquette.wampoc.server.RpcCall;
 import fr.ocroquette.wampoc.server.RpcHandler;
 
-public class RpcHandlerUpdateParticipant extends RpcHandler {
+public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
 
-	public RpcHandlerUpdateParticipant(Procession procession, RelationshipStore relationshipStore) {
+	public RpcHandlerGetRealtimeUpdate(Procession procession, RelationshipStore relationshipStore) {
 		this.procession = procession;
 		this.relationshipStore = relationshipStore;
 	}
@@ -66,6 +67,8 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 				Participant participant = procession.getParticipant(relationshipMember.getDeviceId());
 				if ( participant != null)
 					data.addFriend(relationshipMember.getFriendId(), participant.getLastKnownPoint());
+				else
+					data.addFriend(relationshipMember.getFriendId(), new MovingPoint());
 			}
 		}
 
@@ -90,12 +93,12 @@ public class RpcHandlerUpdateParticipant extends RpcHandler {
 	private static Log log;
 
 	public static void setLog(Log log) {
-		RpcHandlerUpdateParticipant.log = log;
+		RpcHandlerGetRealtimeUpdate.log = log;
 	}
 
 	protected static Log getLog() {
 		if (log == null)
-			setLog(LogFactory.getLog(RpcHandlerUpdateParticipant.class));
+			setLog(LogFactory.getLog(RpcHandlerGetRealtimeUpdate.class));
 		return log;
 	}
 }
