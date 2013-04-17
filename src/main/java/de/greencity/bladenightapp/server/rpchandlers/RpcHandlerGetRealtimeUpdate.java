@@ -10,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
+import de.greencity.bladenightapp.network.messages.NetMovingPoint;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
 import de.greencity.bladenightapp.procession.MovingPoint;
 import de.greencity.bladenightapp.procession.Participant;
@@ -54,21 +55,30 @@ public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
 			}
 		}
 
+		double routeLength = procession.getRoute().getLength();
+		
 		data.setHead(procession.getHead());
+		data.getHead().setEstimatedTimeToArrival((long)0);
 		data.setTail(procession.getTail());
+		data.getTail().setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(data.getTail().getPosition(), routeLength)));
 		data.setRouteLength((int)procession.getRoute().getLength());
 		data.setRouteName(procession.getRoute().getName());
 		data.setUserTotal(procession.getParticipantCount());
 		data.setUserOnRoute(procession.getParticipantsOnRoute());
+		data.getUser().setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(data.getUser().getPosition(), routeLength)));
 
 		if ( input != null ) {
 			List<RelationshipMember> relationships = relationshipStore.getRelationships(input.getDeviceId());
 			for (RelationshipMember relationshipMember : relationships) {
 				Participant participant = procession.getParticipant(relationshipMember.getDeviceId());
-				if ( participant != null)
-					data.addFriend(relationshipMember.getFriendId(), participant.getLastKnownPoint());
+				NetMovingPoint nmp;
+				if ( participant != null) {
+					nmp = new NetMovingPoint(participant.getLastKnownPoint());
+					nmp.setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(participant.getLinearPosition(), routeLength)));
+				}
 				else
-					data.addFriend(relationshipMember.getFriendId(), new MovingPoint());
+					nmp = new NetMovingPoint();
+				data.addFriend(relationshipMember.getFriendId(), nmp);
 			}
 		}
 
