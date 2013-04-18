@@ -9,10 +9,11 @@ import org.apache.commons.logging.LogFactory;
 
 import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.BladenightUrl;
+import de.greencity.bladenightapp.network.messages.FriendMessage;
+import de.greencity.bladenightapp.network.messages.FriendsMessage;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
-import de.greencity.bladenightapp.network.messages.NetMovingPoint;
+import de.greencity.bladenightapp.network.messages.MovingPointMessage;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
-import de.greencity.bladenightapp.procession.MovingPoint;
 import de.greencity.bladenightapp.procession.Participant;
 import de.greencity.bladenightapp.procession.ParticipantInput;
 import de.greencity.bladenightapp.procession.Procession;
@@ -68,17 +69,18 @@ public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
 		data.getUser().setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(data.getUser().getPosition(), routeLength)));
 
 		if ( input != null ) {
-			List<RelationshipMember> relationships = relationshipStore.getRelationships(input.getDeviceId());
+			List<RelationshipMember> relationships = relationshipStore.getFinalizedRelationships(input.getDeviceId());
 			for (RelationshipMember relationshipMember : relationships) {
 				Participant participant = procession.getParticipant(relationshipMember.getDeviceId());
-				NetMovingPoint nmp;
+				FriendMessage friendMessage;
 				if ( participant != null) {
-					nmp = new NetMovingPoint(participant.getLastKnownPoint());
-					nmp.setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(participant.getLinearPosition(), routeLength)));
+					friendMessage = new FriendMessage();
+					friendMessage.copyFrom(participant.getLastKnownPoint());
+					friendMessage.setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(participant.getLinearPosition(), routeLength)));
 				}
 				else
-					nmp = new NetMovingPoint();
-				data.addFriend(relationshipMember.getFriendId(), nmp);
+					friendMessage = new FriendMessage();
+				data.addFriend(relationshipMember.getFriendId(), friendMessage);
 			}
 		}
 

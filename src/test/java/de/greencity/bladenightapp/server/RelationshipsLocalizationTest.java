@@ -16,7 +16,7 @@ import org.junit.Test;
 import de.greencity.bladenightapp.events.EventList;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
-import de.greencity.bladenightapp.network.messages.NetMovingPoint;
+import de.greencity.bladenightapp.network.messages.MovingPointMessage;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
 import de.greencity.bladenightapp.network.messages.RelationshipInputMessage;
 import de.greencity.bladenightapp.network.messages.RelationshipOutputMessage;
@@ -88,17 +88,17 @@ public class RelationshipsLocalizationTest {
 		RealTimeUpdateData data1 = getRealtimeUpdateFromParticipant(deviceId1, 48.139341, 11.547129);
 		assertEquals(1241, data1.getUserPosition(), 1.0);
 		assertEquals(true, data1.isUserOnRoute());
-		assertTrue(data1.getFriendsMap() != null);
+		assertTrue(data1.getFriends() != null);
 
-		NetMovingPoint friend1 = data1.getFriendsMap().get(friendIdFor2); 
+		MovingPointMessage friend1 = data1.getFriends().get(friendIdFor2); 
 		assertTrue(friend1 != null);
 		assertEquals(data2.getUserPosition(), friend1.getPosition(), 1.0);
 
-		NetMovingPoint friend2 = data1.getFriendsMap().get(friendIdFor3); 
+		MovingPointMessage friend2 = data1.getFriends().get(friendIdFor3); 
 		assertTrue(friend2 != null);
 		assertEquals(data3.getUserPosition(), friend2.getPosition(), 1.0);
 
-		NetMovingPoint friend3 = data1.getFriendsMap().get(friendIdFor4); 
+		MovingPointMessage friend3 = data1.getFriends().get(friendIdFor4); 
 		assertTrue(friend3 != null);
 		assertEquals(false, friend3.isInProcession());
 		assertEquals(false, friend3.isOnRoute());
@@ -110,7 +110,7 @@ public class RelationshipsLocalizationTest {
 		assertEquals(true, data3.isUserOnRoute());
 
 		data1 = getRealtimeUpdateFromParticipant(deviceId1, 48.139341, 11.547129);
-		friend3 = data1.getFriendsMap().get(friendIdFor3); 
+		friend3 = data1.getFriends().get(friendIdFor3); 
 		assertTrue(friend3 != null);
 		assertEquals(true, friend3.isOnRoute());
 		assertEquals(friend3.getPosition(), data3.getUserPosition(), 0.0);

@@ -1,5 +1,7 @@
 package de.greencity.bladenightapp.server.rpchandlers;
 
+import java.io.IOException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -47,14 +49,26 @@ public class RpcHandlerRelationship extends RpcHandler {
 	}
 
 	public void handleNewRequest(RpcCall rpcCall, RelationshipInputMessage input) {
+		relationshipStore.check();
 		HandshakeInfo handshakeInfo = relationshipStore.newRequest(input.getDeviceId(), input.getFriendId());
 		rpcCall.setOutput(new RelationshipOutputMessage(handshakeInfo.getRequestId(), handshakeInfo.getFriendId()), RelationshipOutputMessage.class);
+		relationshipStore.check();
+		try {
+			// TODO we write all relationships on all write, this is not efficient
+			relationshipStore.write();
+		} catch (IOException e) {
+			getLog().error("Failed to save relationships: ", e);
+		}
 	}
 
 	private void handleRequestFinalization(RpcCall rpcCall, RelationshipInputMessage input) {
 		HandshakeInfo handshakeInfo = new HandshakeInfo();
 		try {
 			handshakeInfo = relationshipStore.finalize(input.getRequestId(), input.getDeviceId(), input.getFriendId());
+			// TODO we write all relationships on all write, this is not efficient
+			relationshipStore.write();
+		} catch (IOException e) {
+			getLog().error("Failed to save relationships: ", e);
 		} catch (Exception e) {
 			getLog().error("Failed to finalize relationship: ", e);
 			rpcCall.setError(BladenightError.INTERNAL_ERROR.getText(), "Failed to finalize the relationship");
