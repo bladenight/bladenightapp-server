@@ -49,34 +49,48 @@ public class RelationshipsManagementTest {
 		String deviceId1 = UUID.randomUUID().toString();
 		String deviceId2 = UUID.randomUUID().toString();
 
+		// Create request from deviceId1
 		RelationshipOutputMessage output = sendAndParseRequest(deviceId1, ++friendIdCounter, 0);
 		final int friendId1 = friendIdCounter;
 		assertTrue(output.getRequestId() > 0);
 		assertEquals(friendIdCounter, output.getFriendId());
 
+		// Make sure the relationship is pending, with the right data
 		FriendsMessage friends = getAndParseFriends(deviceId1);
 		assertTrue(friends.get(friendId1) != null);
 		assertTrue(friends.get(friendId1).isRelationshipPending());
 		assertEquals(output.getRequestId(), friends.get(friendId1).getRequestId());
-		
+
+		// Accept the request from deviceId2
 		output = sendAndParseRequest(deviceId2, ++friendIdCounter, output.getRequestId());
+		int friendId2 = friendIdCounter;
 		assertTrue(output.getRequestId() > 0);
 		assertEquals(friendIdCounter, output.getFriendId());
 
-		// The request ID shall have been reset:
+		// From deviceId1's perspective: Make sure the relationship is not pending anymore, and has the right data
 		friends = getAndParseFriends(deviceId1);
 		assertTrue(friends.get(friendId1) != null);
 		assertTrue(! friends.get(friendId1).isRelationshipPending());
+		// The request ID shall have been reset:
 		assertEquals(0, friends.get(friendId1).getRequestId());
 
-		
-		output = sendAndParseRequest(deviceId1, ++friendIdCounter, 0);
-		assertTrue(output.getRequestId() > 0);
-		assertEquals(friendIdCounter, output.getFriendId());
+		// Same from from deviceId2's perspective
+		friends = getAndParseFriends(deviceId1);
+		assertTrue(friends.get(friendId1) != null);
+		assertTrue(! friends.get(friendId1).isRelationshipPending());
+		// The request ID shall have been reset:
+		assertEquals(0, friends.get(friendId1).getRequestId());
 
-		output = sendAndParseRequest(deviceId2, ++friendIdCounter, 0);
-		assertTrue(output.getRequestId() > 0);
-		assertEquals(friendIdCounter, output.getFriendId());
+		// Request deletion of the relation ship from deviceId1:
+		sendDeletionAndCheckForSuccess(deviceId1, friendId1);
+
+		// From deviceId1's perspective: make sure the relationship is deleted 
+		friends = getAndParseFriends(deviceId1);
+		assertTrue(friends.get(friendId1) == null);
+		
+		// From deviceId2's perspective: make sure the relationship is deleted 
+		friends = getAndParseFriends(deviceId2);
+		assertTrue(friends.get(friendId2) == null);
 	}
 
 	@Test
@@ -125,7 +139,7 @@ public class RelationshipsManagementTest {
 		output = sendAndParseRequest(deviceId2, ++friendIdCounter, output.getRequestId());
 		return friendId;
 	}
-	
+
 	public Message sendRequest(String deviceId, int friendId, long requestId) throws IOException, BadArgumentException {
 		int messageCount = channel.handledMessages.size();
 		String callId = UUID.randomUUID().toString();
@@ -136,6 +150,28 @@ public class RelationshipsManagementTest {
 		assertEquals(messageCount+1, channel.handledMessages.size());
 		return MessageMapper.fromJson(channel.lastMessage());
 	}
+
+	public Message sendDeletion(String deviceId, int friendId) throws IOException, BadArgumentException {
+		int messageCount = channel.handledMessages.size();
+		String callId = UUID.randomUUID().toString();
+		CallMessage msg = new CallMessage(callId,BladenightUrl.DELETE_RELATIONSHIP.getText());
+		RelationshipInputMessage partnershipMessage = new RelationshipInputMessage(deviceId, friendId, 0);
+		msg.setPayload(partnershipMessage);
+		server.handleIncomingMessage(session, msg);
+		assertEquals(messageCount+1, channel.handledMessages.size());
+		return MessageMapper.fromJson(channel.lastMessage());
+	}
+
+	public void sendDeletionAndCheckForSuccess(String deviceId, int friendId) throws IOException, BadArgumentException  {
+		Message message = sendDeletion(deviceId, friendId);
+		assertTrue(message.getType() == MessageType.CALLRESULT);
+	}
+
+	public void sendDeletionAndCheckForFailure(String deviceId, int friendId) throws IOException, BadArgumentException  {
+		Message message = sendDeletion(deviceId, friendId);
+		assertTrue(message.getType() == MessageType.CALLERROR);
+	}
+
 
 	public RelationshipOutputMessage sendAndParseRequest(String deviceId, int friendId, long requestId) throws IOException, BadArgumentException {
 		Message message = sendRequest(deviceId, friendId, requestId);

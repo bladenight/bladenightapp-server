@@ -12,7 +12,7 @@ import de.greencity.bladenightapp.relationships.RelationshipStore;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
 import de.greencity.bladenightapp.server.BladenightWampServer;
-import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerRelationship;
+import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerCreateRelationship;
 
 public class LogHelper {
 
@@ -20,7 +20,7 @@ public class LogHelper {
 		Log log = new NoOpLog();
 		BladenightWampServer.setLog(log);
 		RelationshipStore.setLog(log);
-		RpcHandlerRelationship.setLog(log);
+		RpcHandlerCreateRelationship.setLog(log);
 		Route.setLog(log);
 		RouteStore.setLog(log);
 		Procession.setLog(log);

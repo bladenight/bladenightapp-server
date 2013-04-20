@@ -14,9 +14,9 @@ import de.greencity.bladenightapp.relationships.RelationshipStore;
 import fr.ocroquette.wampoc.server.RpcCall;
 import fr.ocroquette.wampoc.server.RpcHandler;
 
-public class RpcHandlerRelationship extends RpcHandler {
+public class RpcHandlerCreateRelationship extends RpcHandler {
 
-	public RpcHandlerRelationship(RelationshipStore relationshipStore) {
+	public RpcHandlerCreateRelationship(RelationshipStore relationshipStore) {
 		this.relationshipStore = relationshipStore;
 	}
 
@@ -94,12 +94,12 @@ public class RpcHandlerRelationship extends RpcHandler {
 	private static Log log;
 
 	public static void setLog(Log log) {
-		RpcHandlerRelationship.log = log;
+		RpcHandlerCreateRelationship.log = log;
 	}
 
 	protected static Log getLog() {
 		if (log == null)
-			setLog(LogFactory.getLog(RpcHandlerRelationship.class));
+			setLog(LogFactory.getLog(RpcHandlerCreateRelationship.class));
 		return log;
 	}
 }

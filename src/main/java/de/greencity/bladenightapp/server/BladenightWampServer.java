@@ -14,6 +14,7 @@ import de.greencity.bladenightapp.routes.RouteStore;
 import de.greencity.bladenightapp.routes.RouteStoreSingleton;
 import de.greencity.bladenightapp.security.PasswordSafe;
 import de.greencity.bladenightapp.security.PasswordSafeSingleton;
+import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerDeleteRelationship;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetActiveEvent;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetActiveRoute;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetAllEvents;
@@ -21,7 +22,7 @@ import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetAllParticipant
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetAllRouteNames;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetFriends;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetRoute;
-import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerRelationship;
+import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerCreateRelationship;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerSetActiveRoute;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerSetActiveStatus;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetRealtimeUpdate;
@@ -48,12 +49,13 @@ public class BladenightWampServer extends WampServer {
 		registerRpcHandler(BladenightUrl.GET_ROUTE.getText(), 					new RpcHandlerGetRoute(routeStore));
 		registerRpcHandler(BladenightUrl.GET_ALL_PARTICIPANTS.getText(), 		new RpcHandlerGetAllParticipants(procession));
 		registerRpcHandler(BladenightUrl.GET_REALTIME_UPDATE.getText(), 		new RpcHandlerGetRealtimeUpdate(procession, relationshipStore));
-		registerRpcHandler(BladenightUrl.CREATE_RELATIONSHIP.getText(), 		new RpcHandlerRelationship(relationshipStore));
+		registerRpcHandler(BladenightUrl.CREATE_RELATIONSHIP.getText(), 		new RpcHandlerCreateRelationship(relationshipStore));
 		registerRpcHandler(BladenightUrl.SET_ACTIVE_ROUTE.getText(), 			new RpcHandlerSetActiveRoute(eventList, procession, routeStore, passwordSafe));
 		registerRpcHandler(BladenightUrl.SET_ACTIVE_STATUS.getText(), 			new RpcHandlerSetActiveStatus(eventList, passwordSafe));
 		registerRpcHandler(BladenightUrl.GET_ALL_ROUTE_NAMES.getText(), 		new RpcHandlerGetAllRouteNames(routeStore));
 		registerRpcHandler(BladenightUrl.VERIFY_ADMIN_PASSWORD.getText(), 		new RpcHandlerVerifyAdminPassword(passwordSafe));
 		registerRpcHandler(BladenightUrl.GET_FRIENDS.getText(), 				new RpcHandlerGetFriends(relationshipStore, procession));
+		registerRpcHandler(BladenightUrl.DELETE_RELATIONSHIP.getText(), 		new RpcHandlerDeleteRelationship(relationshipStore));
 	}
 	
 	private static Log log;
