@@ -75,10 +75,8 @@ public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
 					friendMessage = new FriendMessage();
 					friendMessage.copyFrom(participant.getLastKnownPoint());
 					friendMessage.setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(participant.getLinearPosition(), routeLength)));
+					data.addFriend(relationshipMember.getFriendId(), friendMessage);
 				}
-				else
-					friendMessage = new FriendMessage();
-				data.addFriend(relationshipMember.getFriendId(), friendMessage);
 			}
 		}
 
