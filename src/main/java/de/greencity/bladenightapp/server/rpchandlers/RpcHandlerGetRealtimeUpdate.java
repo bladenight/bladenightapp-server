@@ -29,9 +29,9 @@ public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
 
 	@Override
 	public void execute(RpcCall rpcCall) {
-		GpsInfo input = rpcCall.getInput(GpsInfo.class);
+		GpsInfo gpsInput = rpcCall.getInput(GpsInfo.class);
 
-		if ( ! validateInput(rpcCall, input) )
+		if ( ! validateInput(rpcCall, gpsInput) )
 			return;
 
 		if ( procession == null ) {
@@ -41,10 +41,10 @@ public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
 
 		RealTimeUpdateData data = new RealTimeUpdateData();
 
-		if ( input != null ) {
-			ParticipantInput participantInput = new ParticipantInput(input.getDeviceId(), input.isParticipating(), input.getLatitude(), input.getLongitude());
+		if ( gpsInput != null ) {
+			ParticipantInput participantInput = new ParticipantInput(gpsInput.getDeviceId(), gpsInput.isParticipating(), gpsInput.getLatitude(), gpsInput.getLongitude(), gpsInput.getAccuracy());
 			Participant participant = procession.updateParticipant(participantInput);
-			data.isUserOnRoute(procession.isParticipantOnRoute(input.getDeviceId()));
+			data.isUserOnRoute(procession.isParticipantOnRoute(gpsInput.getDeviceId()));
 			data.setUserPosition((long)participant.getLinearPosition(), (long)participant.getLinearSpeed());
 			// TODO remove test code 
 			if ( participant.getDeviceId().equals("TODO-generate")) {
@@ -66,10 +66,11 @@ public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
 		data.setUserOnRoute(procession.getParticipantsOnRoute());
 		data.getUser().setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(data.getUser().getPosition(), routeLength)));
 
-		if ( input != null ) {
-			List<RelationshipMember> relationships = relationshipStore.getFinalizedRelationships(input.getDeviceId());
+		if ( gpsInput != null ) {
+			List<RelationshipMember> relationships = relationshipStore.getFinalizedRelationships(gpsInput.getDeviceId());
 			for (RelationshipMember relationshipMember : relationships) {
 				Participant participant = procession.getParticipant(relationshipMember.getDeviceId());
+				System.out.println("friend="+participant);
 				FriendMessage friendMessage;
 				if ( participant != null) {
 					friendMessage = new FriendMessage();

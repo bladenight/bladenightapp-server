@@ -86,7 +86,7 @@ public class RelationshipsLocalizationTest {
 		assertEquals(true, data3.isUserOnRoute());
 
 		RealTimeUpdateData data1 = getRealtimeUpdateFromParticipant(deviceId1, 48.139341, 11.547129);
-		assertEquals(1241, data1.getUserPosition(), 1.0);
+		assertEquals(1381, data1.getUserPosition(), 1.0);
 		assertEquals(true, data1.isUserOnRoute());
 		assertTrue(data1.getFriends() != null);
 
@@ -99,13 +99,12 @@ public class RelationshipsLocalizationTest {
 		assertEquals(data3.getUserPosition(), friend2.getPosition(), 1.0);
 
 		MovingPointMessage friend3 = data1.getFriends().get(friendIdFor4); 
-		assertTrue(friend3 != null);
-		assertEquals(false, friend3.isInProcession());
-		assertEquals(false, friend3.isOnRoute());
-		
+		assertTrue(friend3 == null);
+
 		Sleep.sleep(10);
-		
-		data3 = getRealtimeUpdateFromParticipant(deviceId3, 48.160027,  11.561509);
+
+		int accuracy3 = 100;
+		data3 = getRealtimeUpdateFromParticipant(deviceId3, 48.160027,  11.561509, accuracy3);
 		assertEquals(4729.0, data3.getUserPosition(), 1.0);
 		assertEquals(true, data3.isUserOnRoute());
 
@@ -114,6 +113,7 @@ public class RelationshipsLocalizationTest {
 		assertTrue(friend3 != null);
 		assertEquals(true, friend3.isOnRoute());
 		assertEquals(friend3.getPosition(), data3.getUserPosition(), 0.0);
+		assertEquals(accuracy3, friend3.getAccuracy());
 		assertTrue(friend3.getEstimatedTimeToArrival() > 0 );
 		assertTrue(data3.getUser().getEstimatedTimeToArrival() <= friend3.getEstimatedTimeToArrival() );
 	}
@@ -144,8 +144,12 @@ public class RelationshipsLocalizationTest {
 		return callResult.getPayload(RelationshipOutputMessage.class);
 	}
 
+	RealTimeUpdateData getRealtimeUpdateFromParticipant(String clientId, double lat, double lon, double acc) throws IOException, BadArgumentException {
+		return getRealtimeUpdate(new GpsInfo(clientId, true, lat, lon, (int)acc));
+	}
+
 	RealTimeUpdateData getRealtimeUpdateFromParticipant(String clientId, double lat, double lon) throws IOException, BadArgumentException {
-		return getRealtimeUpdate(new GpsInfo(clientId, true, lat, lon));
+		return getRealtimeUpdateFromParticipant(clientId, lat, lon, 0.0);
 	}
 
 	RealTimeUpdateData getRealtimeUpdate(GpsInfo gpsInfo) throws IOException, BadArgumentException {
