@@ -70,7 +70,6 @@ public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
 			List<RelationshipMember> relationships = relationshipStore.getFinalizedRelationships(gpsInput.getDeviceId());
 			for (RelationshipMember relationshipMember : relationships) {
 				Participant participant = procession.getParticipant(relationshipMember.getDeviceId());
-				System.out.println("friend="+participant);
 				FriendMessage friendMessage;
 				if ( participant != null) {
 					friendMessage = new FriendMessage();
