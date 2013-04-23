@@ -34,7 +34,7 @@ public class RpcHandlerSetActiveRoute extends RpcHandler {
 			rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Could not parse the input");
 			return;
 		}
-		if ( ! msg.verify(passwordSafe.getAdminPassword(), 10000)) {
+		if ( ! msg.verify(passwordSafe.getAdminPassword(), 3600*1000)) {
 			rpcCall.setError(BladenightError.INVALID_PASSWORD.getText(), "Invalid password");
 			return;
 		}

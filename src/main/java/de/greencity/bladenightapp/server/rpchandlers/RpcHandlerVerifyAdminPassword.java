@@ -19,7 +19,7 @@ public class RpcHandlerVerifyAdminPassword extends RpcHandler {
 	public void execute(RpcCall rpcCall) {
 		AdminMessage message = rpcCall.getInput(AdminMessage.class);
 		// TODO put maxAge in the configuration file
-		if ( ! message.verify(passwordSafe.getAdminPassword(), 30000) ) {
+		if ( ! message.verify(passwordSafe.getAdminPassword(), 3600*1000) ) {
 			rpcCall.setError(BladenightError.INVALID_PASSWORD.getText(), "Invalid password in: " + message.toString());
 			return;
 		}
