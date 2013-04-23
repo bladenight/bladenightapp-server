@@ -43,6 +43,7 @@ public class GetAllEventsTest {
 		.setStartDate("2020-06-08T21:00")
 		.setRouteName("route 2")
 		.setDurationInMinutes(120)
+		.setParticipants(200)
 		.setStatus(EventStatus.CONFIRMED)
 		.build());
 		EventsListSingleton.setInstance(eventsList);
