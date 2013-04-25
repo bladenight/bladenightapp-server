@@ -254,8 +254,6 @@ public class App
 		long maxAge = KeyValueStoreSingleton.getLong("bnserver.relationships.collector.maxage", 		3600*1000	);
 		long period = KeyValueStoreSingleton.getLong("bnserver.relationships.collector.period", 		60*1000	);
 
-		log.info("initializeRelationshipStore: period="+period);
-		log.info("initializeRelationshipStore: maxAge="+maxAge);
 		RelationshipCollector collector = new RelationshipCollector(relationshipStore, period, maxAge);
 		new Thread(collector).start();
 		RelationshipStoreSingleton.setInstance(relationshipStore);
