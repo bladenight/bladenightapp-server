@@ -29,6 +29,7 @@ import de.greencity.bladenightapp.protocol.Protocol;
 import de.greencity.bladenightapp.relationships.Relationship;
 import de.greencity.bladenightapp.relationships.RelationshipStore;
 import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
+import de.greencity.bladenightapp.relationships.tasks.RelationshipCollector;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
 import de.greencity.bladenightapp.routes.RouteStoreSingleton;
@@ -250,6 +251,13 @@ public class App
 			System.exit(1);
 		}
 
+		long maxAge = KeyValueStoreSingleton.getLong("bnserver.relationships.collector.maxage", 		3600*1000	);
+		long period = KeyValueStoreSingleton.getLong("bnserver.relationships.collector.period", 		60*1000	);
+
+		log.info("initializeRelationshipStore: period="+period);
+		log.info("initializeRelationshipStore: maxAge="+maxAge);
+		RelationshipCollector collector = new RelationshipCollector(relationshipStore, period, maxAge);
+		new Thread(collector).start();
 		RelationshipStoreSingleton.setInstance(relationshipStore);
 	}
 
