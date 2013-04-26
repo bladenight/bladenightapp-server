@@ -78,9 +78,7 @@ public class App
 		};
 
 
-		int port = getPortToListenTo();
-		org.eclipse.jetty.server.Server server = new Server(port);
-		configureSsl(server);
+		org.eclipse.jetty.server.Server server = createServer();
 
 		String httpdocsConfigKey = "bnserver.httpdocs";
 		String httpdocsPath = KeyValueStoreSingleton.getPath(httpdocsConfigKey, null); 
@@ -107,31 +105,36 @@ public class App
 			log.error("Failed to start server: " + e);
 			System.exit(1);
 		}
-		log.info("The server is now listening for HTTP and WebSocket connections on port " + port);
+		log.info("The server is now listening port " + port);
+		log.info("SSL is" + ( useSsl() ? " " : " not " ) + "activated");
 		server.join();
 	}
 
-	private static void configureSsl(Server server) {
-		if ( KeyValueStoreSingleton.getInt("bnserver.ssl.enable", 0) == 0 )
-			return;
+	private static Server createServer() {
+		if ( ! useSsl() ) {
+			return new Server(getPortToListenTo());
+		}
+		Server server = new Server();
 
-		SslContextFactory sslContextFactory = new SslContextFactory(KeyValueStoreSingleton.getPath("bnserver.ssl.keystore.path"));
-		sslContextFactory.setKeyStorePassword(KeyValueStoreSingleton.getString("bnserver.ssl.keystore.password"));
-		sslContextFactory.setKeyManagerPassword(KeyValueStoreSingleton.getString("bnserver.ssl.keystore.password"));
-		sslContextFactory.setTrustStore(KeyValueStoreSingleton.getPath("bnserver.ssl.truststore.path"));
-		sslContextFactory.setTrustStorePassword(KeyValueStoreSingleton.getString("bnserver.ssl.truststore.password"));
+		SslContextFactory sslContextFactory = new SslContextFactory(KeyValueStoreSingleton.getPath("bnserver.network.ssl.keystore.path"));
+		sslContextFactory.setKeyStorePassword(KeyValueStoreSingleton.getString("bnserver.network.ssl.keystore.password"));
+		sslContextFactory.setKeyManagerPassword(KeyValueStoreSingleton.getString("bnserver.network.ssl.keystore.password"));
+		sslContextFactory.setTrustStore(KeyValueStoreSingleton.getPath("bnserver.network.ssl.truststore.path"));
+		sslContextFactory.setTrustStorePassword(KeyValueStoreSingleton.getString("bnserver.network.ssl.truststore.password"));
 		sslContextFactory.setNeedClientAuth(true);
 
 		SslSelectChannelConnector sslConnector = new SslSelectChannelConnector(sslContextFactory);
 
-		int port = KeyValueStoreSingleton.getInt("bnserver.ssl.port", 0);
-		sslConnector.setPort(port);
-
-		log.info("SSL listening on port " + port);
+		sslConnector.setPort(getPortToListenTo());
 
 		// Add the SocketConnector to the server
 		server.setConnectors(new Connector[] {sslConnector});
 
+		return server;
+	}
+
+	private static boolean useSsl() {
+		return KeyValueStoreSingleton.getInt("bnserver.network.ssl.enable", 0) != 0;
 	}
 
 	private static void initializeApplicationConfiguration() {
@@ -149,7 +152,20 @@ public class App
 	}
 
 	private static Integer getPortToListenTo() {
-		return Integer.valueOf(KeyValueStoreSingleton.getString("bnserver.port"));
+		String key = "bnserver.network.port";
+		int port = 0 ;
+		
+		try {
+			port = Integer.valueOf(KeyValueStoreSingleton.getString(key));
+		}
+		catch (Exception e) {
+			log.error(e);
+		}
+		if ( port == 0 ) {
+			log.error("Please provide a TCP port to bind ("+key+")");
+			System.exit(1);
+		}
+		return port;
 	}
 
 	private static void initializeLogger() {
