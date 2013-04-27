@@ -28,8 +28,8 @@ public class RpcHandlerSetActiveStatus extends RpcHandler {
 			rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Could not parse the input");
 			return;
 		}
-		if ( ! msg.verify(passwordSafe.getAdminPassword(), 3600*1000)) {
-			rpcCall.setError(BladenightError.INVALID_PASSWORD.getText(), "Invalid password");
+		if ( ! msg.verify(passwordSafe.getAdminPassword(), 12*3600*1000)) {
+			rpcCall.setError(BladenightError.INVALID_PASSWORD.getText(), "Verification for admin message failed: " + msg.toString());
 			return;
 		}
 		EventStatus newStatus = msg.getStatus();
