@@ -90,6 +90,7 @@ public class App
 			System.exit(1);
 		}
 		else {
+			log.info("Config: httpdocsPath="+httpdocsPath);
 			ResourceHandler resourceHandler = new ResourceHandler();
 			resourceHandler.setDirectoriesListed(true);
 			resourceHandler.setResourceBase(httpdocsPath);
@@ -179,7 +180,7 @@ public class App
 		}
 
 		log = LogFactory.getLog(App.class);
-		log.debug("Logger initinalized, log4j.properties="+log4jConfiguration);
+		log.info("confog: logger initinalized, log4j.properties="+log4jConfiguration);
 	}
 
 	private static void initializeRouteStore() {
@@ -191,6 +192,7 @@ public class App
 		}
 		RouteStore routeStore = new RouteStore(asFile);
 		RouteStoreSingleton.setInstance(routeStore);
+		log.info("Config: routeStorePath="+asString);
 		log.info("Route store initialized, there are " + routeStore.getAvailableRoutes().size() + " different routes available.");
 	}
 
@@ -201,6 +203,7 @@ public class App
 		if ( ! asFile.isDirectory() ) {
 			log.error("Invalid directory for the events: " + configurationKey + "=" + asString);
 		}
+		log.info("Config: eventStorePath="+asString);
 
 		ListPersistor<Event> persistor = new ListPersistor<Event>(Event.class, asFile);
 
@@ -231,6 +234,8 @@ public class App
 		double smoothingFactor = KeyValueStoreSingleton.getDouble("bnserver.procession.smoothing", 0.0);
 		procession.setUpdateSmoothingFactor(smoothingFactor);
 
+		log.info("Config: Procession smoothingFactor="+smoothingFactor);
+
 		new Thread(new ComputeScheduler(procession, 1000)).start();
 
 		initializeParticipantCollector(procession);
@@ -241,6 +246,10 @@ public class App
 		long maxAbsoluteAge 			= KeyValueStoreSingleton.getLong("bnserver.procession.collector.absolute", 		30000	);
 		double maxRelativeAgeFactor 	= KeyValueStoreSingleton.getDouble("bnserver.procession.collector.relative", 	5.0		);
 		long period 					= KeyValueStoreSingleton.getLong("bnserver.procession.collector.period", 		1000	);
+
+		log.info("Config: Procession collector maxAbsoluteAge="+maxAbsoluteAge);
+		log.info("Config: Procession collector maxRelativeAgeFactor="+maxRelativeAgeFactor);
+		log.info("Config: Procession collector period="+period);
 
 		ParticipantCollector collector = new ParticipantCollector(procession);
 		collector.setPeriod(period);
@@ -255,9 +264,10 @@ public class App
 		String configurationKey = "bnserver.relationships.path";
 		String path = KeyValueStoreSingleton.getPath(configurationKey);
 		if ( path == null || ! new File(path).isDirectory()) {
-			log.error(configurationKey + " in the configuraiton file needs to point to a valid directory");
+			log.error(configurationKey + " in the configuraiton file needs to point to a valid directory: " + path);
 			System.exit(1);
 		}
+		log.info("Config: relationshipStorePath="+path);
 		ListPersistor<Relationship> persistor = new ListPersistor<Relationship>(Relationship.class, new File(path));
 		relationshipStore.setPersistor(persistor);
 		try {
@@ -269,6 +279,9 @@ public class App
 
 		long maxAge = KeyValueStoreSingleton.getLong("bnserver.relationships.collector.maxage", 		3600*1000	);
 		long period = KeyValueStoreSingleton.getLong("bnserver.relationships.collector.period", 		60*1000	);
+		
+		log.info("Config: Relationship collector: maxAge="+maxAge);
+		log.info("Config: Relationship collector: period="+period);
 
 		RelationshipCollector collector = new RelationshipCollector(relationshipStore, period, maxAge);
 		new Thread(collector).start();
