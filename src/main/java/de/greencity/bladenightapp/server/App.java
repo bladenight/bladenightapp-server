@@ -203,7 +203,7 @@ public class App
 	}
 
 	private static void initializeEventsList() {
-		String configurationKey = "bnserver.events.dir";
+		String configurationKey = "bnserver.events.path";
 		String asString = KeyValueStoreSingleton.getPath(configurationKey);
 		File asFile = new File(asString);
 		if ( ! asFile.isDirectory() ) {
