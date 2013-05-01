@@ -21,6 +21,7 @@ import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.EventMessage.EventStatus;
 import de.greencity.bladenightapp.network.messages.SetActiveStatusMessage;
+import de.greencity.bladenightapp.persistence.InconsistencyException;
 import de.greencity.bladenightapp.persistence.ListPersistor;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
@@ -46,7 +47,7 @@ public class SetActiveStatusTest {
 	final String adminPassword = "test1234";
 
 	@Before
-	public void init() throws IOException {
+	public void init() throws IOException, InconsistencyException {
 		LogHelper.disableLogs();
 
 		RouteStore routeStore = new RouteStore(FileUtils.toFile(SetActiveStatusTest.class.getResource(routesDir)));

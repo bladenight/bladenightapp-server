@@ -20,6 +20,7 @@ import de.greencity.bladenightapp.events.EventsListSingleton;
 import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.SetActiveRouteMessage;
+import de.greencity.bladenightapp.persistence.InconsistencyException;
 import de.greencity.bladenightapp.persistence.ListPersistor;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
@@ -45,7 +46,7 @@ public class SetActiveRouteTest {
 	final String adminPassword = "test1234";
 
 	@Before
-	public void init() throws IOException {
+	public void init() throws IOException, InconsistencyException {
 		LogHelper.disableLogs();
 
 		RouteStore routeStore = new RouteStore(FileUtils.toFile(SetActiveRouteTest.class.getResource(routesDir)));

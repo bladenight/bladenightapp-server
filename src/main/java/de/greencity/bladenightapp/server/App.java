@@ -58,7 +58,7 @@ public class App
 		try {
 			startServer();
 		} catch (Exception e) {
-			log.error("Failed to start:", e);
+			getLog().error("Failed to start:", e);
 		}
 	}
 
@@ -71,7 +71,7 @@ public class App
 
 			@Override
 			public WebSocket doWebSocketConnect(HttpServletRequest request, String protocol) {
-				log.info("Got new connection from " + request.getRemoteAddr());
+				getLog().info("Got new connection from " + request.getRemoteAddr());
 				return super.doWebSocketConnect(request, protocol);
 			}
 
@@ -83,14 +83,14 @@ public class App
 		String httpdocsConfigKey = "bnserver.httpdocs";
 		String httpdocsPath = KeyValueStoreSingleton.getPath(httpdocsConfigKey, null); 
 		if ( httpdocsPath == null ) {
-			log.info("No httpdocs path has been set ("+httpdocsConfigKey+")");
+			getLog().info("No httpdocs path has been set ("+httpdocsConfigKey+")");
 		}
 		else if ( ! new File(httpdocsPath).isDirectory() ) {
-			log.fatal("The provided httpdocs path is not a valid directory: " + httpdocsPath);
+			getLog().fatal("The provided httpdocs path is not a valid directory: " + httpdocsPath);
 			System.exit(1);
 		}
 		else {
-			log.info("Config: httpdocsPath="+httpdocsPath);
+			getLog().info("Config: httpdocsPath="+httpdocsPath);
 			ResourceHandler resourceHandler = new ResourceHandler();
 			resourceHandler.setDirectoriesListed(true);
 			resourceHandler.setResourceBase(httpdocsPath);
@@ -103,11 +103,11 @@ public class App
 			server.start();
 		}
 		catch(Exception e) {
-			log.error("Failed to start server: " + e);
+			getLog().error("Failed to start server: " + e);
 			System.exit(1);
 		}
-		log.info("The server is now listening port " + port);
-		log.info("SSL is" + ( useSsl() ? " " : " not " ) + "activated");
+		getLog().info("The server is now listening port " + port);
+		getLog().info("SSL is" + ( useSsl() ? " " : " not " ) + "activated");
 		server.join();
 	}
 
@@ -160,10 +160,10 @@ public class App
 			port = Integer.valueOf(KeyValueStoreSingleton.getString(key));
 		}
 		catch (Exception e) {
-			log.error(e);
+			getLog().error(e);
 		}
 		if ( port == 0 ) {
-			log.error("Please provide a TCP port to bind ("+key+")");
+			getLog().error("Please provide a TCP port to bind ("+key+")");
 			System.exit(1);
 		}
 		return port;
@@ -180,7 +180,13 @@ public class App
 		}
 
 		log = LogFactory.getLog(App.class);
-		log.info("confog: logger initinalized, log4j.properties="+log4jConfiguration);
+		getLog().info("confog: logger initinalized, log4j.properties="+log4jConfiguration);
+	}
+	
+	private static Log getLog() {
+		if ( log == null )
+			initializeLogger();
+		return log;
 	}
 
 	private static void initializeRouteStore() {
@@ -188,12 +194,12 @@ public class App
 		String asString = KeyValueStoreSingleton.getPath(configurationKey);
 		File asFile = new File(asString);
 		if ( ! asFile.isDirectory() ) {
-			log.error("Invalid path for route files: " + configurationKey + "=" + asString);
+			getLog().error("Invalid path for route files: " + configurationKey + "=" + asString);
 		}
 		RouteStore routeStore = new RouteStore(asFile);
 		RouteStoreSingleton.setInstance(routeStore);
-		log.info("Config: routeStorePath="+asString);
-		log.info("Route store initialized, there are " + routeStore.getAvailableRoutes().size() + " different routes available.");
+		getLog().info("Config: routeStorePath="+asString);
+		getLog().info("Route store initialized, there are " + routeStore.getAvailableRoutes().size() + " different routes available.");
 	}
 
 	private static void initializeEventsList() {
@@ -201,9 +207,9 @@ public class App
 		String asString = KeyValueStoreSingleton.getPath(configurationKey);
 		File asFile = new File(asString);
 		if ( ! asFile.isDirectory() ) {
-			log.error("Invalid directory for the events: " + configurationKey + "=" + asString);
+			getLog().error("Invalid directory for the events: " + configurationKey + "=" + asString);
 		}
-		log.info("Config: eventStorePath="+asString);
+		getLog().info("Config: eventStorePath="+asString);
 
 		ListPersistor<Event> persistor = new ListPersistor<Event>(Event.class, asFile);
 
@@ -211,12 +217,12 @@ public class App
 		eventList.setPersistor(persistor);
 		try {
 			eventList.read();
-		} catch (IOException e) {
-			log.error("Failed to read events: " + e.toString());
+		} catch (Exception e) {
+			getLog().error("Failed to read events: " + e.toString());
 			System.exit(1);
 		}
 		EventsListSingleton.setInstance(eventList);
-		log.info("Events list initialized with " + eventList.size() + " events.");
+		getLog().info("Events list initialized with " + eventList.size() + " events.");
 	}
 
 	private static void initializeProcession() {
@@ -227,14 +233,14 @@ public class App
 			procession.setRoute(route);
 		}
 		else {
-			log.warn("No upcoming event found");
+			getLog().warn("No upcoming event found");
 		}
 		ProcessionSingleton.setProcession(procession);
 
 		double smoothingFactor = KeyValueStoreSingleton.getDouble("bnserver.procession.smoothing", 0.0);
 		procession.setUpdateSmoothingFactor(smoothingFactor);
 
-		log.info("Config: Procession smoothingFactor="+smoothingFactor);
+		getLog().info("Config: Procession smoothingFactor="+smoothingFactor);
 
 		new Thread(new ComputeScheduler(procession, 1000)).start();
 
@@ -247,9 +253,9 @@ public class App
 		double maxRelativeAgeFactor 	= KeyValueStoreSingleton.getDouble("bnserver.procession.collector.relative", 	5.0		);
 		long period 					= KeyValueStoreSingleton.getLong("bnserver.procession.collector.period", 		1000	);
 
-		log.info("Config: Procession collector maxAbsoluteAge="+maxAbsoluteAge);
-		log.info("Config: Procession collector maxRelativeAgeFactor="+maxRelativeAgeFactor);
-		log.info("Config: Procession collector period="+period);
+		getLog().info("Config: Procession collector maxAbsoluteAge="+maxAbsoluteAge);
+		getLog().info("Config: Procession collector maxRelativeAgeFactor="+maxRelativeAgeFactor);
+		getLog().info("Config: Procession collector period="+period);
 
 		ParticipantCollector collector = new ParticipantCollector(procession);
 		collector.setPeriod(period);
@@ -264,24 +270,24 @@ public class App
 		String configurationKey = "bnserver.relationships.path";
 		String path = KeyValueStoreSingleton.getPath(configurationKey);
 		if ( path == null || ! new File(path).isDirectory()) {
-			log.error(configurationKey + " in the configuraiton file needs to point to a valid directory: " + path);
+			getLog().error(configurationKey + " in the configuraiton file needs to point to a valid directory: " + path);
 			System.exit(1);
 		}
-		log.info("Config: relationshipStorePath="+path);
+		getLog().info("Config: relationshipStorePath="+path);
 		ListPersistor<Relationship> persistor = new ListPersistor<Relationship>(Relationship.class, new File(path));
 		relationshipStore.setPersistor(persistor);
 		try {
 			relationshipStore.read();
-		} catch (IOException e) {
-			log.error("Failed to read relationships from " + path);
+		} catch (Exception e) {
+			getLog().error("Failed to read relationships from " + path);
 			System.exit(1);
 		}
 
 		long maxAge = KeyValueStoreSingleton.getLong("bnserver.relationships.collector.maxage", 		3600*1000	);
 		long period = KeyValueStoreSingleton.getLong("bnserver.relationships.collector.period", 		60*1000	);
 		
-		log.info("Config: Relationship collector: maxAge="+maxAge);
-		log.info("Config: Relationship collector: period="+period);
+		getLog().info("Config: Relationship collector: maxAge="+maxAge);
+		getLog().info("Config: Relationship collector: period="+period);
 
 		RelationshipCollector collector = new RelationshipCollector(relationshipStore, period, maxAge);
 		new Thread(collector).start();
@@ -293,7 +299,7 @@ public class App
 		String configurationKey = "bnserver.admin.password";
 		String password = KeyValueStoreSingleton.getString(configurationKey);
 		if ( password == null ) {
-			log.warn(configurationKey + " is not set in the configuraiton file, defaulting to a random but safe value");
+			getLog().warn(configurationKey + " is not set in the configuraiton file, defaulting to a random but safe value");
 			password = UUID.randomUUID().toString() + UUID.randomUUID().toString(); 
 		}
 		passwordSafe.setAdminPassword(password);
@@ -305,7 +311,7 @@ public class App
 			initializeProtocolWithException(server);
 		}
 		catch (IOException e) {
-			log.error("Failed to open protocol file: "+e);
+			getLog().error("Failed to open protocol file: "+e);
 			System.exit(1);
 		}
 	}
