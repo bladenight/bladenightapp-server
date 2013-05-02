@@ -23,6 +23,7 @@ import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetAllRouteNames;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetFriends;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetRoute;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerCreateRelationship;
+import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerKillServer;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerSetActiveRoute;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerSetActiveStatus;
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerGetRealtimeUpdate;
@@ -58,6 +59,7 @@ public class BladenightWampServer extends WampServer {
 		registerRpcHandler(BladenightUrl.GET_FRIENDS.getText(), 				new RpcHandlerGetFriends(relationshipStore, procession));
 		registerRpcHandler(BladenightUrl.DELETE_RELATIONSHIP.getText(), 		new RpcHandlerDeleteRelationship(relationshipStore));
 		registerRpcHandler(BladenightUrl.SET_MIN_POSITION.getText(), 			new RpcHandlerSetMinimumLinearPosition(passwordSafe));
+		registerRpcHandler(BladenightUrl.KILL_SERVER.getText(), 				new RpcHandlerKillServer(passwordSafe));
 	}
 	
 	private static Log log;
