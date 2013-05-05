@@ -5,29 +5,21 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.routes.Route;
+import de.greencity.bladenightapp.testutils.Client;
 import de.greencity.bladenightapp.testutils.LogHelper;
-import de.greencity.bladenightapp.testutils.ProtocollingChannel;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
-import fr.ocroquette.wampoc.messages.CallMessage;
-import fr.ocroquette.wampoc.messages.CallResultMessage;
-import fr.ocroquette.wampoc.messages.Message;
-import fr.ocroquette.wampoc.messages.MessageMapper;
-import fr.ocroquette.wampoc.messages.MessageType;
-import fr.ocroquette.wampoc.server.Session;
 
-public class BladenightWampServerTest {
+public class GetRealtimeUpdateTest {
 	final String routeName = "Nord - kurz";
 	final String path = "/routes/" + routeName + ".kml";
 
@@ -35,7 +27,7 @@ public class BladenightWampServerTest {
 	public void init() {
 		LogHelper.disableLogs();
 
-		File file = FileUtils.toFile(BladenightWampServerTest.class.getResource(path));
+		File file = FileUtils.toFile(GetRealtimeUpdateTest.class.getResource(path));
 		assertTrue(file != null);
 		route = new Route();
 		assertTrue(route.load(file));
@@ -46,10 +38,7 @@ public class BladenightWampServerTest {
 		procession.setMaxComputeAge(0);
 		ProcessionSingleton.setProcession(procession);
 
-		channel = new ProtocollingChannel();
-
-		server = new BladenightWampServer();
-		session = server.openSession(channel);
+		client = new Client(new BladenightWampServer());
 	}
 	
 	@Test
@@ -121,33 +110,18 @@ public class BladenightWampServerTest {
 	}
 	
 	RealTimeUpdateData getRealtimeUpdateFromParticipant(String clientId, double lat, double lon) throws IOException, BadArgumentException {
-		return getRealtimeUpdate(new GpsInfo(clientId, true, lat, lon));
+		return client.getRealtimeUpdate(new GpsInfo(clientId, true, lat, lon));
 	}
 
 	RealTimeUpdateData getRealtimeUpdateFromLocalizedObserver(String clientId, double lat, double lon) throws IOException, BadArgumentException {
-		return getRealtimeUpdate(new GpsInfo(clientId, false, lat, lon));
+		return client.getRealtimeUpdate(new GpsInfo(clientId, false, lat, lon));
 	}
 
 	RealTimeUpdateData getRealtimeUpdateFromUnlocalizedObserver() throws IOException, BadArgumentException {
-		return getRealtimeUpdate(null);
-	}
-
-	RealTimeUpdateData getRealtimeUpdate(GpsInfo gpsInfo) throws IOException, BadArgumentException {
-		int messageCount = channel.handledMessages.size();
-		String callId = UUID.randomUUID().toString();
-		CallMessage msg = new CallMessage(callId,BladenightUrl.GET_REALTIME_UPDATE.getText());
-		msg.setPayload(gpsInfo);
-		server.handleIncomingMessage(session, msg);
-		assertEquals(messageCount+1, channel.handledMessages.size());
-		Message message = MessageMapper.fromJson(channel.lastMessage());
-		assertTrue(message.getType() == MessageType.CALLRESULT);
-		CallResultMessage callResult = (CallResultMessage) message;
-		return callResult.getPayload(RealTimeUpdateData.class);
+		return client.getRealtimeUpdate(null);
 	}
 
 	private Route route;
 	private Procession procession;
-	private ProtocollingChannel channel;
-	private BladenightWampServer server;
-	private Session session;
+	private Client client;
 }

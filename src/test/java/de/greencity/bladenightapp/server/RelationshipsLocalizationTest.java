@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.impl.NoOpLog;
@@ -14,27 +13,22 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.greencity.bladenightapp.events.EventList;
-import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
 import de.greencity.bladenightapp.network.messages.MovingPointMessage;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
-import de.greencity.bladenightapp.network.messages.RelationshipInputMessage;
 import de.greencity.bladenightapp.network.messages.RelationshipOutputMessage;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.relationships.RelationshipStore;
 import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
 import de.greencity.bladenightapp.routes.Route;
+import de.greencity.bladenightapp.testutils.Client;
 import de.greencity.bladenightapp.testutils.LogHelper;
-import de.greencity.bladenightapp.testutils.ProtocollingChannel;
 import de.greencity.bladenightapp.time.Sleep;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
-import fr.ocroquette.wampoc.messages.CallMessage;
 import fr.ocroquette.wampoc.messages.CallResultMessage;
 import fr.ocroquette.wampoc.messages.Message;
-import fr.ocroquette.wampoc.messages.MessageMapper;
 import fr.ocroquette.wampoc.messages.MessageType;
-import fr.ocroquette.wampoc.server.Session;
 
 public class RelationshipsLocalizationTest {
 	final String routeName = "Nord - kurz";
@@ -60,9 +54,8 @@ public class RelationshipsLocalizationTest {
 		ProcessionSingleton.setProcession(procession);
 
 		RelationshipStoreSingleton.setInstance(new RelationshipStore());
-		channel = new ProtocollingChannel();
-		server = new BladenightWampServer();
-		session = server.openSession(channel);
+
+		client = new Client(new BladenightWampServer());
 	}
 
 
@@ -126,51 +119,24 @@ public class RelationshipsLocalizationTest {
 		return friendId;
 	}
 
-	public Message send(String deviceId, int friendId, long requestId) throws IOException, BadArgumentException {
-		int messageCount = channel.handledMessages.size();
-		String callId = UUID.randomUUID().toString();
-		CallMessage msg = new CallMessage(callId,BladenightUrl.CREATE_RELATIONSHIP.getText());
-		RelationshipInputMessage partnershipMessage = new RelationshipInputMessage(deviceId, friendId, requestId);
-		msg.setPayload(partnershipMessage);
-		server.handleIncomingMessage(session, msg);
-		assertEquals(messageCount+1, channel.handledMessages.size());
-		return MessageMapper.fromJson(channel.lastMessage());
-	}
-
 	public RelationshipOutputMessage sendAndParse(String deviceId, int friendId, long relationshipId) throws IOException, BadArgumentException {
-		Message message = send(deviceId, friendId, relationshipId);
+		Message message = client.sendRelationshipRequest(deviceId, friendId, relationshipId);
 		assertTrue(message.getType() == MessageType.CALLRESULT);
 		CallResultMessage callResult = (CallResultMessage) message;
 		return callResult.getPayload(RelationshipOutputMessage.class);
 	}
 
 	RealTimeUpdateData getRealtimeUpdateFromParticipant(String clientId, double lat, double lon, double acc) throws IOException, BadArgumentException {
-		return getRealtimeUpdate(new GpsInfo(clientId, true, lat, lon, (int)acc));
+		return client.getRealtimeUpdate(new GpsInfo(clientId, true, lat, lon, (int)acc));
 	}
 
 	RealTimeUpdateData getRealtimeUpdateFromParticipant(String clientId, double lat, double lon) throws IOException, BadArgumentException {
 		return getRealtimeUpdateFromParticipant(clientId, lat, lon, 0.0);
 	}
 
-	RealTimeUpdateData getRealtimeUpdate(GpsInfo gpsInfo) throws IOException, BadArgumentException {
-		int messageCount = channel.handledMessages.size();
-		String callId = UUID.randomUUID().toString();
-		CallMessage msg = new CallMessage(callId,BladenightUrl.GET_REALTIME_UPDATE.getText());
-		msg.setPayload(gpsInfo);
-		server.handleIncomingMessage(session, msg);
-		assertEquals(messageCount+1, channel.handledMessages.size());
-		Message message = MessageMapper.fromJson(channel.lastMessage());
-		assertTrue(message.getType() == MessageType.CALLRESULT);
-		CallResultMessage callResult = (CallResultMessage) message;
-		return callResult.getPayload(RealTimeUpdateData.class);
-	}
-
-
-	private ProtocollingChannel channel;
-	private BladenightWampServer server;
-	private Session session;
 	private Route route;
 	private Procession procession;
 	static int friendIdCounter = 1;
+	private Client client;
 
 }

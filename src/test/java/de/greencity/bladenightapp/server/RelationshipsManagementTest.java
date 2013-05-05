@@ -10,23 +10,18 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.FriendsMessage;
-import de.greencity.bladenightapp.network.messages.RelationshipInputMessage;
 import de.greencity.bladenightapp.network.messages.RelationshipOutputMessage;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.relationships.RelationshipStore;
 import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
+import de.greencity.bladenightapp.testutils.Client;
 import de.greencity.bladenightapp.testutils.LogHelper;
-import de.greencity.bladenightapp.testutils.ProtocollingChannel;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
-import fr.ocroquette.wampoc.messages.CallMessage;
 import fr.ocroquette.wampoc.messages.CallResultMessage;
 import fr.ocroquette.wampoc.messages.Message;
-import fr.ocroquette.wampoc.messages.MessageMapper;
 import fr.ocroquette.wampoc.messages.MessageType;
-import fr.ocroquette.wampoc.server.Session;
 
 public class RelationshipsManagementTest {
 
@@ -39,9 +34,7 @@ public class RelationshipsManagementTest {
 	public void before() {
 		RelationshipStoreSingleton.setInstance(new RelationshipStore());
 		ProcessionSingleton.setProcession(new Procession());
-		channel = new ProtocollingChannel();
-		server = new BladenightWampServer();
-		session = server.openSession(channel);
+		client = new Client(new BladenightWampServer());
 	}
 
 	@Test
@@ -110,7 +103,7 @@ public class RelationshipsManagementTest {
 
 	@Test
 	public void invalidRequest1() throws IOException, BadArgumentException {
-		Message message = sendRequest(null, ++friendIdCounter, 0);
+		Message message = client.sendRelationshipRequest(null, ++friendIdCounter, 0);
 		assertTrue(message.getType() == MessageType.CALLERROR);
 	}
 
@@ -118,7 +111,7 @@ public class RelationshipsManagementTest {
 	public void invalidRequest2() throws IOException, BadArgumentException {
 		RelationshipOutputMessage output = sendAndParseRequest(UUID.randomUUID().toString(), ++friendIdCounter, 0);
 		assertTrue(output.getRequestId() > 0);
-		Message message = sendRequest(null, ++friendIdCounter, output.getRequestId());
+		Message message = client.sendRelationshipRequest(null, ++friendIdCounter, output.getRequestId());
 		assertTrue(message.getType() == MessageType.CALLERROR);
 	}
 
@@ -127,7 +120,7 @@ public class RelationshipsManagementTest {
 		String deviceId = UUID.randomUUID().toString();
 		RelationshipOutputMessage output = sendAndParseRequest(deviceId, ++friendIdCounter, 0);
 		assertTrue(output.getRequestId() > 0);
-		Message message = sendRequest(deviceId, ++friendIdCounter, output.getRequestId());
+		Message message = client.sendRelationshipRequest(deviceId, ++friendIdCounter, output.getRequestId());
 		assertTrue(message.getType() == MessageType.CALLERROR);
 	}
 
@@ -140,66 +133,32 @@ public class RelationshipsManagementTest {
 		return friendId;
 	}
 
-	public Message sendRequest(String deviceId, int friendId, long requestId) throws IOException, BadArgumentException {
-		int messageCount = channel.handledMessages.size();
-		String callId = UUID.randomUUID().toString();
-		CallMessage msg = new CallMessage(callId,BladenightUrl.CREATE_RELATIONSHIP.getText());
-		RelationshipInputMessage partnershipMessage = new RelationshipInputMessage(deviceId, friendId, requestId);
-		msg.setPayload(partnershipMessage);
-		server.handleIncomingMessage(session, msg);
-		assertEquals(messageCount+1, channel.handledMessages.size());
-		return MessageMapper.fromJson(channel.lastMessage());
-	}
-
-	public Message sendDeletion(String deviceId, int friendId) throws IOException, BadArgumentException {
-		int messageCount = channel.handledMessages.size();
-		String callId = UUID.randomUUID().toString();
-		CallMessage msg = new CallMessage(callId,BladenightUrl.DELETE_RELATIONSHIP.getText());
-		RelationshipInputMessage partnershipMessage = new RelationshipInputMessage(deviceId, friendId, 0);
-		msg.setPayload(partnershipMessage);
-		server.handleIncomingMessage(session, msg);
-		assertEquals(messageCount+1, channel.handledMessages.size());
-		return MessageMapper.fromJson(channel.lastMessage());
-	}
-
 	public void sendDeletionAndCheckForSuccess(String deviceId, int friendId) throws IOException, BadArgumentException  {
-		Message message = sendDeletion(deviceId, friendId);
+		Message message = client.deleteReleationship(deviceId, friendId);
 		assertTrue(message.getType() == MessageType.CALLRESULT);
 	}
 
 	public void sendDeletionAndCheckForFailure(String deviceId, int friendId) throws IOException, BadArgumentException  {
-		Message message = sendDeletion(deviceId, friendId);
+		Message message = client.deleteReleationship(deviceId, friendId);
 		assertTrue(message.getType() == MessageType.CALLERROR);
 	}
 
 
 	public RelationshipOutputMessage sendAndParseRequest(String deviceId, int friendId, long requestId) throws IOException, BadArgumentException {
-		Message message = sendRequest(deviceId, friendId, requestId);
+		Message message = client.sendRelationshipRequest(deviceId, friendId, requestId);
 		assertTrue(message.getType() == MessageType.CALLRESULT);
 		CallResultMessage callResult = (CallResultMessage) message;
 		return callResult.getPayload(RelationshipOutputMessage.class);
 	}
 
 	public FriendsMessage getAndParseFriends(String deviceId) throws IOException, BadArgumentException {
-		Message message = getFriends(deviceId);
+		Message message = client.getFriends(deviceId);
 		assertTrue(message.getType() == MessageType.CALLRESULT);
 		CallResultMessage callResult = (CallResultMessage) message;
 		return callResult.getPayload(FriendsMessage.class);
 	}
 
 
-	public Message getFriends(String deviceId) throws IOException, BadArgumentException {
-		int messageCount = channel.handledMessages.size();
-		String callId = UUID.randomUUID().toString();
-		CallMessage msg = new CallMessage(callId,BladenightUrl.GET_FRIENDS.getText());
-		msg.setPayload(deviceId);
-		server.handleIncomingMessage(session, msg);
-		assertEquals(messageCount+1, channel.handledMessages.size());
-		return MessageMapper.fromJson(channel.lastMessage());
-	}
-
-	private ProtocollingChannel channel;
-	private BladenightWampServer server;
-	private Session session;
+	private Client client;
 	static int friendIdCounter = 1;
 }
