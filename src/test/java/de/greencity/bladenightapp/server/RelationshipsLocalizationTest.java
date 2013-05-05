@@ -18,9 +18,7 @@ import de.greencity.bladenightapp.network.messages.MovingPointMessage;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
 import de.greencity.bladenightapp.network.messages.RelationshipOutputMessage;
 import de.greencity.bladenightapp.procession.Procession;
-import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.relationships.RelationshipStore;
-import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.testutils.Client;
 import de.greencity.bladenightapp.testutils.LogHelper;
@@ -51,11 +49,14 @@ public class RelationshipsLocalizationTest {
 		procession = new Procession();
 		procession.setRoute(route);
 		procession.setMaxComputeAge(0);
-		ProcessionSingleton.setProcession(procession);
 
-		RelationshipStoreSingleton.setInstance(new RelationshipStore());
+		BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+		.setProcession(procession)
+		.setRelationshipStore(new RelationshipStore())
+		.build();
 
-		client = new Client(new BladenightWampServer());
+		client = new Client(server);
+
 	}
 
 

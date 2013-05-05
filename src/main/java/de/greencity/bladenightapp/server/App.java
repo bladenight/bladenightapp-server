@@ -18,23 +18,18 @@ import org.eclipse.jetty.websocket.WebSocket;
 
 import de.greencity.bladenightapp.events.Event;
 import de.greencity.bladenightapp.events.EventList;
-import de.greencity.bladenightapp.events.EventsListSingleton;
 import de.greencity.bladenightapp.keyvaluestore.KeyValueStoreSingleton;
 import de.greencity.bladenightapp.persistence.ListPersistor;
 import de.greencity.bladenightapp.procession.Procession;
-import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.procession.tasks.ComputeScheduler;
 import de.greencity.bladenightapp.procession.tasks.ParticipantCollector;
 import de.greencity.bladenightapp.protocol.Protocol;
 import de.greencity.bladenightapp.relationships.Relationship;
 import de.greencity.bladenightapp.relationships.RelationshipStore;
-import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
 import de.greencity.bladenightapp.relationships.tasks.RelationshipCollector;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
-import de.greencity.bladenightapp.routes.RouteStoreSingleton;
 import de.greencity.bladenightapp.security.PasswordSafe;
-import de.greencity.bladenightapp.security.PasswordSafeSingleton;
 import fr.ocroquette.wampoc.server.TextFrameEavesdropper;
 import fr.ocroquette.wampoc.server.WampServer;
 
@@ -46,11 +41,12 @@ public class App
 	{
 		initializeApplicationConfiguration();
 		initializeLogger();
-		initializeRouteStore();
-		initializeEventsList();
-		initializeProcession();
+		RouteStore routeStore = initializeRouteStore();
+		EventList eventList = initializeEventsList();
+		initializeProcession(eventList, routeStore);
 		initializeRelationshipStore();
 		initializePasswordSafe();
+		initializeMinClientVersion();
 		tryStartServer();
 	}
 
@@ -63,7 +59,7 @@ public class App
 	}
 
 	public static void startServer() throws Exception {
-		fr.ocroquette.wampoc.server.WampServer wampocServer = new BladenightWampServer();
+		fr.ocroquette.wampoc.server.WampServer wampocServer = bladenightWampServerBuilder.build();
 
 		initializeProtocol(wampocServer);
 
@@ -106,7 +102,7 @@ public class App
 			getLog().error("Failed to start server: " + e);
 			System.exit(1);
 		}
-		getLog().info("The server is now listening port " + port);
+		getLog().info("The server is now listening on port " + port);
 		getLog().info("SSL is" + ( useSsl() ? " " : " not " ) + "activated");
 		server.join();
 	}
@@ -189,7 +185,7 @@ public class App
 		return log;
 	}
 
-	private static void initializeRouteStore() {
+	private static RouteStore initializeRouteStore() {
 		String configurationKey = "bnserver.routes.path";
 		String asString = KeyValueStoreSingleton.getPath(configurationKey);
 		File asFile = new File(asString);
@@ -197,12 +193,13 @@ public class App
 			getLog().error("Invalid path for route files: " + configurationKey + "=" + asString);
 		}
 		RouteStore routeStore = new RouteStore(asFile);
-		RouteStoreSingleton.setInstance(routeStore);
+		bladenightWampServerBuilder.setRouteStore(routeStore);
 		getLog().info("Config: routeStorePath="+asString);
 		getLog().info("Route store initialized, there are " + routeStore.getAvailableRoutes().size() + " different routes available.");
+		return routeStore;
 	}
 
-	private static void initializeEventsList() {
+	private static EventList initializeEventsList() {
 		String configurationKey = "bnserver.events.path";
 		String asString = KeyValueStoreSingleton.getPath(configurationKey);
 		File asFile = new File(asString);
@@ -221,21 +218,22 @@ public class App
 			getLog().error("Failed to read events: " + e.toString());
 			System.exit(1);
 		}
-		EventsListSingleton.setInstance(eventList);
+		bladenightWampServerBuilder.setEventList(eventList);
 		getLog().info("Events list initialized with " + eventList.size() + " events.");
+		return eventList;
 	}
 
-	private static void initializeProcession() {
+	private static Procession initializeProcession(EventList eventList, RouteStore routeStore) {
 		Procession procession = new Procession();
-		Event nextEvent = EventsListSingleton.getInstance().getActiveEvent();
+		Event nextEvent = eventList.getActiveEvent();
 		if ( nextEvent != null ) {
-			Route route = RouteStoreSingleton.getInstance().getRoute(nextEvent.getRouteName());
+			Route route = routeStore.getRoute(nextEvent.getRouteName());
 			procession.setRoute(route);
 		}
 		else {
 			getLog().warn("No upcoming event found");
 		}
-		ProcessionSingleton.setProcession(procession);
+		bladenightWampServerBuilder.setProcession(procession);
 
 		double smoothingFactor = KeyValueStoreSingleton.getDouble("bnserver.procession.smoothing", 0.0);
 		procession.setUpdateSmoothingFactor(smoothingFactor);
@@ -245,7 +243,8 @@ public class App
 		new Thread(new ComputeScheduler(procession, 1000)).start();
 
 		initializeParticipantCollector(procession);
-
+		
+		return procession;
 	}
 
 	private static void initializeParticipantCollector(Procession procession) {
@@ -291,7 +290,7 @@ public class App
 
 		RelationshipCollector collector = new RelationshipCollector(relationshipStore, period, maxAge);
 		new Thread(collector).start();
-		RelationshipStoreSingleton.setInstance(relationshipStore);
+		bladenightWampServerBuilder.setRelationshipStore(relationshipStore);
 	}
 
 	private static void initializePasswordSafe() {
@@ -303,7 +302,7 @@ public class App
 			password = UUID.randomUUID().toString() + UUID.randomUUID().toString(); 
 		}
 		passwordSafe.setAdminPassword(password);
-		PasswordSafeSingleton.setInstance(passwordSafe);
+		bladenightWampServerBuilder.setPasswordSafe(passwordSafe);
 	}
 
 	private static void initializeProtocol(WampServer server)  {
@@ -331,6 +330,16 @@ public class App
 		server.addIncomingFramesEavesdropper(incomingEavesdropper);
 	}
 
+	private static void initializeMinClientVersion() {
+		String configurationKey = "bnserver.client.build.min";
+		int minClientBuild = KeyValueStoreSingleton.getInt(configurationKey, 0);
+		if ( minClientBuild > 0 )
+			bladenightWampServerBuilder.setMinimumClientBuildNumber(minClientBuild);
+		getLog().info("Config: minClientBuild="+minClientBuild);
+	}
+
+
 	private static Log log;
+	private static BladenightWampServer.ServerBuilder bladenightWampServerBuilder = new BladenightWampServer.ServerBuilder();
 
 }

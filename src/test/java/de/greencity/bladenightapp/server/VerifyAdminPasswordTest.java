@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.greencity.bladenightapp.security.PasswordSafe;
-import de.greencity.bladenightapp.security.PasswordSafeSingleton;
 import de.greencity.bladenightapp.testutils.Client;
 import de.greencity.bladenightapp.testutils.LogHelper;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
@@ -22,9 +21,12 @@ public class VerifyAdminPasswordTest {
 
 		passwordSafe = new PasswordSafe();
 		passwordSafe.setAdminPassword(password);
-		PasswordSafeSingleton.setInstance(passwordSafe);
-		
-		client = new Client(new BladenightWampServer());
+
+		BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+		.setPasswordSafe(passwordSafe)
+		.build();
+
+		client = new Client(server);
 
 	}
 	

@@ -15,18 +15,14 @@ import com.google.gson.JsonSyntaxException;
 import de.greencity.bladenightapp.events.Event;
 import de.greencity.bladenightapp.events.EventGsonHelper;
 import de.greencity.bladenightapp.events.EventList;
-import de.greencity.bladenightapp.events.EventsListSingleton;
 import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.messages.EventMessage.EventStatus;
 import de.greencity.bladenightapp.persistence.InconsistencyException;
 import de.greencity.bladenightapp.persistence.ListPersistor;
 import de.greencity.bladenightapp.procession.Procession;
-import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
-import de.greencity.bladenightapp.routes.RouteStoreSingleton;
 import de.greencity.bladenightapp.security.PasswordSafe;
-import de.greencity.bladenightapp.security.PasswordSafeSingleton;
 import de.greencity.bladenightapp.testutils.Client;
 import de.greencity.bladenightapp.testutils.LogHelper;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
@@ -45,7 +41,6 @@ public class SetActiveStatusTest {
 		LogHelper.disableLogs();
 
 		RouteStore routeStore = new RouteStore(FileUtils.toFile(SetActiveStatusTest.class.getResource(routesDir)));
-		RouteStoreSingleton.setInstance(routeStore);
 		route = routeStore.getRoute(initialRouteName);
 		assertEquals(initialRouteName, route.getName());
 
@@ -60,18 +55,21 @@ public class SetActiveStatusTest {
 		eventList.setPersistor(persistor);
 		eventList.read();
 
-		EventsListSingleton.setInstance(eventList);
-
 		procession = new Procession();
 		procession.setRoute(route);
 		procession.setMaxComputeAge(0);
-		ProcessionSingleton.setProcession(procession);
 
 		passwordSafe = new PasswordSafe();
 		passwordSafe.setAdminPassword(adminPassword);
-		PasswordSafeSingleton.setInstance(passwordSafe);
 
-		client = new Client(new BladenightWampServer());
+		BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+		.setProcession(procession)
+		.setPasswordSafe(passwordSafe)
+		.setEventList(eventList)
+		.setRouteStore(routeStore)
+		.build();
+
+		client = new Client(server);
 	}
 	
 	@Test

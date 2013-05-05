@@ -5,7 +5,6 @@ import org.apache.commons.logging.LogFactory;
 
 import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.messages.SetMinimumLinearPosition;
-import de.greencity.bladenightapp.procession.ParticipantUpdater;
 import de.greencity.bladenightapp.security.PasswordSafe;
 import fr.ocroquette.wampoc.server.RpcCall;
 import fr.ocroquette.wampoc.server.RpcHandler;

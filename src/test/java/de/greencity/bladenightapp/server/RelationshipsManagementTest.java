@@ -13,9 +13,7 @@ import org.junit.Test;
 import de.greencity.bladenightapp.network.messages.FriendsMessage;
 import de.greencity.bladenightapp.network.messages.RelationshipOutputMessage;
 import de.greencity.bladenightapp.procession.Procession;
-import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.relationships.RelationshipStore;
-import de.greencity.bladenightapp.relationships.RelationshipStoreSingleton;
 import de.greencity.bladenightapp.testutils.Client;
 import de.greencity.bladenightapp.testutils.LogHelper;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
@@ -32,9 +30,12 @@ public class RelationshipsManagementTest {
 
 	@Before
 	public void before() {
-		RelationshipStoreSingleton.setInstance(new RelationshipStore());
-		ProcessionSingleton.setProcession(new Procession());
-		client = new Client(new BladenightWampServer());
+		BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+		.setProcession(new Procession())
+		.setRelationshipStore(new RelationshipStore())
+		.build();
+
+		client = new Client(server);
 	}
 
 	@Test

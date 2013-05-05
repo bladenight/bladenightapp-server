@@ -13,7 +13,6 @@ import org.junit.Test;
 
 import de.greencity.bladenightapp.network.messages.RouteNamesMessage;
 import de.greencity.bladenightapp.routes.RouteStore;
-import de.greencity.bladenightapp.routes.RouteStoreSingleton;
 import de.greencity.bladenightapp.testutils.Client;
 import de.greencity.bladenightapp.testutils.LogHelper;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
@@ -31,12 +30,15 @@ public class GetAllRouteNamesTest {
 		LogHelper.disableLogs();
 
 		RouteStore routeStore = new RouteStore(FileUtils.toFile(GetAllRouteNamesTest.class.getResource(routesDir)));
-		RouteStoreSingleton.setInstance(routeStore);
 
 		expectedNames.add("Nord - kurz");
 		expectedNames.add("Ost - lang");
 		
-		client = new Client(new BladenightWampServer());
+		BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+		.setRouteStore(routeStore)
+		.build();
+
+		client = new Client(server);
 	}
 	
 	@Test

@@ -12,7 +12,6 @@ import org.junit.Test;
 import de.greencity.bladenightapp.events.Event;
 import de.greencity.bladenightapp.events.Event.EventStatus;
 import de.greencity.bladenightapp.events.EventList;
-import de.greencity.bladenightapp.events.EventsListSingleton;
 import de.greencity.bladenightapp.network.messages.EventsListMessage;
 import de.greencity.bladenightapp.testutils.Client;
 import de.greencity.bladenightapp.testutils.LogHelper;
@@ -24,23 +23,26 @@ public class GetAllEventsTest {
 	public void init() throws ParseException {
 		LogHelper.disableLogs();
 
-		eventsList = new EventList();
-		eventsList.addEvent(new Event.Builder()
+		eventList = new EventList();
+		eventList.addEvent(new Event.Builder()
 		.setStartDate("2020-06-01T21:00")
 		.setRouteName("route 1")
 		.setDurationInMinutes(60)
 		.setStatus(EventStatus.CANCELLED)
 		.build());
-		eventsList.addEvent(new Event.Builder()
+		eventList.addEvent(new Event.Builder()
 		.setStartDate("2020-06-08T21:00")
 		.setRouteName("route 2")
 		.setDurationInMinutes(120)
 		.setParticipants(200)
 		.setStatus(EventStatus.CONFIRMED)
 		.build());
-		EventsListSingleton.setInstance(eventsList);
 
-		client = new Client(new BladenightWampServer());
+		BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+		.setEventList(eventList)
+		.build();
+
+		client = new Client(server);
 	}
 
 	@Test
@@ -48,9 +50,9 @@ public class GetAllEventsTest {
 		EventsListMessage data = client.getAllEvents();
 		assertTrue(data != null);
 		assertTrue(data.evt != null);
-		assertEquals(eventsList, data.convertToEventsList());
+		assertEquals(eventList, data.convertToEventsList());
 	}
 
 	private Client client;
-	private EventList eventsList;
+	private EventList eventList;
 }

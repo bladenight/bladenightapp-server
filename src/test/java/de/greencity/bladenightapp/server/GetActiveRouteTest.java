@@ -14,7 +14,6 @@ import org.junit.Test;
 import de.greencity.bladenightapp.network.messages.LatLong;
 import de.greencity.bladenightapp.network.messages.RouteMessage;
 import de.greencity.bladenightapp.procession.Procession;
-import de.greencity.bladenightapp.procession.ProcessionSingleton;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.testutils.Client;
 import de.greencity.bladenightapp.testutils.LogHelper;
@@ -37,9 +36,12 @@ public class GetActiveRouteTest {
 		procession = new Procession();
 		procession.setRoute(route);
 		procession.setMaxComputeAge(0);
-		ProcessionSingleton.setProcession(procession);
 
-		client = new Client(new BladenightWampServer());
+		BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+		.setProcession(procession)
+		.build();
+
+		client = new Client(server);
 	}
 
 	@Test

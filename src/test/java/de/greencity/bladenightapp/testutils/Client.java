@@ -12,6 +12,7 @@ import de.greencity.bladenightapp.network.messages.EventMessage.EventStatus;
 import de.greencity.bladenightapp.network.messages.AdminMessage;
 import de.greencity.bladenightapp.network.messages.EventsListMessage;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
+import de.greencity.bladenightapp.network.messages.HandshakeClientMessage;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
 import de.greencity.bladenightapp.network.messages.RelationshipInputMessage;
 import de.greencity.bladenightapp.network.messages.RouteMessage;
@@ -166,6 +167,16 @@ public class Client {
 	}
 
 
+	public Message shakeHands(String deviceId, int buildNumber, String phoneManufacturer, String phoneModel, String androidRelease) throws IOException, BadArgumentException {
+		int messageCount = channel.handledMessages.size();
+		String callId = UUID.randomUUID().toString();
+		CallMessage msg = new CallMessage(callId,BladenightUrl.SHAKE_HANDS.getText());
+		HandshakeClientMessage handshakeClientMessage = new HandshakeClientMessage(deviceId, buildNumber, phoneManufacturer, phoneModel, androidRelease);
+		msg.setPayload(handshakeClientMessage);
+		server.handleIncomingMessage(session, msg);
+		assertEquals(messageCount+1, channel.handledMessages.size());
+		return MessageMapper.fromJson(channel.lastMessage());
+	}
 
 
 	private ProtocollingChannel channel;
