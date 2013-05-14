@@ -225,7 +225,7 @@ public class App
 
 	private static Procession initializeProcession(EventList eventList, RouteStore routeStore) {
 		Procession procession = new Procession();
-		Event nextEvent = eventList.getActiveEvent();
+		Event nextEvent = eventList.getNextEvent();
 		if ( nextEvent != null ) {
 			Route route = routeStore.getRoute(nextEvent.getRouteName());
 			procession.setRoute(route);

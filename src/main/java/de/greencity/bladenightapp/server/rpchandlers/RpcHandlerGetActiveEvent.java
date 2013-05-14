@@ -14,7 +14,7 @@ public class RpcHandlerGetActiveEvent extends RpcHandler {
 
 	@Override
 	public void execute(RpcCall rpcCall) {
-		Event nextEvent = eventManager.getActiveEvent();
+		Event nextEvent = eventManager.getNextEvent();
 		rpcCall.setOutput(new EventMessage(nextEvent), EventMessage.class);
 	}
 

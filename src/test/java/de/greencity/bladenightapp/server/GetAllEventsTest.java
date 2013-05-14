@@ -12,7 +12,7 @@ import org.junit.Test;
 import de.greencity.bladenightapp.events.Event;
 import de.greencity.bladenightapp.events.Event.EventStatus;
 import de.greencity.bladenightapp.events.EventList;
-import de.greencity.bladenightapp.network.messages.EventsListMessage;
+import de.greencity.bladenightapp.network.messages.EventListMessage;
 import de.greencity.bladenightapp.testutils.Client;
 import de.greencity.bladenightapp.testutils.LogHelper;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
@@ -47,7 +47,7 @@ public class GetAllEventsTest {
 
 	@Test
 	public void test() throws IOException, BadArgumentException {
-		EventsListMessage data = client.getAllEvents();
+		EventListMessage data = client.getAllEvents();
 		assertTrue(data != null);
 		assertTrue(data.evt != null);
 		assertEquals(eventList, data.convertToEventsList());

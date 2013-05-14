@@ -1,7 +1,7 @@
 package de.greencity.bladenightapp.server.rpchandlers;
 
 import de.greencity.bladenightapp.events.EventList;
-import de.greencity.bladenightapp.network.messages.EventsListMessage;
+import de.greencity.bladenightapp.network.messages.EventListMessage;
 import fr.ocroquette.wampoc.server.RpcCall;
 import fr.ocroquette.wampoc.server.RpcHandler;
 
@@ -13,7 +13,7 @@ public class RpcHandlerGetAllEvents extends RpcHandler {
 
 	@Override
 	public void execute(RpcCall rpcCall) {
-		rpcCall.setOutput(EventsListMessage.newFromEventsList(eventsList), EventsListMessage.class);
+		rpcCall.setOutput(EventListMessage.newFromEventsList(eventsList), EventListMessage.class);
 	}
 
 	private EventList eventsList;

@@ -10,7 +10,7 @@ import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.EventMessage;
 import de.greencity.bladenightapp.network.messages.EventMessage.EventStatus;
 import de.greencity.bladenightapp.network.messages.AdminMessage;
-import de.greencity.bladenightapp.network.messages.EventsListMessage;
+import de.greencity.bladenightapp.network.messages.EventListMessage;
 import de.greencity.bladenightapp.network.messages.GpsInfo;
 import de.greencity.bladenightapp.network.messages.HandshakeClientMessage;
 import de.greencity.bladenightapp.network.messages.RealTimeUpdateData;
@@ -71,7 +71,7 @@ public class Client {
 		return callResult.getPayload(RouteMessage.class);
 	}
 
-	public EventsListMessage getAllEvents() throws IOException, BadArgumentException {
+	public EventListMessage getAllEvents() throws IOException, BadArgumentException {
 		int messageCount = channel.handledMessages.size();
 		String callId = UUID.randomUUID().toString();
 		CallMessage msg = new CallMessage(callId,BladenightUrl.GET_ALL_EVENTS.getText());
@@ -80,7 +80,7 @@ public class Client {
 		Message message = MessageMapper.fromJson(channel.lastMessage());
 		assertTrue(message.getType() == MessageType.CALLRESULT);
 		CallResultMessage callResult = (CallResultMessage) message;
-		return callResult.getPayload(EventsListMessage.class);
+		return callResult.getPayload(EventListMessage.class);
 	}
 
 	public Message getAllRouteNames() throws IOException, BadArgumentException {
@@ -178,6 +178,16 @@ public class Client {
 		return MessageMapper.fromJson(channel.lastMessage());
 	}
 
+
+	public Message getRoute(String routeName) throws IOException, BadArgumentException {
+		int messageCount = channel.handledMessages.size();
+		String callId = UUID.randomUUID().toString();
+		CallMessage msg = new CallMessage(callId,BladenightUrl.GET_ROUTE.getText());
+		msg.setPayload(routeName);
+		server.handleIncomingMessage(session, msg);
+		assertEquals(messageCount+1, channel.handledMessages.size());
+		return MessageMapper.fromJson(channel.lastMessage());
+	}
 
 	private ProtocollingChannel channel;
 	private Session session;

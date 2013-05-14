@@ -38,7 +38,7 @@ public class RpcHandlerSetActiveStatus extends RpcHandler {
 			return;
 		}
 		
-		eventList.setActiveStatus(EventMessage.convertStatus(newStatus));
+		eventList.setStatusOfNextEvent(EventMessage.convertStatus(newStatus));
 		try {
 			eventList.write();
 		}

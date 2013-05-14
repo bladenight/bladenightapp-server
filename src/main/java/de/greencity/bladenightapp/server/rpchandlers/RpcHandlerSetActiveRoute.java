@@ -50,7 +50,7 @@ public class RpcHandlerSetActiveRoute extends RpcHandler {
 		}
 
 		procession.setRoute(newRoute);
-		eventList.setActiveRoute(newRouteName);
+		eventList.setNextRoute(newRouteName);
 		try {
 			eventList.write();
 		} catch (IOException e) {
