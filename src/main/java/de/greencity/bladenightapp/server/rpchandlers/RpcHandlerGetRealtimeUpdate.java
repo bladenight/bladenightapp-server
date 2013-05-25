@@ -57,9 +57,11 @@ public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
 		double routeLength = procession.getRoute().getLength();
 		
 		data.setHead(procession.getHead());
-		data.getHead().setEstimatedTimeToArrival((long)0);
+		data.getHead().setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(data.getHead().getPosition(), routeLength)));
+		
 		data.setTail(procession.getTail());
 		data.getTail().setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(data.getTail().getPosition(), routeLength)));
+		
 		data.setRouteLength((int)procession.getRoute().getLength());
 		data.setRouteName(procession.getRoute().getName());
 		data.setUserTotal(procession.getParticipantCount());

@@ -99,6 +99,17 @@ public class GetRealtimeUpdateTest {
 		assertTrue(data2.getUserSpeed() > 0.0);
 	}
 
+	@Test
+	public void estimatedTimes() throws IOException, BadArgumentException {
+		RealTimeUpdateData data1 = getRealtimeUpdateFromParticipant("movingUser", 48.139341, 11.547129);
+		assertTrue(data1 != null);
+		assertTrue(data1.getTail().getEstimatedTimeToArrival() == 0);
+		assertTrue(data1.getHead().getEstimatedTimeToArrival() == 0);
+		RealTimeUpdateData data2 = getRealtimeUpdateFromParticipant("movingUser", 48.143655, 11.548839);
+		assertTrue(data2 != null);
+		assertTrue(data2.getTail().getEstimatedTimeToArrival() > 0);
+		assertTrue(data2.getHead().getEstimatedTimeToArrival() > 0);
+	}
 
 	@Test
 	public void userCounts() throws IOException, BadArgumentException {
