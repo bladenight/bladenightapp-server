@@ -237,8 +237,12 @@ public class App
 
 		double smoothingFactor = KeyValueStoreSingleton.getDouble("bnserver.procession.smoothing", 0.0);
 		procession.setUpdateSmoothingFactor(smoothingFactor);
-
 		getLog().info("Config: Procession smoothingFactor="+smoothingFactor);
+
+		double greediness = KeyValueStoreSingleton.getDouble("bnserver.procession.greediness", 5.0);
+		procession.setProcessionGreediness(greediness);
+		getLog().info("Config: Procession greediness="+greediness);
+
 
 		new Thread(new ComputeScheduler(procession, 1000)).start();
 
