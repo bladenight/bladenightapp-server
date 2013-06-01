@@ -1,7 +1,5 @@
 package de.greencity.bladenightapp.server.rpchandlers;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -44,14 +42,8 @@ public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
 		if ( gpsInput != null ) {
 			ParticipantInput participantInput = new ParticipantInput(gpsInput.getDeviceId(), gpsInput.isParticipating(), gpsInput.getLatitude(), gpsInput.getLongitude(), gpsInput.getAccuracy());
 			Participant participant = procession.updateParticipant(participantInput);
-			data.isUserOnRoute(procession.isParticipantOnRoute(gpsInput.getDeviceId()));
+			data.isUserOnRoute(participant.isOnRoute());
 			data.setUserPosition((long)participant.getLinearPosition(), (long)participant.getLinearSpeed());
-			// TODO remove test code 
-			if ( participant.getDeviceId().equals("TODO-generate")) {
-				double time = procession.evaluateTravelTimeBetween(procession.getTailPosition(), participant.getLinearPosition());
-				SimpleDateFormat sdf = new SimpleDateFormat("kk:mm:ss");
-				getLog().info("time left="+(int)(time/1000) + "  eta="+sdf.format(new Date((long) (System.currentTimeMillis() + time))));
-			}
 		}
 
 		double routeLength = procession.getRoute().getLength();

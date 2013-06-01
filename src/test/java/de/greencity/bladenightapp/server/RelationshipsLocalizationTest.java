@@ -112,6 +112,30 @@ public class RelationshipsLocalizationTest {
 		assertTrue(data3.getUser().getEstimatedTimeToArrival() <= friend3.getEstimatedTimeToArrival() );
 	}
 
+	@Test
+	public void serverShallNotSendCoordinatesForObservers() throws IOException, BadArgumentException, InterruptedException {
+		String deviceId1 = "user-1";
+		String deviceId2 = "user-2";
+
+		int friendIdFor2 = createRelationShip(deviceId1, deviceId2);
+
+		RealTimeUpdateData data2 = getRealtimeUpdateFromObserver(deviceId2, 48.143655, 11.548839);
+		assertEquals(1756, data2.getUserPosition(), 1.0);
+		assertEquals(true, data2.isUserOnRoute());
+
+		RealTimeUpdateData data1 = getRealtimeUpdateFromParticipant(deviceId1, 48.139341, 11.547129);
+
+		MovingPointMessage friend2 = data1.getFriends().get(friendIdFor2); 
+		assertTrue(friend2 == null);
+		
+		getRealtimeUpdateFromParticipant(deviceId2, 48.143655, 11.548839);
+		data1 = getRealtimeUpdateFromParticipant(deviceId1, 48.139341, 11.547129);
+		friend2 = data1.getFriends().get(friendIdFor2); 
+
+		assertTrue(friend2 != null);
+		assertEquals(data2.getUserPosition(), friend2.getPosition(), 1.0);
+	}
+
 	public int createRelationShip(String deviceId1, String deviceId2) throws IOException, BadArgumentException {
 		RelationshipOutputMessage output;
 		output = sendAndParse(deviceId1, ++friendIdCounter, (long)0);
@@ -126,6 +150,11 @@ public class RelationshipsLocalizationTest {
 		CallResultMessage callResult = (CallResultMessage) message;
 		return callResult.getPayload(RelationshipOutputMessage.class);
 	}
+
+	RealTimeUpdateData getRealtimeUpdateFromObserver(String clientId, double lat, double lon) throws IOException, BadArgumentException {
+		return client.getRealtimeUpdate(new GpsInfo(clientId, false, lat, lon));
+	}
+
 
 	RealTimeUpdateData getRealtimeUpdateFromParticipant(String clientId, double lat, double lon, double acc) throws IOException, BadArgumentException {
 		return client.getRealtimeUpdate(new GpsInfo(clientId, true, lat, lon, (int)acc));
