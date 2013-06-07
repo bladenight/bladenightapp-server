@@ -41,24 +41,27 @@ public class App
 	{
 		initializeApplicationConfiguration();
 		initializeLogger();
-		RouteStore routeStore = initializeRouteStore();
-		EventList eventList = initializeEventsList();
-		initializeProcession(eventList, routeStore);
-		initializeRelationshipStore();
-		initializePasswordSafe();
-		initializeMinClientVersion();
-		tryStartServer();
+		
+		BladenightWampServer.ServerBuilder bladenightWampServerBuilder = new BladenightWampServer.ServerBuilder();
+
+		RouteStore routeStore = initializeRouteStore(bladenightWampServerBuilder);
+		EventList eventList = initializeEventsList(bladenightWampServerBuilder);
+		initializeProcession(bladenightWampServerBuilder, eventList, routeStore);
+		initializeRelationshipStore(bladenightWampServerBuilder);
+		initializePasswordSafe(bladenightWampServerBuilder);
+		initializeMinClientVersion(bladenightWampServerBuilder);
+		tryStartServer(bladenightWampServerBuilder);
 	}
 
-	public static void tryStartServer() {
+	public static void tryStartServer(BladenightWampServer.ServerBuilder bladenightWampServerBuilder) {
 		try {
-			startServer();
+			startServer(bladenightWampServerBuilder);
 		} catch (Exception e) {
 			getLog().error("Failed to start:", e);
 		}
 	}
 
-	public static void startServer() throws Exception {
+	public static void startServer(BladenightWampServer.ServerBuilder bladenightWampServerBuilder) throws Exception {
 		fr.ocroquette.wampoc.server.WampServer wampocServer = bladenightWampServerBuilder.build();
 
 		initializeProtocol(wampocServer);
@@ -185,7 +188,7 @@ public class App
 		return log;
 	}
 
-	private static RouteStore initializeRouteStore() {
+	private static RouteStore initializeRouteStore(BladenightWampServer.ServerBuilder bladenightWampServerBuilder) {
 		String configurationKey = "bnserver.routes.path";
 		String asString = KeyValueStoreSingleton.getPath(configurationKey);
 		File asFile = new File(asString);
@@ -199,7 +202,7 @@ public class App
 		return routeStore;
 	}
 
-	private static EventList initializeEventsList() {
+	private static EventList initializeEventsList(BladenightWampServer.ServerBuilder bladenightWampServerBuilder) {
 		String configurationKey = "bnserver.events.path";
 		String asString = KeyValueStoreSingleton.getPath(configurationKey);
 		File asFile = new File(asString);
@@ -223,7 +226,7 @@ public class App
 		return eventList;
 	}
 
-	private static Procession initializeProcession(EventList eventList, RouteStore routeStore) {
+	private static Procession initializeProcession(BladenightWampServer.ServerBuilder bladenightWampServerBuilder, EventList eventList, RouteStore routeStore) {
 		Procession procession = new Procession();
 		Event nextEvent = eventList.getNextEvent();
 		if ( nextEvent != null ) {
@@ -268,7 +271,7 @@ public class App
 		new Thread(collector).start();
 	}
 
-	private static void initializeRelationshipStore() {
+	private static void initializeRelationshipStore(BladenightWampServer.ServerBuilder bladenightWampServerBuilder) {
 		RelationshipStore relationshipStore = new RelationshipStore();
 		String configurationKey = "bnserver.relationships.path";
 		String path = KeyValueStoreSingleton.getPath(configurationKey);
@@ -297,7 +300,7 @@ public class App
 		bladenightWampServerBuilder.setRelationshipStore(relationshipStore);
 	}
 
-	private static void initializePasswordSafe() {
+	private static void initializePasswordSafe(BladenightWampServer.ServerBuilder bladenightWampServerBuilder) {
 		PasswordSafe passwordSafe = new PasswordSafe();
 		String configurationKey = "bnserver.admin.password";
 		String password = KeyValueStoreSingleton.getString(configurationKey);
@@ -334,7 +337,7 @@ public class App
 		server.addIncomingFramesEavesdropper(incomingEavesdropper);
 	}
 
-	private static void initializeMinClientVersion() {
+	private static void initializeMinClientVersion(BladenightWampServer.ServerBuilder bladenightWampServerBuilder) {
 		String configurationKey = "bnserver.client.build.min";
 		int minClientBuild = KeyValueStoreSingleton.getInt(configurationKey, 0);
 		if ( minClientBuild > 0 )
@@ -344,6 +347,4 @@ public class App
 
 
 	private static Log log;
-	private static BladenightWampServer.ServerBuilder bladenightWampServerBuilder = new BladenightWampServer.ServerBuilder();
-
 }
