@@ -19,6 +19,7 @@ import org.eclipse.jetty.websocket.WebSocket;
 import de.greencity.bladenightapp.events.Event;
 import de.greencity.bladenightapp.events.EventList;
 import de.greencity.bladenightapp.keyvaluestore.KeyValueStoreSingleton;
+import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.persistence.ListPersistor;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.tasks.ComputeScheduler;
@@ -328,10 +329,27 @@ public class App
 		File file = new File(path);
 		FileUtils.forceMkdir(file.getParentFile());
 		final Protocol protocol = new Protocol(file);
+		final String configurationKey = "bnserver.client.privacy.improve";
+		final boolean improvePrivacy = ( KeyValueStoreSingleton.getLong(configurationKey, 0 ) > 0 ) ;
+		getLog().info("Config: Protocol: improve privacy="+improvePrivacy);
 		TextFrameEavesdropper incomingEavesdropper = new TextFrameEavesdropper() {
 			@Override
 			public void handler(String session, String frame) {
+				if ( improvePrivacy )
+					frame = removeCoordinates(frame);
 				protocol.write("WAMPIN", session, frame);
+			}
+			private String removeCoordinates(String frame) {
+				// If the user is participating to the event, we log the coordinates to be able
+				// to replay the event afterwards.
+				// If not, we discard them to improve his privacy
+				if ( ! frame.contains(BladenightUrl.GET_REALTIME_UPDATE.getText()) )
+					return frame;
+				if ( ! frame.contains("\"par\":false") )
+					return frame;
+				frame = frame.replaceAll("\"la\":[\\d.]+", "\"la\":-999");
+				frame = frame.replaceAll("\"lo\":[\\d.]+", "\"lo\":-999");
+				return frame;
 			}
 		};
 		server.addIncomingFramesEavesdropper(incomingEavesdropper);
