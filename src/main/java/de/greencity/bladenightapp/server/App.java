@@ -24,6 +24,7 @@ import de.greencity.bladenightapp.persistence.ListPersistor;
 import de.greencity.bladenightapp.procession.Procession;
 import de.greencity.bladenightapp.procession.tasks.ComputeScheduler;
 import de.greencity.bladenightapp.procession.tasks.ParticipantCollector;
+import de.greencity.bladenightapp.procession.tasks.ProcessionLogger;
 import de.greencity.bladenightapp.protocol.Protocol;
 import de.greencity.bladenightapp.relationships.Relationship;
 import de.greencity.bladenightapp.relationships.RelationshipStore;
@@ -250,9 +251,19 @@ public class App
 
 		new Thread(new ComputeScheduler(procession, 1000)).start();
 
+		initializeProcessionLogger(procession);
+
 		initializeParticipantCollector(procession);
 		
 		return procession;
+	}
+
+	private static void initializeProcessionLogger(Procession procession) {
+		String configurationKey = "bnserver.procession.logfile";
+		String processionLogPath = KeyValueStoreSingleton.getPath(configurationKey);
+		getLog().info("Config: Procession log file="+processionLogPath);
+		if ( processionLogPath != null )
+			new Thread(new ProcessionLogger(new File(processionLogPath), procession, 1000)).start();
 	}
 
 	private static void initializeParticipantCollector(Procession procession) {
@@ -277,7 +288,7 @@ public class App
 		String configurationKey = "bnserver.relationships.path";
 		String path = KeyValueStoreSingleton.getPath(configurationKey);
 		if ( path == null || ! new File(path).isDirectory()) {
-			getLog().error(configurationKey + " in the configuraiton file needs to point to a valid directory: " + path);
+			getLog().error(configurationKey + " in the configuration file needs to point to a valid directory: " + path);
 			System.exit(1);
 		}
 		getLog().info("Config: relationshipStorePath="+path);
