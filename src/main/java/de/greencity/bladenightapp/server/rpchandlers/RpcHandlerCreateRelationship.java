@@ -49,10 +49,10 @@ public class RpcHandlerCreateRelationship extends RpcHandler {
 	}
 
 	public void handleNewRequest(RpcCall rpcCall, RelationshipInputMessage input) {
-		relationshipStore.check();
+		relationshipStore.checkForDuplicateIds();
 		HandshakeInfo handshakeInfo = relationshipStore.newRequest(input.getDeviceId(), input.getFriendId());
 		rpcCall.setOutput(new RelationshipOutputMessage(handshakeInfo.getRequestId(), handshakeInfo.getFriendId()), RelationshipOutputMessage.class);
-		relationshipStore.check();
+		relationshipStore.checkForDuplicateIds();
 		try {
 			// TODO we write all relationships on all write, this is not efficient
 			relationshipStore.write();
