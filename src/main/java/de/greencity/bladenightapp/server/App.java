@@ -15,8 +15,11 @@ import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.server.ssl.SslSelectChannelConnector;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.websocket.WebSocket;
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
 
 import de.greencity.bladenightapp.events.Event;
+import de.greencity.bladenightapp.events.Event.EventStatus;
 import de.greencity.bladenightapp.events.EventList;
 import de.greencity.bladenightapp.keyvaluestore.KeyValueStoreSingleton;
 import de.greencity.bladenightapp.network.BladenightUrl;
@@ -225,6 +228,19 @@ public class App
 		}
 		bladenightWampServerBuilder.setEventList(eventList);
 		getLog().info("Events list initialized with " + eventList.size() + " events.");
+		
+		
+		String routeToScheduleNow = KeyValueStoreSingleton.getString("bnserver.events.now.route");
+		if ( routeToScheduleNow != null ) {
+			Event event = new Event();
+			event.setDuration(new Duration(120*60*1000));
+			event.setRouteName(routeToScheduleNow);
+			event.setStartDate(new DateTime());
+			event.setStatus(EventStatus.CONFIRMED);
+			eventList.addEvent(event);
+			getLog().info("Added immediate event with route: " + routeToScheduleNow);
+		}
+		
 		return eventList;
 	}
 
