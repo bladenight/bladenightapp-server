@@ -2,6 +2,10 @@ package de.greencity.bladenightapp.server;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +19,8 @@ import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.server.ssl.SslSelectChannelConnector;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.websocket.WebSocket;
+import org.java_websocket.handshake.ClientHandshake;
+import org.java_websocket.server.WebSocketServer;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
@@ -35,6 +41,9 @@ import de.greencity.bladenightapp.relationships.tasks.RelationshipCollector;
 import de.greencity.bladenightapp.routes.Route;
 import de.greencity.bladenightapp.routes.RouteStore;
 import de.greencity.bladenightapp.security.PasswordSafe;
+import fr.ocroquette.wampoc.common.Channel;
+import fr.ocroquette.wampoc.exceptions.BadArgumentException;
+import fr.ocroquette.wampoc.server.Session;
 import fr.ocroquette.wampoc.server.TextFrameEavesdropper;
 import fr.ocroquette.wampoc.server.WampServer;
 
@@ -46,7 +55,7 @@ public class App
 	{
 		initializeApplicationConfiguration();
 		initializeLogger();
-		
+
 		BladenightWampServer.ServerBuilder bladenightWampServerBuilder = new BladenightWampServer.ServerBuilder();
 
 		RouteStore routeStore = initializeRouteStore(bladenightWampServerBuilder);
@@ -55,18 +64,82 @@ public class App
 		initializeRelationshipStore(bladenightWampServerBuilder);
 		initializePasswordSafe(bladenightWampServerBuilder);
 		initializeMinClientVersion(bladenightWampServerBuilder);
-		tryStartServer(bladenightWampServerBuilder);
+
+		// tryStartServer(bladenightWampServerBuilder);
+		startJavaWebSocketServer(bladenightWampServerBuilder);
 	}
 
 	public static void tryStartServer(BladenightWampServer.ServerBuilder bladenightWampServerBuilder) {
 		try {
-			startServer(bladenightWampServerBuilder);
+			startJettyServer(bladenightWampServerBuilder);
 		} catch (Exception e) {
 			getLog().error("Failed to start:", e);
 		}
+
 	}
 
-	public static void startServer(BladenightWampServer.ServerBuilder bladenightWampServerBuilder) throws Exception {
+	static class MyWebSocketServer extends WebSocketServer {
+		
+		Map<org.java_websocket.WebSocket, Session> map = new HashMap<org.java_websocket.WebSocket, Session>(); 
+		
+		private WampServer wampocServer;
+		
+		public MyWebSocketServer( int port, WampServer wampocServer ) throws UnknownHostException {
+			super( new InetSocketAddress( port ) );
+			this.wampocServer = wampocServer;
+		}
+
+		@Override
+		public void onClose(org.java_websocket.WebSocket webSocket, int code, String reason, boolean remote) {
+			getLog().info("onClose()");
+			map.remove(webSocket);
+		}
+
+		@Override
+		public void onError(org.java_websocket.WebSocket webSocket, Exception e) {
+			getLog().warn("onError()", e);
+		}
+
+		@Override
+		public void onMessage(org.java_websocket.WebSocket webSocket, String msg) {
+			getLog().info("onMessage():" + msg);
+			try {
+				wampocServer.handleIncomingString(map.get(webSocket), msg);
+			} catch (IOException e) {
+				getLog().error("onMessage " + webSocket, e);
+				map.remove(webSocket);
+			} catch (BadArgumentException e) {
+				getLog().error("onMessage " + webSocket, e);
+				map.remove(webSocket);
+			}
+		}
+
+		@Override
+		public void onOpen(final org.java_websocket.WebSocket webSocket, ClientHandshake handShake) {
+			getLog().info("onOpen()");
+			getLog().info("Got new connection from " + webSocket.getRemoteSocketAddress());
+
+			Session session = wampocServer.openSession(new Channel() {
+				@Override
+				public void handle(String message) throws IOException {
+					getLog().info("Sending msg: " + message);
+					webSocket.send(message);
+				}
+			});
+			map.put(webSocket, session);
+		}
+	}
+
+	public static void startJavaWebSocketServer(BladenightWampServer.ServerBuilder bladenightWampServerBuilder) throws UnknownHostException {
+		fr.ocroquette.wampoc.server.WampServer wampocServer = bladenightWampServerBuilder.build();
+
+		initializeProtocol(wampocServer);
+		
+		WebSocketServer wsServer = new MyWebSocketServer(port, wampocServer);
+		wsServer.start();
+	}
+
+	public static void startJettyServer(BladenightWampServer.ServerBuilder bladenightWampServerBuilder) throws Exception {
 		fr.ocroquette.wampoc.server.WampServer wampocServer = bladenightWampServerBuilder.build();
 
 		initializeProtocol(wampocServer);
@@ -82,7 +155,7 @@ public class App
 		};
 
 
-		org.eclipse.jetty.server.Server server = createServer();
+		org.eclipse.jetty.server.Server server = createJettyServer();
 
 		String httpdocsConfigKey = "bnserver.httpdocs";
 		String httpdocsPath = KeyValueStoreSingleton.getPath(httpdocsConfigKey, null); 
@@ -115,7 +188,7 @@ public class App
 		server.join();
 	}
 
-	private static Server createServer() {
+	private static Server createJettyServer() {
 		if ( ! useSsl() ) {
 			return new Server(getPortToListenTo());
 		}
@@ -159,7 +232,7 @@ public class App
 	private static Integer getPortToListenTo() {
 		String key = "bnserver.network.port";
 		int port = 0 ;
-		
+
 		try {
 			port = Integer.valueOf(KeyValueStoreSingleton.getString(key));
 		}
@@ -186,7 +259,7 @@ public class App
 		log = LogFactory.getLog(App.class);
 		getLog().info("confog: logger initinalized, log4j.properties="+log4jConfiguration);
 	}
-	
+
 	private static Log getLog() {
 		if ( log == null )
 			initializeLogger();
@@ -228,8 +301,8 @@ public class App
 		}
 		bladenightWampServerBuilder.setEventList(eventList);
 		getLog().info("Events list initialized with " + eventList.size() + " events.");
-		
-		
+
+
 		String routeToScheduleNow = KeyValueStoreSingleton.getString("bnserver.events.now.route");
 		if ( routeToScheduleNow != null ) {
 			Event event = new Event();
@@ -240,7 +313,7 @@ public class App
 			eventList.addEvent(event);
 			getLog().info("Added immediate event with route: " + routeToScheduleNow);
 		}
-		
+
 		return eventList;
 	}
 
@@ -270,7 +343,7 @@ public class App
 		initializeProcessionLogger(procession);
 
 		initializeParticipantCollector(procession);
-		
+
 		return procession;
 	}
 
@@ -319,7 +392,7 @@ public class App
 
 		long maxAge = KeyValueStoreSingleton.getLong("bnserver.relationships.collector.maxage", 		3600*1000	);
 		long period = KeyValueStoreSingleton.getLong("bnserver.relationships.collector.period", 		60*1000	);
-		
+
 		getLog().info("Config: Relationship collector: maxAge="+maxAge);
 		getLog().info("Config: Relationship collector: period="+period);
 
