@@ -65,8 +65,9 @@ public class App
 		initializePasswordSafe(bladenightWampServerBuilder);
 		initializeMinClientVersion(bladenightWampServerBuilder);
 
-		// tryStartServer(bladenightWampServerBuilder);
-		startJavaWebSocketServer(bladenightWampServerBuilder);
+		tryStartServer(bladenightWampServerBuilder);
+		// startJavaWebSocketServer(bladenightWampServerBuilder);
+		// startJettyServer(bladenightWampServerBuilder);
 	}
 
 	public static void tryStartServer(BladenightWampServer.ServerBuilder bladenightWampServerBuilder) {
