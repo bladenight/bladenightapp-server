@@ -9,26 +9,26 @@ import fr.ocroquette.wampoc.server.RpcHandler;
 
 public class RpcHandlerGetActiveRoute extends RpcHandler {
 
-	public RpcHandlerGetActiveRoute(Procession procession) {
-		this.procession = procession;
-	}
+    public RpcHandlerGetActiveRoute(Procession procession) {
+        this.procession = procession;
+    }
 
-	@Override
-	public void execute(RpcCall rpcCall) {
-		Route route = procession.getRoute();
-		if ( route != null )
-			rpcCall.setOutput(new RouteMessage(route), RouteMessage.class);
-		else
-			rpcCall.setError(BladenightUrl.BASE+"noSuchRoute", "No active route available");
-	}
-	
-	public boolean validateInput(RpcCall rpcCall, String input) {
-		if ( input == null ) {
-			rpcCall.setError(BladenightUrl.BASE+"invalidInput", "Invalid input: "+ input);
-			return false;
-		}
-		return true;
-	}
+    @Override
+    public void execute(RpcCall rpcCall) {
+        Route route = procession.getRoute();
+        if ( route != null )
+            rpcCall.setOutput(new RouteMessage(route), RouteMessage.class);
+        else
+            rpcCall.setError(BladenightUrl.BASE+"noSuchRoute", "No active route available");
+    }
 
-	private Procession procession;
+    public boolean validateInput(RpcCall rpcCall, String input) {
+        if ( input == null ) {
+            rpcCall.setError(BladenightUrl.BASE+"invalidInput", "Invalid input: "+ input);
+            return false;
+        }
+        return true;
+    }
+
+    private Procession procession;
 }

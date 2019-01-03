@@ -8,15 +8,15 @@ import fr.ocroquette.wampoc.server.RpcHandler;
 
 public class RpcHandlerGetActiveEvent extends RpcHandler {
 
-	public RpcHandlerGetActiveEvent(EventList manager) {
-		this.eventManager = manager;
-	}
+    public RpcHandlerGetActiveEvent(EventList manager) {
+        this.eventManager = manager;
+    }
 
-	@Override
-	public void execute(RpcCall rpcCall) {
-		Event nextEvent = eventManager.getNextEvent();
-		rpcCall.setOutput(new EventMessage(nextEvent), EventMessage.class);
-	}
+    @Override
+    public void execute(RpcCall rpcCall) {
+        Event nextEvent = eventManager.getNextEvent();
+        rpcCall.setOutput(new EventMessage(nextEvent), EventMessage.class);
+    }
 
-	private EventList eventManager;
+    private EventList eventManager;
 }

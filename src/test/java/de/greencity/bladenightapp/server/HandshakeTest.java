@@ -19,29 +19,29 @@ import fr.ocroquette.wampoc.messages.MessageType;
 
 public class HandshakeTest {
 
-	@Before
-	public void init() throws ParseException {
-		LogHelper.disableLogs();
-		BladenightWampServer server = new BladenightWampServer.ServerBuilder()
-				.setMinimumClientBuildNumber(minClientBuildNumber)
-				.build();
-		client = new Client(server);
-	}
+    @Before
+    public void init() throws ParseException {
+        LogHelper.disableLogs();
+        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+                .setMinimumClientBuildNumber(minClientBuildNumber)
+                .build();
+        client = new Client(server);
+    }
 
-	@Test
-	public void validBuildNumber() throws IOException, BadArgumentException {
-		Message returnedMessage = client.shakeHands("deviceid", minClientBuildNumber, "manufacturer", "model", "4.0.0");
-		assertTrue(MessageType.CALLRESULT.equals(returnedMessage.getType())); 
-	}
+    @Test
+    public void validBuildNumber() throws IOException, BadArgumentException {
+        Message returnedMessage = client.shakeHands("deviceid", minClientBuildNumber, "manufacturer", "model", "4.0.0");
+        assertTrue(MessageType.CALLRESULT.equals(returnedMessage.getType()));
+    }
 
-	@Test
-	public void outdatedBuildNumber() throws IOException, BadArgumentException {
-		Message returnedMessage = client.shakeHands("deviceid",minClientBuildNumber-1,"manufacturer", "model", "4.0.0");
-		assertTrue(MessageType.CALLERROR.equals(returnedMessage.getType()));
-		CallErrorMessage callErrorMessage = (CallErrorMessage) returnedMessage;
-		assertEquals(callErrorMessage.getErrorUri(), BladenightError.OUTDATED_CLIENT.getText()); 
-	}
+    @Test
+    public void outdatedBuildNumber() throws IOException, BadArgumentException {
+        Message returnedMessage = client.shakeHands("deviceid",minClientBuildNumber-1,"manufacturer", "model", "4.0.0");
+        assertTrue(MessageType.CALLERROR.equals(returnedMessage.getType()));
+        CallErrorMessage callErrorMessage = (CallErrorMessage) returnedMessage;
+        assertEquals(callErrorMessage.getErrorUri(), BladenightError.OUTDATED_CLIENT.getText());
+    }
 
-	private Client client;
-	private final int minClientBuildNumber = 10;
+    private Client client;
+    private final int minClientBuildNumber = 10;
 }

@@ -15,28 +15,28 @@ import fr.ocroquette.wampoc.exceptions.BadArgumentException;
 
 public class VerifyAdminPasswordTest {
 
-	@Before
-	public void init() throws IOException {
-		LogHelper.disableLogs();
+    @Before
+    public void init() throws IOException {
+        LogHelper.disableLogs();
 
-		passwordSafe = new PasswordSafe();
-		passwordSafe.setAdminPassword(password);
+        passwordSafe = new PasswordSafe();
+        passwordSafe.setAdminPassword(password);
 
-		BladenightWampServer server = new BladenightWampServer.ServerBuilder()
-		.setPasswordSafe(passwordSafe)
-		.build();
+        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+        .setPasswordSafe(passwordSafe)
+        .build();
 
-		client = new Client(server);
+        client = new Client(server);
 
-	}
-	
-	@Test
-	public void verifyPassword() throws IOException, BadArgumentException {
-		assertTrue(client.verifyPasswordAgainstServer(password));
-		assertTrue(! client.verifyPasswordAgainstServer("invalid password"));
-	}
+    }
 
-	private Client client;
-	private PasswordSafe passwordSafe;
-	final static String password = UUID.randomUUID().toString();
+    @Test
+    public void verifyPassword() throws IOException, BadArgumentException {
+        assertTrue(client.verifyPasswordAgainstServer(password));
+        assertTrue(! client.verifyPasswordAgainstServer("invalid password"));
+    }
+
+    private Client client;
+    private PasswordSafe passwordSafe;
+    final static String password = UUID.randomUUID().toString();
 }

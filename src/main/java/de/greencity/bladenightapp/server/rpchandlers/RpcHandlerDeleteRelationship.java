@@ -14,66 +14,66 @@ import fr.ocroquette.wampoc.server.RpcHandler;
 
 public class RpcHandlerDeleteRelationship extends RpcHandler {
 
-	public RpcHandlerDeleteRelationship(RelationshipStore relationshipStore) {
-		this.relationshipStore = relationshipStore;
-	}
+    public RpcHandlerDeleteRelationship(RelationshipStore relationshipStore) {
+        this.relationshipStore = relationshipStore;
+    }
 
-	@Override
-	public void execute(RpcCall rpcCall) {
-		RelationshipInputMessage input = rpcCall.getInput(RelationshipInputMessage.class);
+    @Override
+    public void execute(RpcCall rpcCall) {
+        RelationshipInputMessage input = rpcCall.getInput(RelationshipInputMessage.class);
 
-		if ( ! validateInput(rpcCall, input) )
-			return;
+        if ( ! validateInput(rpcCall, input) )
+            return;
 
-		if ( relationshipStore == null ) {
-			rpcCall.setError(BladenightError.INTERNAL_ERROR.getText(), "Internal error: relationshipStore is null");
-			return;
-		}
+        if ( relationshipStore == null ) {
+            rpcCall.setError(BladenightError.INTERNAL_ERROR.getText(), "Internal error: relationshipStore is null");
+            return;
+        }
 
-		if ( input.getDeviceId() == null || input.getDeviceId().length() == 0 ) {
-			rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Invalid device id:" + input.getDeviceId() );
-			return;
-		}
+        if ( input.getDeviceId() == null || input.getDeviceId().length() == 0 ) {
+            rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Invalid device id:" + input.getDeviceId() );
+            return;
+        }
 
-		if ( input.getFriendId() <= 0 ) {
-			rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Invalid device id:" + input.getDeviceId() );
-			return;
-		}
+        if ( input.getFriendId() <= 0 ) {
+            rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Invalid device id:" + input.getDeviceId() );
+            return;
+        }
 
-		getLog().info("Trying to delete relationship for deviceId=" + input.getDeviceId() +  " friendId=" + input.getFriendId() );
+        getLog().info("Trying to delete relationship for deviceId=" + input.getDeviceId() +  " friendId=" + input.getFriendId() );
 
-		int hits = relationshipStore.deleteRelationship(input.getDeviceId(), input.getFriendId());
+        int hits = relationshipStore.deleteRelationship(input.getDeviceId(), input.getFriendId());
 
-		getLog().info("Deleted " + hits + " relationship(s)" );
-		
-		try {
-			relationshipStore.write();
-		}
-		catch(IOException e){
-			getLog().error("Failed to write relationships: "  + e);
-		}
-	}
+        getLog().info("Deleted " + hits + " relationship(s)" );
 
-	public boolean validateInput(RpcCall rpcCall, RelationshipInputMessage input) {
-		if ( input == null ) {
-			rpcCall.setError(BladenightUrl.BASE+"invalidInput", "Invalid input: "+ input);
-			return false;
-		}
-		return true;
-	}
+        try {
+            relationshipStore.write();
+        }
+        catch(IOException e){
+            getLog().error("Failed to write relationships: "  + e);
+        }
+    }
+
+    public boolean validateInput(RpcCall rpcCall, RelationshipInputMessage input) {
+        if ( input == null ) {
+            rpcCall.setError(BladenightUrl.BASE+"invalidInput", "Invalid input: "+ input);
+            return false;
+        }
+        return true;
+    }
 
 
-	private RelationshipStore relationshipStore;
+    private RelationshipStore relationshipStore;
 
-	private static Log log;
+    private static Log log;
 
-	public static void setLog(Log log) {
-		RpcHandlerDeleteRelationship.log = log;
-	}
+    public static void setLog(Log log) {
+        RpcHandlerDeleteRelationship.log = log;
+    }
 
-	protected static Log getLog() {
-		if (log == null)
-			setLog(LogFactory.getLog(RpcHandlerDeleteRelationship.class));
-		return log;
-	}
+    protected static Log getLog() {
+        if (log == null)
+            setLog(LogFactory.getLog(RpcHandlerDeleteRelationship.class));
+        return log;
+    }
 }

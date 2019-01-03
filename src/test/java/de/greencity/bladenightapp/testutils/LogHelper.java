@@ -16,18 +16,18 @@ import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerCreateRelationshi
 
 public class LogHelper {
 
-	public static void disableLogs() {
-		Log log = new NoOpLog();
-		BladenightWampServer.setLog(log);
-		RelationshipStore.setLog(log);
-		RpcHandlerCreateRelationship.setLog(log);
-		Route.setLog(log);
-		RouteStore.setLog(log);
-		Procession.setLog(log);
-		HeadAndTailComputer.setLog(log);
-		ParticipantUpdater.setLog(log);
-		TravelTimeComputer.setLog(log);
-		EventList.setLog(log);
-	}
+    public static void disableLogs() {
+        Log log = new NoOpLog();
+        BladenightWampServer.setLog(log);
+        RelationshipStore.setLog(log);
+        RpcHandlerCreateRelationship.setLog(log);
+        Route.setLog(log);
+        RouteStore.setLog(log);
+        Procession.setLog(log);
+        HeadAndTailComputer.setLog(log);
+        ParticipantUpdater.setLog(log);
+        TravelTimeComputer.setLog(log);
+        EventList.setLog(log);
+    }
 
 }

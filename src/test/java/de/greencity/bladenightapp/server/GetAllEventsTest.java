@@ -19,40 +19,40 @@ import fr.ocroquette.wampoc.exceptions.BadArgumentException;
 
 public class GetAllEventsTest {
 
-	@Before
-	public void init() throws ParseException {
-		LogHelper.disableLogs();
+    @Before
+    public void init() throws ParseException {
+        LogHelper.disableLogs();
 
-		eventList = new EventList();
-		eventList.addEvent(new Event.Builder()
-		.setStartDate("2020-06-01T21:00")
-		.setRouteName("route 1")
-		.setDurationInMinutes(60)
-		.setStatus(EventStatus.CANCELLED)
-		.build());
-		eventList.addEvent(new Event.Builder()
-		.setStartDate("2020-06-08T21:00")
-		.setRouteName("route 2")
-		.setDurationInMinutes(120)
-		.setParticipants(200)
-		.setStatus(EventStatus.CONFIRMED)
-		.build());
+        eventList = new EventList();
+        eventList.addEvent(new Event.Builder()
+        .setStartDate("2020-06-01T21:00")
+        .setRouteName("route 1")
+        .setDurationInMinutes(60)
+        .setStatus(EventStatus.CANCELLED)
+        .build());
+        eventList.addEvent(new Event.Builder()
+        .setStartDate("2020-06-08T21:00")
+        .setRouteName("route 2")
+        .setDurationInMinutes(120)
+        .setParticipants(200)
+        .setStatus(EventStatus.CONFIRMED)
+        .build());
 
-		BladenightWampServer server = new BladenightWampServer.ServerBuilder()
-		.setEventList(eventList)
-		.build();
+        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+        .setEventList(eventList)
+        .build();
 
-		client = new Client(server);
-	}
+        client = new Client(server);
+    }
 
-	@Test
-	public void test() throws IOException, BadArgumentException {
-		EventListMessage data = client.getAllEvents();
-		assertTrue(data != null);
-		assertTrue(data.evt != null);
-		assertEquals(eventList, data.convertToEventsList());
-	}
+    @Test
+    public void test() throws IOException, BadArgumentException {
+        EventListMessage data = client.getAllEvents();
+        assertTrue(data != null);
+        assertTrue(data.evt != null);
+        assertEquals(eventList, data.convertToEventsList());
+    }
 
-	private Client client;
-	private EventList eventList;
+    private Client client;
+    private EventList eventList;
 }

@@ -7,14 +7,14 @@ import fr.ocroquette.wampoc.server.RpcHandler;
 
 public class RpcHandlerGetAllEvents extends RpcHandler {
 
-	public RpcHandlerGetAllEvents(EventList eventsList) {
-		this.eventsList = eventsList;
-	}
+    public RpcHandlerGetAllEvents(EventList eventsList) {
+        this.eventsList = eventsList;
+    }
 
-	@Override
-	public void execute(RpcCall rpcCall) {
-		rpcCall.setOutput(EventListMessage.newFromEventsList(eventsList), EventListMessage.class);
-	}
+    @Override
+    public void execute(RpcCall rpcCall) {
+        rpcCall.setOutput(EventListMessage.newFromEventsList(eventsList), EventListMessage.class);
+    }
 
-	private EventList eventsList;
+    private EventList eventsList;
 }

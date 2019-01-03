@@ -12,42 +12,42 @@ import fr.ocroquette.wampoc.server.RpcHandler;
 
 public class RpcHandlerGetRoute extends RpcHandler {
 
-	public RpcHandlerGetRoute(RouteStore routeStore) {
-		this.routeStore = routeStore;
-	}
+    public RpcHandlerGetRoute(RouteStore routeStore) {
+        this.routeStore = routeStore;
+    }
 
-	@Override
-	public void execute(RpcCall rpcCall) {
-		String input = rpcCall.getInput(String.class);
-		if ( ! validateInput(rpcCall, input) )
-			return;
-		getLog().info("Got request for route: " + input);
-		Route route = routeStore.getRoute(input);
-		if ( route != null )
-			rpcCall.setOutput(new RouteMessage(route), RouteMessage.class);
-		else
-			rpcCall.setError(BladenightUrl.BASE+"noSuchRoute", "Could not load route named "+ input);
-	}
-	
-	public boolean validateInput(RpcCall rpcCall, String input) {
-		if ( input == null ) {
-			rpcCall.setError(BladenightUrl.BASE+"invalidInput", "Invalid input: "+ input);
-			return false;
-		}
-		return true;
-	}
+    @Override
+    public void execute(RpcCall rpcCall) {
+        String input = rpcCall.getInput(String.class);
+        if ( ! validateInput(rpcCall, input) )
+            return;
+        getLog().info("Got request for route: " + input);
+        Route route = routeStore.getRoute(input);
+        if ( route != null )
+            rpcCall.setOutput(new RouteMessage(route), RouteMessage.class);
+        else
+            rpcCall.setError(BladenightUrl.BASE+"noSuchRoute", "Could not load route named "+ input);
+    }
 
-	private static Log log;
+    public boolean validateInput(RpcCall rpcCall, String input) {
+        if ( input == null ) {
+            rpcCall.setError(BladenightUrl.BASE+"invalidInput", "Invalid input: "+ input);
+            return false;
+        }
+        return true;
+    }
 
-	public static void setLog(Log log) {
-		RpcHandlerGetRoute.log = log;
-	}
+    private static Log log;
 
-	protected static Log getLog() {
-		if (log == null)
-			setLog(LogFactory.getLog(RpcHandlerGetRoute.class));
-		return log;
-	}
-	
-	private RouteStore routeStore;
+    public static void setLog(Log log) {
+        RpcHandlerGetRoute.log = log;
+    }
+
+    protected static Log getLog() {
+        if (log == null)
+            setLog(LogFactory.getLog(RpcHandlerGetRoute.class));
+        return log;
+    }
+
+    private RouteStore routeStore;
 }

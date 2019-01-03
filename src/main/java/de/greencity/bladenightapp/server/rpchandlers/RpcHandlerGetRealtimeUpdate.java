@@ -20,87 +20,87 @@ import fr.ocroquette.wampoc.server.RpcHandler;
 
 public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
 
-	public RpcHandlerGetRealtimeUpdate(Procession procession, RelationshipStore relationshipStore) {
-		this.procession = procession;
-		this.relationshipStore = relationshipStore;
-	}
+    public RpcHandlerGetRealtimeUpdate(Procession procession, RelationshipStore relationshipStore) {
+        this.procession = procession;
+        this.relationshipStore = relationshipStore;
+    }
 
-	@Override
-	public void execute(RpcCall rpcCall) {
-		GpsInfo gpsInput = rpcCall.getInput(GpsInfo.class);
+    @Override
+    public void execute(RpcCall rpcCall) {
+        GpsInfo gpsInput = rpcCall.getInput(GpsInfo.class);
 
-		if ( ! validateInput(rpcCall, gpsInput) )
-			return;
+        if ( ! validateInput(rpcCall, gpsInput) )
+            return;
 
-		if ( procession == null ) {
-			rpcCall.setError(BladenightError.INTERNAL_ERROR.getText(), "Internal error: Procession is null");
-			return;
-		}
+        if ( procession == null ) {
+            rpcCall.setError(BladenightError.INTERNAL_ERROR.getText(), "Internal error: Procession is null");
+            return;
+        }
 
-		RealTimeUpdateData data = new RealTimeUpdateData();
+        RealTimeUpdateData data = new RealTimeUpdateData();
 
-		if ( gpsInput != null ) {
-			ParticipantInput participantInput = new ParticipantInput(gpsInput.getDeviceId(), gpsInput.isParticipating(), gpsInput.getLatitude(), gpsInput.getLongitude(), gpsInput.getAccuracy());
-			Participant participant = procession.updateParticipant(participantInput);
-			data.isUserOnRoute(participant.isOnRoute());
-			data.setUserPosition((long)participant.getLinearPosition(), (long)participant.getLinearSpeed());
-		}
+        if ( gpsInput != null ) {
+            ParticipantInput participantInput = new ParticipantInput(gpsInput.getDeviceId(), gpsInput.isParticipating(), gpsInput.getLatitude(), gpsInput.getLongitude(), gpsInput.getAccuracy());
+            Participant participant = procession.updateParticipant(participantInput);
+            data.isUserOnRoute(participant.isOnRoute());
+            data.setUserPosition((long)participant.getLinearPosition(), (long)participant.getLinearSpeed());
+        }
 
-		double routeLength = procession.getRoute().getLength();
-		
-		data.setHead(procession.getHead());
-		data.getHead().setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(data.getHead().getPosition(), routeLength)));
-		
-		data.setTail(procession.getTail());
-		data.getTail().setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(data.getTail().getPosition(), routeLength)));
-		
-		data.setRouteLength((int)procession.getRoute().getLength());
-		data.setRouteName(procession.getRoute().getName());
-		data.setUserTotal(procession.getParticipantCount());
-		data.setUserOnRoute(procession.getParticipantsOnRoute());
-		data.getUser().setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(data.getUser().getPosition(), routeLength)));
+        double routeLength = procession.getRoute().getLength();
 
-		if ( gpsInput != null ) {
-			List<RelationshipMember> relationships = relationshipStore.getFinalizedRelationships(gpsInput.getDeviceId());
-			for (RelationshipMember relationshipMember : relationships) {
-				Participant participant = procession.getParticipant(relationshipMember.getDeviceId());
-				FriendMessage friendMessage;
-				if ( participant != null) {
-					friendMessage = new FriendMessage();
-					friendMessage.copyFrom(participant.getLastKnownPoint());
-					friendMessage.setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(participant.getLinearPosition(), routeLength)));
-					data.addFriend(relationshipMember.getFriendId(), friendMessage);
-				}
-			}
-		}
+        data.setHead(procession.getHead());
+        data.getHead().setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(data.getHead().getPosition(), routeLength)));
 
-		rpcCall.setOutput(data, RealTimeUpdateData.class);
-	}
+        data.setTail(procession.getTail());
+        data.getTail().setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(data.getTail().getPosition(), routeLength)));
 
-	public boolean validateInput(RpcCall rpcCall, GpsInfo input) {
-		if ( input == null )
-			return true;
+        data.setRouteLength((int)procession.getRoute().getLength());
+        data.setRouteName(procession.getRoute().getName());
+        data.setUserTotal(procession.getParticipantCount());
+        data.setUserOnRoute(procession.getParticipantsOnRoute());
+        data.getUser().setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(data.getUser().getPosition(), routeLength)));
 
-		if ( input.getDeviceId() == null || input.getDeviceId().length() == 0 ) {
-			rpcCall.setError(BladenightUrl.BASE+"invalidInput", "Invalid input: "+ input);
-			return false;
-		}
-		return true;
-	}
+        if ( gpsInput != null ) {
+            List<RelationshipMember> relationships = relationshipStore.getFinalizedRelationships(gpsInput.getDeviceId());
+            for (RelationshipMember relationshipMember : relationships) {
+                Participant participant = procession.getParticipant(relationshipMember.getDeviceId());
+                FriendMessage friendMessage;
+                if ( participant != null) {
+                    friendMessage = new FriendMessage();
+                    friendMessage.copyFrom(participant.getLastKnownPoint());
+                    friendMessage.setEstimatedTimeToArrival((long)(procession.evaluateTravelTimeBetween(participant.getLinearPosition(), routeLength)));
+                    data.addFriend(relationshipMember.getFriendId(), friendMessage);
+                }
+            }
+        }
+
+        rpcCall.setOutput(data, RealTimeUpdateData.class);
+    }
+
+    public boolean validateInput(RpcCall rpcCall, GpsInfo input) {
+        if ( input == null )
+            return true;
+
+        if ( input.getDeviceId() == null || input.getDeviceId().length() == 0 ) {
+            rpcCall.setError(BladenightUrl.BASE+"invalidInput", "Invalid input: "+ input);
+            return false;
+        }
+        return true;
+    }
 
 
-	private Procession procession;
-	private RelationshipStore relationshipStore;
+    private Procession procession;
+    private RelationshipStore relationshipStore;
 
-	private static Log log;
+    private static Log log;
 
-	public static void setLog(Log log) {
-		RpcHandlerGetRealtimeUpdate.log = log;
-	}
+    public static void setLog(Log log) {
+        RpcHandlerGetRealtimeUpdate.log = log;
+    }
 
-	protected static Log getLog() {
-		if (log == null)
-			setLog(LogFactory.getLog(RpcHandlerGetRealtimeUpdate.class));
-		return log;
-	}
+    protected static Log getLog() {
+        if (log == null)
+            setLog(LogFactory.getLog(RpcHandlerGetRealtimeUpdate.class));
+        return log;
+    }
 }

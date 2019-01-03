@@ -20,46 +20,46 @@ import de.greencity.bladenightapp.testutils.LogHelper;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
 
 public class GetActiveRouteTest {
-	final String routeName = "Nord - kurz";
-	final String path = "/routes/" + routeName + ".kml";
+    final String routeName = "Nord - kurz";
+    final String path = "/routes/" + routeName + ".kml";
 
-	@Before
-	public void init() {
-		LogHelper.disableLogs();
+    @Before
+    public void init() {
+        LogHelper.disableLogs();
 
-		File file = FileUtils.toFile(GetRouteTest.class.getResource(path));
-		assertTrue(file != null);
-		route = new Route();
-		assertTrue(route.load(file));
-		assertEquals(routeName, route.getName());
+        File file = FileUtils.toFile(GetRouteTest.class.getResource(path));
+        assertTrue(file != null);
+        route = new Route();
+        assertTrue(route.load(file));
+        assertEquals(routeName, route.getName());
 
-		procession = new Procession();
-		procession.setRoute(route);
-		procession.setMaxComputeAge(0);
+        procession = new Procession();
+        procession.setRoute(route);
+        procession.setMaxComputeAge(0);
 
-		BladenightWampServer server = new BladenightWampServer.ServerBuilder()
-		.setProcession(procession)
-		.build();
+        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+        .setProcession(procession)
+        .build();
 
-		client = new Client(server);
-	}
+        client = new Client(server);
+    }
 
-	@Test
-	public void test() throws IOException, BadArgumentException {
-		RouteMessage routeMessage = client.getActiveRoute();
-		assertTrue(routeMessage != null);
-		assertEquals("Nord - kurz", routeMessage.getRouteName());
-		assertEquals(12605, routeMessage.getRouteLength());
-		List<LatLong> nodes = routeMessage.getNodes();
-		assertTrue(nodes != null);
-		assertEquals(nodes.size(), 76);
-		assertEquals(nodes.get(0), new LatLong(48.13246449995051, 11.54349921573263));
-		assertEquals(nodes.get(75), new LatLong(48.1325299743437, 11.54351506700966));
-	}
+    @Test
+    public void test() throws IOException, BadArgumentException {
+        RouteMessage routeMessage = client.getActiveRoute();
+        assertTrue(routeMessage != null);
+        assertEquals("Nord - kurz", routeMessage.getRouteName());
+        assertEquals(12605, routeMessage.getRouteLength());
+        List<LatLong> nodes = routeMessage.getNodes();
+        assertTrue(nodes != null);
+        assertEquals(nodes.size(), 76);
+        assertEquals(nodes.get(0), new LatLong(48.13246449995051, 11.54349921573263));
+        assertEquals(nodes.get(75), new LatLong(48.1325299743437, 11.54351506700966));
+    }
 
 
-	private Route route;
-	private Procession procession;
-	private Client client;
+    private Route route;
+    private Procession procession;
+    private Client client;
 
 }

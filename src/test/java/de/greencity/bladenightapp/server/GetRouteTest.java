@@ -21,38 +21,38 @@ import fr.ocroquette.wampoc.messages.Message;
 import fr.ocroquette.wampoc.messages.MessageType;
 
 public class GetRouteTest {
-	final String routesDir = "/routes/";
+    final String routesDir = "/routes/";
 
-	@Before
-	public void init() {
-		LogHelper.disableLogs();
+    @Before
+    public void init() {
+        LogHelper.disableLogs();
 
-		RouteStore routeStore = new RouteStore(FileUtils.toFile(SetActiveRouteTest.class.getResource(routesDir)));
+        RouteStore routeStore = new RouteStore(FileUtils.toFile(SetActiveRouteTest.class.getResource(routesDir)));
 
-		BladenightWampServer server = new BladenightWampServer.ServerBuilder()
-		.setRouteStore(routeStore)
-		.build();
+        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+        .setRouteStore(routeStore)
+        .build();
 
-		client = new Client(server);
-	}
+        client = new Client(server);
+    }
 
-	@Test
-	public void test() throws IOException, BadArgumentException {
-		final String routeName = "Nord - kurz";
-		Message message = client.getRoute(routeName);
-		assertTrue(message.getType().equals(MessageType.CALLRESULT));
-		RouteMessage routeMessage = ((CallResultMessage)message).getPayload(RouteMessage.class);
-		assertTrue(routeMessage != null);
-		assertEquals(routeName, routeMessage.getRouteName());
-		assertEquals(12605, routeMessage.getRouteLength());
-		List<LatLong> nodes = routeMessage.getNodes();
-		assertTrue(nodes != null);
-		assertEquals(nodes.size(), 76);
-		assertEquals(nodes.get(0), new LatLong(48.13246449995051, 11.54349921573263));
-		assertEquals(nodes.get(75), new LatLong(48.1325299743437, 11.54351506700966));
-	}
+    @Test
+    public void test() throws IOException, BadArgumentException {
+        final String routeName = "Nord - kurz";
+        Message message = client.getRoute(routeName);
+        assertTrue(message.getType().equals(MessageType.CALLRESULT));
+        RouteMessage routeMessage = ((CallResultMessage)message).getPayload(RouteMessage.class);
+        assertTrue(routeMessage != null);
+        assertEquals(routeName, routeMessage.getRouteName());
+        assertEquals(12605, routeMessage.getRouteLength());
+        List<LatLong> nodes = routeMessage.getNodes();
+        assertTrue(nodes != null);
+        assertEquals(nodes.size(), 76);
+        assertEquals(nodes.get(0), new LatLong(48.13246449995051, 11.54349921573263));
+        assertEquals(nodes.get(75), new LatLong(48.1325299743437, 11.54351506700966));
+    }
 
 
-	private Client client;
+    private Client client;
 
 }

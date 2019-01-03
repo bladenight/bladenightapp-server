@@ -17,60 +17,60 @@ import fr.ocroquette.wampoc.server.RpcHandler;
 
 public class RpcHandlerSetActiveRoute extends RpcHandler {
 
-	private PasswordSafe passwordSafe;
+    private PasswordSafe passwordSafe;
 
-	public RpcHandlerSetActiveRoute(EventList eventList, Procession procession, RouteStore routeStore, PasswordSafe passwordSafe) {
-		this.procession = procession;
-		this.routeStore = routeStore;
-		this.eventList = eventList;
-		this.passwordSafe = passwordSafe;
-	}
+    public RpcHandlerSetActiveRoute(EventList eventList, Procession procession, RouteStore routeStore, PasswordSafe passwordSafe) {
+        this.procession = procession;
+        this.routeStore = routeStore;
+        this.eventList = eventList;
+        this.passwordSafe = passwordSafe;
+    }
 
-	@Override
-	public void execute(RpcCall rpcCall) {
-		SetActiveRouteMessage msg = rpcCall.getInput(SetActiveRouteMessage.class);
-		
-		if ( msg == null ) {
-			rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Could not parse the input");
-			return;
-		}
-		if ( ! msg.verify(passwordSafe.getAdminPassword(), 12*3600*1000)) {
-			rpcCall.setError(BladenightError.INVALID_PASSWORD.getText(), "Verification for admin message failed: " + msg.toString());
-			return;
-		}
-		String newRouteName = msg.getRouteName();
-		if (newRouteName == null) {
-			rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Input route name = " + newRouteName);
-			return;
-		}
-		Route newRoute = routeStore.getRoute(newRouteName);
-		if (newRoute == null) {
-			rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Unknown route: " + newRouteName);
-			return;
-		}
+    @Override
+    public void execute(RpcCall rpcCall) {
+        SetActiveRouteMessage msg = rpcCall.getInput(SetActiveRouteMessage.class);
 
-		procession.setRoute(newRoute);
-		eventList.setNextRoute(newRouteName);
-		try {
-			eventList.write();
-		} catch (IOException e) {
-			getLog().error("Failed to save events: " + e);
-		}
-	}
-	
-	private static Log log;
+        if ( msg == null ) {
+            rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Could not parse the input");
+            return;
+        }
+        if ( ! msg.verify(passwordSafe.getAdminPassword(), 12*3600*1000)) {
+            rpcCall.setError(BladenightError.INVALID_PASSWORD.getText(), "Verification for admin message failed: " + msg.toString());
+            return;
+        }
+        String newRouteName = msg.getRouteName();
+        if (newRouteName == null) {
+            rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Input route name = " + newRouteName);
+            return;
+        }
+        Route newRoute = routeStore.getRoute(newRouteName);
+        if (newRoute == null) {
+            rpcCall.setError(BladenightError.INVALID_ARGUMENT.getText(), "Unknown route: " + newRouteName);
+            return;
+        }
 
-	public static void setLog(Log log) {
-		RpcHandlerSetActiveRoute.log = log;
-	}
+        procession.setRoute(newRoute);
+        eventList.setNextRoute(newRouteName);
+        try {
+            eventList.write();
+        } catch (IOException e) {
+            getLog().error("Failed to save events: " + e);
+        }
+    }
 
-	protected static Log getLog() {
-		if (log == null)
-			setLog(LogFactory.getLog(RpcHandlerSetActiveRoute.class));
-		return log;
-	}
-	
-	private Procession procession;
-	private RouteStore routeStore;
-	private EventList eventList;
+    private static Log log;
+
+    public static void setLog(Log log) {
+        RpcHandlerSetActiveRoute.log = log;
+    }
+
+    protected static Log getLog() {
+        if (log == null)
+            setLog(LogFactory.getLog(RpcHandlerSetActiveRoute.class));
+        return log;
+    }
+
+    private Procession procession;
+    private RouteStore routeStore;
+    private EventList eventList;
 }

@@ -7,14 +7,14 @@ import fr.ocroquette.wampoc.server.RpcHandler;
 
 public class RpcHandlerGetAllRouteNames extends RpcHandler {
 
-	public RpcHandlerGetAllRouteNames(RouteStore routeStore) {
-		this.routeStore = routeStore;
-	}
+    public RpcHandlerGetAllRouteNames(RouteStore routeStore) {
+        this.routeStore = routeStore;
+    }
 
-	@Override
-	public void execute(RpcCall rpcCall) {
-		rpcCall.setOutput(RouteNamesMessage.newFromRouteNameList(routeStore.getAvailableRoutes()), RouteNamesMessage.class);
-	}
+    @Override
+    public void execute(RpcCall rpcCall) {
+        rpcCall.setOutput(RouteNamesMessage.newFromRouteNameList(routeStore.getAvailableRoutes()), RouteNamesMessage.class);
+    }
 
-	private RouteStore routeStore;
+    private RouteStore routeStore;
 }
