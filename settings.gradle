@@ -1,4 +1,4 @@
-rootProject.name = 'server'
+rootProject.name = 'bladenightapp-server'
 
 include ":bladenightapp-common"
 project(':bladenightapp-common').projectDir = new File(settingsDir, '../bladenightapp-common')
