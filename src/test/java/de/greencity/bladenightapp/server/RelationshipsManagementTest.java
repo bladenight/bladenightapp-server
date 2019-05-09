@@ -30,7 +30,7 @@ public class RelationshipsManagementTest {
 
     @Before
     public void before() {
-        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+        BladenightWampServerMain server = new BladenightWampServerMain.Builder()
         .setProcession(new Procession())
         .setRelationshipStore(new RelationshipStore())
         .build();

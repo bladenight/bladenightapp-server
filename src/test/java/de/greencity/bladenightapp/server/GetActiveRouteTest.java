@@ -37,7 +37,7 @@ public class GetActiveRouteTest {
         procession.setRoute(route);
         procession.setMaxComputeAge(0);
 
-        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+        BladenightWampServerMain server = new BladenightWampServerMain.Builder()
         .setProcession(procession)
         .build();
 

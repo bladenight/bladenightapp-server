@@ -1,7 +1,7 @@
 apply plugin: 'java'
 
 group = 'de.greencity.bladenightapp'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 
 description = """Bladenight server"""
 
@@ -30,4 +30,15 @@ dependencies {
     
     compile project(':bladenightapp-common')
     compile project(':wampoc')
+}
+
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'de.greencity.bladenightapp.server.App'
+    }
+    baseName = 'bladenight-server'
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }

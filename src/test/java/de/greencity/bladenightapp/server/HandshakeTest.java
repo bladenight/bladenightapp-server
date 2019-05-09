@@ -22,7 +22,7 @@ public class HandshakeTest {
     @Before
     public void init() throws ParseException {
         LogHelper.disableLogs();
-        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+        BladenightWampServerMain server = new BladenightWampServerMain.Builder()
                 .setMinimumClientBuildNumber(minClientBuildNumber)
                 .build();
         client = new Client(server);

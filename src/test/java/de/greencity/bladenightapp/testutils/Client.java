@@ -18,7 +18,7 @@ import de.greencity.bladenightapp.network.messages.RelationshipInputMessage;
 import de.greencity.bladenightapp.network.messages.RouteMessage;
 import de.greencity.bladenightapp.network.messages.SetActiveRouteMessage;
 import de.greencity.bladenightapp.network.messages.SetActiveStatusMessage;
-import de.greencity.bladenightapp.server.BladenightWampServer;
+import de.greencity.bladenightapp.server.BladenightWampServerMain;
 import fr.ocroquette.wampoc.exceptions.BadArgumentException;
 import fr.ocroquette.wampoc.messages.CallMessage;
 import fr.ocroquette.wampoc.messages.CallResultMessage;
@@ -28,7 +28,7 @@ import fr.ocroquette.wampoc.messages.MessageType;
 import fr.ocroquette.wampoc.server.Session;
 
 public class Client {
-    public Client(BladenightWampServer server) {
+    public Client(BladenightWampServerMain server) {
         this.channel = new ProtocollingChannel();
         this.server = server;
         this.session = server.openSession(channel);
@@ -191,5 +191,5 @@ public class Client {
 
     private ProtocollingChannel channel;
     private Session session;
-    private BladenightWampServer server;
+    private BladenightWampServerMain server;
 }

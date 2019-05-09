@@ -61,7 +61,7 @@
     <script>
       var wampSession;
       function connectToWampServer() {
-        var wsuri = "ws://localhost:8081";
+        var wsuri = "ws://" + location.hostname+(location.port ? ':'+location.port: '')
       
         console.log("Connecting to " + wsuri);
 
@@ -125,8 +125,8 @@
     	  var id = "http://www.greencity.de/bladenight/app/rpc/getRealtimeUpdate";
 			
 			var data = {coo:{la:latlng.lat(), lo:latlng.lng()}, did:deviceId, par:true};
-			// console.log("Calling " + id);
-			// console.log(data);
+			console.log("Calling " + id);
+			console.log(data);
      		wampSession.call(id,data).then(
 	            function (data) {
 		            // RPC success callback
@@ -157,7 +157,7 @@
       function getRealTimeData() {
 			var id = "http://www.greencity.de/bladenight/app/rpc/getRealtimeUpdate";
 
-			// console.log("Calling " + id);
+			console.log("Calling " + id);
        		wampSession.call(id).then(
 	            function (data) {
 		            // RPC success callback
@@ -256,7 +256,7 @@
       function getAndDisplayParticipants() {
 			var id = "http://www.greencity.de/bladenight/app/rpc/getAllParticipants";
 
-			// console.log("Calling " + id );
+			console.log("Calling " + id );
        		wampSession.call(id).then(
 	            function (res) {
 		          // RPC success callback
@@ -294,7 +294,7 @@
       function createRelationship() {
 			var id = "http://www.greencity.de/bladenight/app/rpc/createRelationship";
 
-			// console.log("Calling " + id);
+			console.log("Calling " + id);
      		wampSession.call(id, {did1:"Me"}).then(
 	            function (data) {
 	     			console.log(data);
@@ -319,7 +319,7 @@
       function getActiveRoute() {
 			var id = "http://www.greencity.de/bladenight/app/rpc/getActiveRoute";
 
-			// console.log("Calling " + id);
+			console.log("Calling " + id);
    			wampSession.call(id).then(
 	            function (data) {
 	     			console.log(data);

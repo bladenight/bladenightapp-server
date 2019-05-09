@@ -34,7 +34,7 @@ public class GetAllRouteNamesTest {
         expectedNames.add("Nord - kurz");
         expectedNames.add("Ost - lang");
 
-        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+        BladenightWampServerMain server = new BladenightWampServerMain.Builder()
         .setRouteStore(routeStore)
         .build();
 

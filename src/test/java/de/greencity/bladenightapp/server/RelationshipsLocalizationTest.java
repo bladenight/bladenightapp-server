@@ -50,7 +50,7 @@ public class RelationshipsLocalizationTest {
         procession.setRoute(route);
         procession.setMaxComputeAge(0);
 
-        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+        BladenightWampServerMain server = new BladenightWampServerMain.Builder()
         .setProcession(procession)
         .setRelationshipStore(new RelationshipStore())
         .build();

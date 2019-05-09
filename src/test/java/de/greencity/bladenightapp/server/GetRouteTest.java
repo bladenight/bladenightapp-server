@@ -29,7 +29,7 @@ public class GetRouteTest {
 
         RouteStore routeStore = new RouteStore(FileUtils.toFile(SetActiveRouteTest.class.getResource(routesDir)));
 
-        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+        BladenightWampServerMain server = new BladenightWampServerMain.Builder()
         .setRouteStore(routeStore)
         .build();
 

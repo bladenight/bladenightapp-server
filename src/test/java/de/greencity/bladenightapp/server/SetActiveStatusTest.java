@@ -62,7 +62,7 @@ public class SetActiveStatusTest {
         passwordSafe = new PasswordSafe();
         passwordSafe.setAdminPassword(adminPassword);
 
-        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+        BladenightWampServerMain server = new BladenightWampServerMain.Builder()
         .setProcession(procession)
         .setPasswordSafe(passwordSafe)
         .setEventList(eventList)

@@ -36,7 +36,7 @@ public class GetActiveEventTest {
         .setStatus(EventStatus.CONFIRMED)
         .build());
 
-        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+        BladenightWampServerMain server = new BladenightWampServerMain.Builder()
             .setEventList(eventList)
             .build();
 

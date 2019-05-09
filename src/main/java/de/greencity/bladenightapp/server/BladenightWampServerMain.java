@@ -27,56 +27,58 @@ import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerSetMinimumLinearP
 import de.greencity.bladenightapp.server.rpchandlers.RpcHandlerVerifyAdminPassword;
 import fr.ocroquette.wampoc.server.WampServer;
 
-public class BladenightWampServer extends WampServer {
+import java.util.Optional;
+
+public class BladenightWampServerMain extends WampServer {
 
     public RelationshipStore relationshipStore;
 
-    static public class ServerBuilder {
+    static public class Builder {
 
-        ServerBuilder() {
-            this.bladenightWampServer = new BladenightWampServer();
+        Builder() {
+            this.bladenightWampServerMain = new BladenightWampServerMain();
         }
 
-        public ServerBuilder setMinimumClientBuildNumber(int minClientBuildNumber) {
-            bladenightWampServer.minClientBuildNumber = minClientBuildNumber;
+        public Builder setMinimumClientBuildNumber(int minClientBuildNumber) {
+            bladenightWampServerMain.minClientBuildNumber = minClientBuildNumber;
             return this;
         }
 
-        public ServerBuilder setProcession(Procession procession) {
-            bladenightWampServer.procession = procession;
+        public Builder setProcession(Procession procession) {
+            bladenightWampServerMain.procession = procession;
             return this;
         }
 
-        public ServerBuilder setEventList(EventList eventList) {
-            bladenightWampServer.eventList = eventList;
+        public Builder setEventList(EventList eventList) {
+            bladenightWampServerMain.eventList = eventList;
             return this;
         }
 
-        public ServerBuilder setRouteStore(RouteStore routeStore) {
-            bladenightWampServer.routeStore = routeStore;
+        public Builder setRouteStore(RouteStore routeStore) {
+            bladenightWampServerMain.routeStore = routeStore;
             return this;
         }
 
-        public ServerBuilder setPasswordSafe(PasswordSafe passwordSafe) {
-            bladenightWampServer.passwordSafe = passwordSafe;
+        public Builder setPasswordSafe(PasswordSafe passwordSafe) {
+            bladenightWampServerMain.passwordSafe = passwordSafe;
             return this;
         }
 
-        public ServerBuilder setRelationshipStore(RelationshipStore relationshipStore) {
-            bladenightWampServer.relationshipStore = relationshipStore;
+        public Builder setRelationshipStore(RelationshipStore relationshipStore) {
+            bladenightWampServerMain.relationshipStore = relationshipStore;
             return this;
         }
 
-        public BladenightWampServer build() {
-            bladenightWampServer.register();
-            return bladenightWampServer;
+        public BladenightWampServerMain build() {
+            bladenightWampServerMain.register();
+            return bladenightWampServerMain;
         }
 
 
-        private BladenightWampServer bladenightWampServer;
+        private BladenightWampServerMain bladenightWampServerMain;
     }
 
-    private BladenightWampServer() {
+    private BladenightWampServerMain() {
     }
 
 
@@ -91,7 +93,7 @@ public class BladenightWampServer extends WampServer {
         registerRpcHandler(BladenightUrl.GET_ACTIVE_ROUTE.getText(),            new RpcHandlerGetActiveRoute(procession));
         registerRpcHandler(BladenightUrl.GET_ROUTE.getText(),                   new RpcHandlerGetRoute(routeStore));
         registerRpcHandler(BladenightUrl.GET_ALL_PARTICIPANTS.getText(),        new RpcHandlerGetAllParticipants(procession));
-        registerRpcHandler(BladenightUrl.GET_REALTIME_UPDATE.getText(),         new RpcHandlerGetRealtimeUpdate(procession, relationshipStore));
+        registerRpcHandler(BladenightUrl.GET_REALTIME_UPDATE.getText(),         new RpcHandlerGetRealtimeUpdate(procession, Optional.of(relationshipStore), true));
         registerRpcHandler(BladenightUrl.CREATE_RELATIONSHIP.getText(),         new RpcHandlerCreateRelationship(relationshipStore));
         registerRpcHandler(BladenightUrl.SET_ACTIVE_ROUTE.getText(),            new RpcHandlerSetActiveRoute(eventList, procession, routeStore, passwordSafe));
         registerRpcHandler(BladenightUrl.SET_ACTIVE_STATUS.getText(),           new RpcHandlerSetActiveStatus(eventList, passwordSafe));
@@ -114,12 +116,12 @@ public class BladenightWampServer extends WampServer {
     private static Log log;
 
     public static void setLog(Log log) {
-        BladenightWampServer.log = log;
+        BladenightWampServerMain.log = log;
     }
 
     protected static Log getLog() {
         if (log == null)
-            setLog(LogFactory.getLog(BladenightWampServer.class));
+            setLog(LogFactory.getLog(BladenightWampServerMain.class));
         return log;
     }
 }

@@ -22,7 +22,7 @@ public class VerifyAdminPasswordTest {
         passwordSafe = new PasswordSafe();
         passwordSafe.setAdminPassword(password);
 
-        BladenightWampServer server = new BladenightWampServer.ServerBuilder()
+        BladenightWampServerMain server = new BladenightWampServerMain.Builder()
         .setPasswordSafe(passwordSafe)
         .build();
 
