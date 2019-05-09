@@ -103,7 +103,7 @@ public class App {
 
         org.eclipse.jetty.server.Server server = createMainJettyServer();
 
-        addStaticHttpDocs(wampocHandler);
+        addStaticHttpDocs(wampocHandler, "bnserver.network.main.httpdocs");
 
         server.setHandler(wampocHandler);
 
@@ -134,7 +134,7 @@ public class App {
         int port = getAuxPort();
         org.eclipse.jetty.server.Server server = new Server(port);
 
-        addStaticHttpDocs(wampocHandler);
+        addStaticHttpDocs(wampocHandler, "bnserver.network.aux.httpdocs");
 
         server.setHandler(wampocHandler);
 
@@ -147,8 +147,7 @@ public class App {
         getLog().info("The aux server is now listening on port " + port);
     }
 
-    public static void addStaticHttpDocs(BladenightJettyServerHandler handler) {
-        String httpdocsConfigKey = "bnserver.httpdocs";
+    public static void addStaticHttpDocs(BladenightJettyServerHandler handler, String httpdocsConfigKey) {
         String httpdocsPath = KeyValueStoreSingleton.getPath(httpdocsConfigKey, null);
         if (httpdocsPath == null) {
             getLog().info("No httpdocs path has been set (" + httpdocsConfigKey + ")");
@@ -156,7 +155,7 @@ public class App {
             getLog().fatal("The provided httpdocs path is not a valid directory: " + httpdocsPath);
             System.exit(1);
         } else {
-            getLog().info("Config: httpdocsPath=" + httpdocsPath);
+            getLog().info("Setting up HTTP doc handler: " + httpdocsConfigKey + "=" + httpdocsPath);
             ResourceHandler resourceHandler = new ResourceHandler();
             resourceHandler.setDirectoriesListed(true);
             resourceHandler.setResourceBase(httpdocsPath);
