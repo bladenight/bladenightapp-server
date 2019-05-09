@@ -1,7 +1,7 @@
 apply plugin: 'java'
 
 group = 'de.greencity.bladenightapp'
-version = '0.0.3'
+version = '0.0.4-SNAPSHOT'
 
 description = """Bladenight server"""
 
