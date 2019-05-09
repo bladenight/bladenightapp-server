@@ -1,4 +1,8 @@
-apply plugin: 'java'
+plugins {
+    // Call task "shadowJar" to create fat JAR
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
+    id 'java'
+}
 
 group = 'de.greencity.bladenightapp'
 version = '0.0.4-SNAPSHOT'
@@ -32,13 +36,8 @@ dependencies {
     compile project(':wampoc')
 }
 
-
-task fatJar(type: Jar) {
+jar {
     manifest {
         attributes 'Main-Class': 'de.greencity.bladenightapp.server.App'
     }
-    baseName = 'bladenight-server'
-    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
 }
