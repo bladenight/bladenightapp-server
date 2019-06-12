@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'de.greencity.bladenightapp'
-version = '0.0.5-SNAPSHOT'
+version = '0.2-SNAPSHOT'
 
 description = """Bladenight server"""
 
@@ -41,3 +41,42 @@ jar {
         attributes 'Main-Class': 'de.greencity.bladenightapp.server.App'
     }
 }
+
+task doRelease {
+    doLast {
+        def buildGradle = new File("build.gradle")
+        def matcher = (buildGradle.text =~ /version = '([\d]+)\.([\d]+)-SNAPSHOT'/)
+        def major = Integer.parseInt(matcher[0][1])
+        def minor = Integer.parseInt(matcher[0][2])
+
+        def oldVersion = "${major}.${minor}"
+        def newVersion = "${major}.${minor+1}"
+
+        ant.replace(file: buildGradle, token: "version = '${oldVersion}-SNAPSHOT'", value: "version = '${oldVersion}'")
+
+        exec {
+            commandLine "git", "commit", "-a", "-m", "v${oldVersion}"
+        }
+        exec {
+            commandLine "git", "tag", "v${oldVersion}"
+        }
+        exec {
+            commandLine "./gradlew", "jar"
+        }
+
+        ant.replace(file: buildGradle, token: "version = '${oldVersion}'", value: "version = '${newVersion}-SNAPSHOT'")
+
+        exec {
+            commandLine "git", "commit", "-a", "-m", "Started v${newVersion}"
+        }
+
+        exec {
+            commandLine "git", "push"
+        }
+
+        exec {
+            commandLine "git", "push", "--tags"
+        }
+    }
+}
+
