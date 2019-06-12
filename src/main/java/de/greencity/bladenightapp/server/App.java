@@ -49,6 +49,14 @@ public class App {
         RelationshipStore relationshipStore = initializeRelationshipStore();
         PasswordSafe passwordSafe = initializePasswordSafe();
 
+        // The active route might change for different reasons, for instance if the current event is over, or
+        // if the route of the next/current event is changed. To keep the procession up-to-date, start a thread
+        // that checks and updates periodically. This will not win a design beauty contest but does the job.
+        new Thread(new RouteUpdater(procession, routeStore, eventList, 5000)).start();
+
+        // Start a thread that triggers the computation of the procession regularly
+        new Thread(new ComputeScheduler(procession, 1000)).start();
+
         BladenightWampServerMain.Builder mainBuilder = new BladenightWampServerMain.Builder();
 
         mainBuilder.setRouteStore(routeStore)
@@ -307,13 +315,6 @@ public class App {
 
     private static Procession initializeProcession(EventList eventList, RouteStore routeStore) {
         Procession procession = new Procession();
-        Event nextEvent = eventList.getNextEvent();
-        if (nextEvent != null) {
-            Route route = routeStore.getRoute(nextEvent.getRouteName());
-            procession.setRoute(route);
-        } else {
-            getLog().warn("No upcoming event found");
-        }
 
         double smoothingFactor = KeyValueStoreSingleton.getDouble("bnserver.procession.smoothing", 0.0);
         procession.setUpdateSmoothingFactor(smoothingFactor);
@@ -322,9 +323,6 @@ public class App {
         double greediness = KeyValueStoreSingleton.getDouble("bnserver.procession.greediness", 5.0);
         procession.setProcessionGreediness(greediness);
         getLog().info("Config: Procession greediness=" + greediness);
-
-
-        new Thread(new ComputeScheduler(procession, 1000)).start();
 
         initializeProcessionLogger(procession);
 
