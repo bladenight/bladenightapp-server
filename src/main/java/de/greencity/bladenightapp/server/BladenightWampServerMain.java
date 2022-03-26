@@ -93,7 +93,7 @@ public class BladenightWampServerMain extends WampServer {
         registerRpcHandler(BladenightUrl.GET_ACTIVE_ROUTE.getText(),            new RpcHandlerGetActiveRoute(procession));
         registerRpcHandler(BladenightUrl.GET_ROUTE.getText(),                   new RpcHandlerGetRoute(routeStore));
         registerRpcHandler(BladenightUrl.GET_ALL_PARTICIPANTS.getText(),        new RpcHandlerGetAllParticipants(procession));
-        registerRpcHandler(BladenightUrl.GET_REALTIME_UPDATE.getText(),         new RpcHandlerGetRealtimeUpdate(procession, Optional.of(relationshipStore), true));
+        registerRpcHandler(BladenightUrl.GET_REALTIME_UPDATE.getText(),         new RpcHandlerGetRealtimeUpdate(procession, Optional.ofNullable(relationshipStore), true));
         registerRpcHandler(BladenightUrl.CREATE_RELATIONSHIP.getText(),         new RpcHandlerCreateRelationship(relationshipStore));
         registerRpcHandler(BladenightUrl.SET_ACTIVE_ROUTE.getText(),            new RpcHandlerSetActiveRoute(eventList, procession, routeStore, passwordSafe));
         registerRpcHandler(BladenightUrl.SET_ACTIVE_STATUS.getText(),           new RpcHandlerSetActiveStatus(eventList, passwordSafe));
