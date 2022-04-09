@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="JOSM GPX export" xmlns="http://www.topografix.com/GPX/1/1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <bounds minlat="48.1307312" minlon="11.5184538" maxlat="48.1412633" maxlon="11.5496822"/>
+  </metadata>
+  <trk>
+    <name>Strecke Ost</name>
+    <trkseg>
+      <trkpt lat="48.1321788" lon="11.542906">
+      </trkpt>
+      <trkpt lat="48.1323826" lon="11.5396104">
+      </trkpt>
+      <trkpt lat="48.1307312" lon="11.5392487">
+      </trkpt>
+      <trkpt lat="48.1320624" lon="11.5362177">
+      </trkpt>
+      <trkpt lat="48.1332685" lon="11.5336861">
+      </trkpt>
+      <trkpt lat="48.133779" lon="11.5328959">
+      </trkpt>
+      <trkpt lat="48.1373696" lon="11.5278851">
+      </trkpt>
+      <trkpt lat="48.1356348" lon="11.5246021">
+      </trkpt>
+      <trkpt lat="48.1399127" lon="11.5187543">
+      </trkpt>
+      <trkpt lat="48.1400273" lon="11.5184538">
+      </trkpt>
+      <trkpt lat="48.1412633" lon="11.5187763">
+      </trkpt>
+      <trkpt lat="48.1406528" lon="11.5242274">
+      </trkpt>
+      <trkpt lat="48.1403398" lon="11.5282044">
+      </trkpt>
+      <trkpt lat="48.1401333" lon="11.5312733">
+      </trkpt>
+      <trkpt lat="48.1399379" lon="11.5344632">
+      </trkpt>
+      <trkpt lat="48.1397231" lon="11.5380432">
+      </trkpt>
+      <trkpt lat="48.1395006" lon="11.5416653">
+      </trkpt>
+      <trkpt lat="48.139235" lon="11.5458492">
+      </trkpt>
+      <trkpt lat="48.138871" lon="11.5491633">
+      </trkpt>
+      <trkpt lat="48.1387521" lon="11.5496323">
+      </trkpt>
+      <trkpt lat="48.1385131" lon="11.5496822">
+      </trkpt>
+      <trkpt lat="48.1369227" lon="11.5496056">
+      </trkpt>
+      <trkpt lat="48.1365832" lon="11.5493549">
+      </trkpt>
+      <trkpt lat="48.1361653" lon="11.5488275">
+      </trkpt>
+      <trkpt lat="48.1358461" lon="11.5481722">
+      </trkpt>
+      <trkpt lat="48.13554287978" lon="11.54775043069">
+      </trkpt>
+      <trkpt lat="48.1352281" lon="11.54740284418">
+      </trkpt>
+      <trkpt lat="48.1345098" lon="11.54704070185">
+      </trkpt>
+      <trkpt lat="48.133368" lon="11.54695985952">
+      </trkpt>
+      <trkpt lat="48.1328967" lon="11.5468093">
+      </trkpt>
+      <trkpt lat="48.1324679" lon="11.5465502">
+      </trkpt>
+      <trkpt lat="48.1324261" lon="11.5460012">
+      </trkpt>
+      <trkpt lat="48.1325036" lon="11.5438465">
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

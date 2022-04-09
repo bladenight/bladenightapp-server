@@ -44,8 +44,13 @@ public class RouteUpdater implements Runnable {
         if (nextEvent != null) {
             if(currentRoute == null || !currentRoute.getName().equals(nextEvent.getRouteName())) {
                 Route route = routeStore.getRoute(nextEvent.getRouteName());
-                getLog().info("Active route changed to " + route.getName());
-                procession.setRoute(route);
+                if ( route == null ) {
+                    getLog().error("Route for next event unknown: " + nextEvent.getRouteName());
+                }
+                else {
+                    getLog().info("Active route changed to " + route.getName());
+                    procession.setRoute(route);
+                }
             }
         } else {
             getLog().warn("No upcoming event found");
