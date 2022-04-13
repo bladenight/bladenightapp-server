@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'de.greencity.bladenightapp'
-version = '0.5-SNAPSHOT'
+version = '0.5'
 
 description = """Bladenight server"""
 
