@@ -1,7 +1,7 @@
 {
   "startDate": "templateT21:00:00.000+02:00",
   "duration": 240,
-  "routeName": "phroute",
+  "routeName": "dummy",
   "participants": 0,
   "status": "P"
 }
