@@ -180,16 +180,25 @@ public class App {
         SslContextFactory sslContextFactory = new SslContextFactory(KeyValueStoreSingleton.getPath("bnserver.network.main.ssl.keystore.path"));
         sslContextFactory.setKeyStorePassword(KeyValueStoreSingleton.getString("bnserver.network.main.ssl.keystore.password"));
         sslContextFactory.setKeyManagerPassword(KeyValueStoreSingleton.getString("bnserver.network.main.ssl.keystore.password"));
+//sslContextFactory.setTrustStore(KeyValueStoreSingleton.getPath("bnserver.network.main.ssl.truststore.path"));
+//sslContextFactory.setTrustStorePassword(KeyValueStoreSingleton.getString("bnserver.network.main.ssl.truststore.password"));
+        sslContextFactory.setKeyStoreType("PKCS12");
+        sslContextFactory.setNeedClientAuth(false);
+        sslContextFactory.setTrustAll(true);
+        sslContextFactory.setValidateCerts(false);
+     /* SslContextFactory sslContextFactory = new SslContextFactory(KeyValueStoreSingleton.getPath("bnserver.network.main.ssl.keystore.path"));
+        sslContextFactory.setKeyStorePassword(KeyValueStoreSingleton.getString("bnserver.network.main.ssl.keystore.password"));
+        sslContextFactory.setKeyManagerPassword(KeyValueStoreSingleton.getString("bnserver.network.main.ssl.keystore.password"));
         sslContextFactory.setTrustStore(KeyValueStoreSingleton.getPath("bnserver.network.main.ssl.truststore.path"));
         sslContextFactory.setTrustStorePassword(KeyValueStoreSingleton.getString("bnserver.network.main.ssl.truststore.password"));
         sslContextFactory.setNeedClientAuth(true);
-
+*/
         SslSelectChannelConnector sslConnector = new SslSelectChannelConnector(sslContextFactory);
-
         sslConnector.setPort(getMainPort());
 
         // Add the SocketConnector to the server
         server.setConnectors(new Connector[]{sslConnector});
+
 
         return server;
     }

@@ -1,11 +1,5 @@
 package de.greencity.bladenightapp.server.rpchandlers;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import de.greencity.bladenightapp.network.BladenightError;
 import de.greencity.bladenightapp.network.BladenightUrl;
 import de.greencity.bladenightapp.network.messages.FriendMessage;
@@ -18,6 +12,11 @@ import de.greencity.bladenightapp.relationships.RelationshipMember;
 import de.greencity.bladenightapp.relationships.RelationshipStore;
 import fr.ocroquette.wampoc.server.RpcCall;
 import fr.ocroquette.wampoc.server.RpcHandler;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.util.List;
+import java.util.Optional;
 
 public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
 
@@ -50,7 +49,7 @@ public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
         if (gpsInput != null) {
             boolean wantsToParticipate = gpsInput.isParticipating();
             boolean doesParticipate = wantsToParticipate && this.allowParticipation;
-            if(wantsToParticipate && ! doesParticipate) {
+            if (wantsToParticipate && !doesParticipate) {
                 getLog().warn("Participant with device id \"" + gpsInput.getDeviceId() + "\" would like to participate, but is not allowed to");
             }
             ParticipantInput participantInput = new ParticipantInput(gpsInput.getDeviceId(), doesParticipate, gpsInput.getLatitude(), gpsInput.getLongitude(), gpsInput.getAccuracy());
@@ -62,11 +61,18 @@ public class RpcHandlerGetRealtimeUpdate extends RpcHandler {
         double routeLength = procession.getRoute().getLength();
 
         data.setHead(procession.getHead());
-        data.getHead().setEstimatedTimeToArrival((long) (procession.evaluateTravelTimeBetween(data.getHead().getPosition(), routeLength)));
-
+        if (data.getHead().getEstimatedTimeToArrival() > 0) {
+            data.getHead().setEstimatedTimeToArrival((long) (procession.evaluateTravelTimeBetween(data.getHead().getPosition(), routeLength)));
+        } else {
+            data.getHead().setEstimatedTimeToArrival(0); //when not runnung no estimation possible
+        }
         data.setTail(procession.getTail());
-        data.getTail().setEstimatedTimeToArrival((long) (procession.evaluateTravelTimeBetween(data.getTail().getPosition(), routeLength)));
+        if (data.getTail().getEstimatedTimeToArrival() > 0) {
 
+            data.getTail().setEstimatedTimeToArrival((long) (procession.evaluateTravelTimeBetween(data.getTail().getPosition(), routeLength)));
+        } else {
+            data.getTail().setEstimatedTimeToArrival(0); //when not runnung no estimation possible
+        }
         data.setRouteLength((int) procession.getRoute().getLength());
         data.setRouteName(procession.getRoute().getName());
         data.setUserTotal(procession.getParticipantCount());
