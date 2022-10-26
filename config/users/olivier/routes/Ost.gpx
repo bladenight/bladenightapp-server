@@ -3,8 +3,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <metadata>
-    <time>2022-07-01T16:04:49.979284Z</time>
-    <bounds minlat="48.0996899" minlon="11.5184672" maxlat="48.1412472" maxlon="11.5753396"/>
+    <time>2022-07-25T21:44:10.664786Z</time>
+    <bounds minlat="48.0996899" minlon="11.5278851" maxlat="48.1403398" maxlon="11.5753396"/>
   </metadata>
   <trk>
     <name>Strecke Ost</name>
@@ -35,15 +35,9 @@
       </trkpt>
       <trkpt lat="48.1373696" lon="11.5278851">
       </trkpt>
-      <trkpt lat="48.1356348" lon="11.5246021">
+      <trkpt lat="48.13755427423078" lon="11.528209437131885">
       </trkpt>
-      <trkpt lat="48.139948497494686" lon="11.518668469311523">
-      </trkpt>
-      <trkpt lat="48.14005414806343" lon="11.518467211045074">
-      </trkpt>
-      <trkpt lat="48.14124719154306" lon="11.518795075463105">
-      </trkpt>
-      <trkpt lat="48.1406528" lon="11.5242274">
+      <trkpt lat="48.13872847297871" lon="11.528187979459766">
       </trkpt>
       <trkpt lat="48.1403398" lon="11.5282044">
       </trkpt>
