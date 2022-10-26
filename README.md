@@ -20,6 +20,11 @@ Deploy App
     this will create runnable file in build/libs/bladenightapp-server-0.6-SNAPSHOT-all.jar
     create PKCS12 file .p12 with create-certificate.sh
 
+issues
+    Execution failed for task ':shadowJar'. 
+        > Unsupported class file major version 60
+    move through all steps for deploy app. Important is 'gradle clean' on startup
+
 
 Ideas for Applicationupdates
     Load Images and links from Server
